@@ -13,9 +13,13 @@
 		4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */; };
 		4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */; };
 		4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */; };
+		4A3C88AF1D8FFFED0095D4DE /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88AE1D8FFFED0095D4DE /* loginViewController.swift */; };
+		4A806B7E1D90221B00E34DE0 /* loginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A806B7D1D90221B00E34DE0 /* loginViewController.storyboard */; };
+		8FCA3B46AE82A8C22F045E16 /* Pods_liqapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.debug.xcconfig"; sourceTree = "<group>"; };
 		4A3C88961D8FC6EF0095D4DE /* liqapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liqapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A3C889B1D8FC6EF0095D4DE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -24,6 +28,10 @@
 		4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A3C88A61D8FC6EF0095D4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A3C88A81D8FC6EF0095D4DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A3C88AE1D8FFFED0095D4DE /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		4A806B7D1D90221B00E34DE0 /* loginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = loginViewController.storyboard; sourceTree = "<group>"; };
+		6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.release.xcconfig"; sourceTree = "<group>"; };
+		F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liqapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8FCA3B46AE82A8C22F045E16 /* Pods_liqapp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				4A3C88981D8FC6EF0095D4DE /* liqapp */,
 				4A3C88971D8FC6EF0095D4DE /* Products */,
+				820966E6AD254266BDE82395 /* Pods */,
+				8E3670500809ABA5D5143096 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -63,8 +74,27 @@
 				4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */,
 				4A3C88A81D8FC6EF0095D4DE /* Info.plist */,
 				4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */,
+				4A3C88AE1D8FFFED0095D4DE /* loginViewController.swift */,
+				4A806B7D1D90221B00E34DE0 /* loginViewController.storyboard */,
 			);
 			path = liqapp;
+			sourceTree = "<group>";
+		};
+		820966E6AD254266BDE82395 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */,
+				6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		8E3670500809ABA5D5143096 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +104,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A3C88AB1D8FC6EF0095D4DE /* Build configuration list for PBXNativeTarget "liqapp" */;
 			buildPhases = (
+				E1B48823F6516E2F1DA25C80 /* [CP] Check Pods Manifest.lock */,
 				4A3C88921D8FC6EF0095D4DE /* Sources */,
 				4A3C88931D8FC6EF0095D4DE /* Frameworks */,
 				4A3C88941D8FC6EF0095D4DE /* Resources */,
+				AA74BA3D1C16E4236229C534 /* [CP] Embed Pods Frameworks */,
+				AA56F6DF8A2151C785F43F60 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -99,6 +132,7 @@
 				TargetAttributes = {
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = QG2FZSM37L;
 					};
 				};
 			};
@@ -126,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */,
+				4A806B7E1D90221B00E34DE0 /* loginViewController.storyboard in Resources */,
 				4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */,
 				4A3C889F1D8FC6EF0095D4DE /* Main.storyboard in Resources */,
 			);
@@ -133,11 +168,60 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		AA56F6DF8A2151C785F43F60 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-liqapp/Pods-liqapp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AA74BA3D1C16E4236229C534 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-liqapp/Pods-liqapp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E1B48823F6516E2F1DA25C80 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		4A3C88921D8FC6EF0095D4DE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A3C88AF1D8FFFED0095D4DE /* loginViewController.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
 				4A3C889C1D8FC6EF0095D4DE /* ViewController.swift in Sources */,
 				4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */,
@@ -251,23 +335,31 @@
 		};
 		4A3C88AC1D8FC6EF0095D4DE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.duldul.liqapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		4A3C88AD1D8FC6EF0095D4DE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = jp.duldul.liqapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -290,6 +382,7 @@
 				4A3C88AD1D8FC6EF0095D4DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
