@@ -9,7 +9,7 @@
 import QuartzCore
 import UIKit
 
-class loginViewController : UIViewController {
+class LoginViewController : UIViewController, NSURLSessionDataDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
@@ -17,7 +17,7 @@ class loginViewController : UIViewController {
     
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        getAuthToken()
+        login()
     }
     
     let getTokenMethod = "api/auth"
@@ -31,7 +31,7 @@ class loginViewController : UIViewController {
         loginButton.clipsToBounds = true
     }
     
-    func getAuthToken() {
+    func login() {
         let username: String = usernameTextField.text!
         let password: String = passwordTextField.text!
         let post: String = "username=\(username)&password=\(password)"
@@ -40,7 +40,7 @@ class loginViewController : UIViewController {
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         request.HTTPMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue(Constants.HTTPHeaderValues.urlencoded, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
         request.HTTPBody = postData
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, loginError in
@@ -50,18 +50,26 @@ class loginViewController : UIViewController {
                 }
                 print("Could not complete the request \(error)")
             } else {
-                #if FALSE
-                let parsedResult = try! NSJSONSerialization.JSONObjectWithData(data!, options: NSJSONReadingOptions.AllowFragments) as! NSDictionary
-                #endif
+                let res = response as! NSHTTPURLResponse
+                let resHeader = res.allHeaderFields as! Dictionary<String, String>
                 
-                let res = response as! NSHTTPURLResponse!
-                
-                print(res.allHeaderFields)
-                
+                //print(resHeader)
+                                
                 if (res.statusCode >= 200 && res.statusCode <= 300) {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.debugLabel.text = "Login success."
+                        APIClient.sharedClient.updateAuthorizationHeader(resHeader["Authorization"]!)
+                        
+                        let listOfIbadahs = APIClient.sharedClient.fetchListOfIbadahs()
+                        
+                        let storyboard = UIStoryboard(name: "Main", bundle:nil)
+                        let mutabaahTableViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier") as! MutabaahTableViewController
+                        
+                        mutabaahTableViewController.listOfIbadahs = listOfIbadahs
+                        
+                        self.presentViewController(mutabaahTableViewController, animated: true, completion: nil)
                     }
+                    
                 } else {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.debugLabel.text = "Login Failed. Status\(res.statusCode)"

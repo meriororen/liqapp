@@ -14,22 +14,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    override init() {
-        super.init()
-    }
-    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
-        let storyboard = UIStoryboard(name: "loginViewController", bundle: nil)
-        let loginViewController = storyboard.instantiateViewControllerWithIdentifier("loginViewController")
-        //self.window?.rootViewController?.presentViewController(loginViewController, animated: true, completion: nil)
-        
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
-        self.window?.rootViewController = loginViewController
-        self.window?.makeKeyAndVisible()
+        
+        if (!APIClient.sharedClient.isSessionValid) {
+            let storyboard = UIStoryboard(name: "LoginViewController", bundle: nil)
+            let loginViewController = storyboard.instantiateViewControllerWithIdentifier("loginVIdentifier")
+            self.window?.rootViewController = loginViewController
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier")
+            self.window?.rootViewController = mainViewController
+        }
 
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
