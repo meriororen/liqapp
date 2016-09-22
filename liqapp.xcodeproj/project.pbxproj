@@ -21,6 +21,7 @@
 		4A7E9D111D929A74002E3697 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D0F1D929A74002E3697 /* Constants.swift */; };
 		4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */; };
 		4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D141D92A67D002E3697 /* OAuthToken.swift */; };
+		4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D181D938CB2002E3697 /* AuthManager.swift */; };
 		4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */; };
 		8FCA3B46AE82A8C22F045E16 /* Pods_liqapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSHTTPURLResponse+HTTP.swift"; sourceTree = "<group>"; };
 		4A7E9D141D92A67D002E3697 /* OAuthToken.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OAuthToken.swift; sourceTree = "<group>"; };
 		4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Liqapp-Bridging-Header.h"; sourceTree = "<group>"; };
+		4A7E9D181D938CB2002E3697 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
 		6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.release.xcconfig"; sourceTree = "<group>"; };
 		F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liqapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +84,7 @@
 		4A3C88981D8FC6EF0095D4DE /* liqapp */ = {
 			isa = PBXGroup;
 			children = (
+				4A7E9D181D938CB2002E3697 /* AuthManager.swift */,
 				4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */,
 				4A7E9D141D92A67D002E3697 /* OAuthToken.swift */,
 				4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */,
@@ -245,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A3C88AF1D8FFFED0095D4DE /* LoginViewController.swift in Sources */,
+				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
 				4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
 				4A3C889C1D8FC6EF0095D4DE /* ViewController.swift in Sources */,

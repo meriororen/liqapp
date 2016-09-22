@@ -11,5 +11,6 @@
 
 
 #import "Pods/LUKeychainAccess/LUKeychainAccess.h"
+#import "Pods/AFNetworking/AFNetworking.h"
 
 #endif /* Liqapp_Bridging_Header_h */

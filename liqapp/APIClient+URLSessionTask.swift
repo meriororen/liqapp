@@ -103,9 +103,11 @@ extension APIClient {
         
         let task = dataTask(urlRequest, success: success) { (error) in
             if error.code == Constants.Error.Code.UnauthorizedError.rawValue {
+                /* TODO
                 self.validate {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
+                */
             } else {
                 failure(error: error)
             }

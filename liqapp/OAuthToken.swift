@@ -27,13 +27,13 @@ extension NSDate {
     }
 }
 
-class OAuthToken: NSObject {
-    
-    var refreshToken: String? {
-        didSet {
-            storeInKeyChain()
-        }
-    }
+private struct Keys {
+    static let accessTokenKey = "accesstoken"
+    static let scopeKey = "scope"
+    static let expiresKey = "expires"
+}
+
+class OAuthToken: NSObject, NSCoding {
     
     var accessToken: String? {
         didSet {
@@ -44,9 +44,66 @@ class OAuthToken: NSObject {
     var expires: NSDate
     var scope: String?
     
+    required convenience init(coder decoder: NSCoder) {
+        let expires : NSDate = {
+            if let expiryDate =  decoder.decodeObjectForKey(Keys.expiresKey) as? NSDate {
+                return expiryDate
+            } else {
+                return NSDate()
+            }
+        }()
+        self.init(expiryDate: expires)
+        self.scope = decoder.decodeObjectForKey(Keys.scopeKey) as! String!
+        self.accessToken = decoder.decodeObjectForKey(Keys.accessTokenKey) as? String
+    }
+    
     init(expiryDate: NSDate) {
         self.expires = expiryDate
         super.init()
+    }
+    
+    func setAllInstanceVariablesToNil() {
+        self.accessToken = nil
+    }
+    
+    private init?(accessToken: String?, expiresInSeconds: NSNumber) {
+        if let expirationDate = NSDate().dateByAdding(seconds: expiresInSeconds.integerValue) {
+            self.expires = expirationDate
+        } else {
+            self.expires = NSDate()
+            super.init()
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        
+        if let actualAccessToken = accessToken as String? {
+            self.accessToken = actualAccessToken
+        }
+        
+        self.scope = "fullscope"
+        super.init()
+        storeInKeyChain()
+    }
+    
+    convenience init?(attributes: Dictionary<String, AnyObject>) {
+        let anAccessToken = attributes["Authorization"] as! String
+        let expiresIn: String = attributes["Expires_in"] as! String
+        
+        if let expiresInSeconds = Int(expiresIn) {
+            self.init(accessToken: anAccessToken, expiresInSeconds: expiresInSeconds)
+        } else {
+            self.init(expiryDate: NSDate())
+            self.setAllInstanceVariablesToNil()
+            return nil
+        }
+        
+        storeInKeyChain()
+    }
+    
+    func encodeWithCoder(coder: NSCoder) {
+        coder.encodeObject(self.accessToken, forKey: Keys.accessTokenKey)
+        coder.encodeObject(self.expires, forKey: Keys.expiresKey)
+        coder.encodeObject(self.scope, forKey: Keys.scopeKey)
     }
     
     func hasExpired() -> Bool {
@@ -73,12 +130,17 @@ class OAuthToken: NSObject {
             }
         }
         
+        //print((tokenArray["fullscope"] as! OAuthToken).hasExpired())
+        
         return tokenArray
     }
     
     func storeInKeyChain() {
-        let existingTokens = OAuthToken.oAuthTokens()
-        LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: Constants.kOAuth2TokensKey)
+        var existingTokens = OAuthToken.oAuthTokens()
+        if let actualScope = scope {
+            existingTokens[actualScope] = self
+            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: Constants.kOAuth2TokensKey)
+        }
     }
     
     func setExpiryDate(expiresInSeconds: NSNumber?) {
@@ -88,6 +150,11 @@ class OAuthToken: NSObject {
                 storeInKeyChain()
             }
         }
+    }
+    
+    class func removeAllTokens() {
+        let emptyDic = Dictionary<String, AnyObject>()
+        LUKeychainAccess.standardKeychainAccess().setObject(emptyDic, forKey: Constants.kOAuth2TokensKey)
     }
     
 }

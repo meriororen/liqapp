@@ -8,6 +8,7 @@
 
 import QuartzCore
 import UIKit
+import Foundation
 
 class LoginViewController : UIViewController, NSURLSessionDataDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -17,7 +18,7 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
     
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        login()
+        authenticate()
     }
     
     let getTokenMethod = "api/auth"
@@ -29,6 +30,27 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
         
         loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
+    }
+    
+    func authenticate() {
+        var params = Dictionary<String, AnyObject>()
+        params.updateValue("\(usernameTextField.text!)", forKey: "username")
+        params.updateValue("\(passwordTextField.text!)", forKey: "password")
+
+        AuthManager.sharedManager.authenticateWithCode(params, success: {
+            dispatch_async(dispatch_get_main_queue(), {            
+                let storyboard = UIStoryboard(name: "Main", bundle:nil)
+                let mutabaahTableViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier") as! MutabaahTableViewController
+                
+                self.presentViewController(mutabaahTableViewController, animated: true, completion: nil)
+            })
+        }, failure: { (error) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.debugLabel.text = "Failed"
+                }
+    
+            }
+        )
     }
     
     func login() {
@@ -58,7 +80,7 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
                 if (res.statusCode >= 200 && res.statusCode <= 300) {
                     dispatch_async(dispatch_get_main_queue()) {
                         self.debugLabel.text = "Login success."
-                        APIClient.sharedClient.updateAuthorizationHeader(resHeader["Authorization"]!)
+                    APIClient.sharedClient.updateAuthorizationHeader(resHeader["Authorization"]!)
                         
                         let listOfIbadahs = APIClient.sharedClient.fetchListOfIbadahs()
                         

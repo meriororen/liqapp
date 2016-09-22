@@ -20,13 +20,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
-        if (!APIClient.sharedClient.isSessionValid) {
+        if (APIClient.sharedClient.isSessionInvalid()) {
             let storyboard = UIStoryboard(name: "LoginViewController", bundle: nil)
             let loginViewController = storyboard.instantiateViewControllerWithIdentifier("loginVIdentifier")
             self.window?.rootViewController = loginViewController
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier")
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier") as! MutabaahTableViewController
+            
+            mainViewController.listOfIbadahs = APIClient.sharedClient.fetchListOfIbadahs()
+            
             self.window?.rootViewController = mainViewController
         }
 

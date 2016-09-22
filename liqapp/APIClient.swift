@@ -28,7 +28,6 @@ class APIClient: NSObject, NSURLSessionDelegate {
     
     var session: NSURLSession!
     var additionalHeaders = Dictionary<String, String>()
-    var isSessionValid: Bool! = false
     var lastPerformedTask: NSURLSessionTask? = nil
     
     override init() {
@@ -50,8 +49,20 @@ class APIClient: NSObject, NSURLSessionDelegate {
     func fetchListOfIbadahs() -> NSArray {
         let result = NSMutableArray()
         
+        result.addObject("Test")
+        result.addObject("Ok")
+        result.addObject("Test")
+        result.addObject("Ok")
+        result.addObject("Test")
+        result.addObject("Ok")
+        result.addObject("Test")
+        result.addObject("Ok")
+        result.addObject("Test")
+        result.addObject("Ok")
+        
         return result as NSArray
     }
+    
     
     func validate(oAuthToken oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
         if oAuthToken?.hasExpired() == false {
@@ -60,5 +71,20 @@ class APIClient: NSObject, NSURLSessionDelegate {
         } else {
             failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnauthorizedError.rawValue, userInfo: nil))
         }
+    }
+    
+    func isSessionInvalid() -> Bool {
+        let allTokens = OAuthToken.oAuthTokens()
+        if allTokens.count != 0 {
+            for (_, token) in allTokens {
+                if token is OAuthToken {
+                    if (token.hasExpired() == false) {
+                        return false
+                    }
+                }
+            }
+        }
+        
+        return true
     }
 }

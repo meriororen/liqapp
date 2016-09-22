@@ -22,10 +22,17 @@ struct Constants {
     
     struct Error {
         static let apiClientErrorDomain = "APIClientErrorDomain"
+        static let authManagerErrorDomain = "AUTHManErrorDomain"
         
         enum Code : Int {
             case UnknownError = 4001
             case UnauthorizedError = 4002
         }
+    }
+    
+    
+    struct url {
+        static let baseURL = NSURL(string: "http://liqo.herokuapp.com/")
+        static let authURL = NSURL(string: "api/auth", relativeToURL: baseURL)
     }
 }
