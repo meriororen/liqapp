@@ -43,7 +43,7 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
         AuthManager.sharedManager.authenticateWithCode(params, success: {
             dispatch_async(dispatch_get_main_queue(), {            
                 let storyboard = UIStoryboard(name: "Main", bundle:nil)
-                let mutabaahViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahVIdentifier") as! MutabaahViewController
+                let mutabaahViewController = storyboard.instantiateViewControllerWithIdentifier("mainVCIdentifier")
                 
                 self.spinner.stopAnimating()
                 

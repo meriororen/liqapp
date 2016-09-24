@@ -55,14 +55,16 @@ class APIClient: NSObject, NSURLSessionDelegate {
         self.validateFullScope {
             /* fetch list of ibadahs */
             self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
+                    /* clear all first */
+                    self.listOfIbadahs.removeAllObjects()
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            APIClient.sharedClient.listOfIbadahs.addObject(data)
+                            self.listOfIbadahs.addObject(data)
                         }
                         then()
                     } else {
                         for (_, value) in jsonData {
-                            APIClient.sharedClient.listOfIbadahs.addObject(value)
+                            self.listOfIbadahs.addObject(value)
                         }
                         then()
                     }

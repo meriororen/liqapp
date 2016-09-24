@@ -14,6 +14,8 @@
 		4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */; };
 		4A3C88AF1D8FFFED0095D4DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */; };
 		4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */; };
+		4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */; };
+		4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */; };
 		4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D081D9241B4002E3697 /* APIClient.swift */; };
 		4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */; };
 		4A7E9D101D929A74002E3697 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D0E1D929A74002E3697 /* APIError.swift */; };
@@ -36,6 +38,8 @@
 		4A3C88A81D8FC6EF0095D4DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutabaahViewController.swift; sourceTree = "<group>"; };
+		4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbadahTableViewCell.swift; sourceTree = "<group>"; };
+		4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IbadahTableViewCell.xib; sourceTree = "<group>"; };
 		4A7E9D081D9241B4002E3697 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+URLSessionTask.swift"; sourceTree = "<group>"; };
 		4A7E9D0E1D929A74002E3697 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 				4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */,
 				4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */,
 				4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */,
+				4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */,
+				4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */,
 				4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */,
 				4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */,
 				4A3C88A81D8FC6EF0095D4DE /* Info.plist */,
@@ -185,6 +191,7 @@
 				4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */,
 				4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */,
 				4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */,
+				4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */,
 				4A3C889F1D8FC6EF0095D4DE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,6 +255,7 @@
 				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
 				4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
+				4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */,
 				4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */,
 				4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */,
 				4A7E9D101D929A74002E3697 /* APIError.swift in Sources */,

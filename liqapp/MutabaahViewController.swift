@@ -17,35 +17,55 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var valueLabel: UILabel!
     
     var spinner = UIActivityIndicatorView()
+    var spinner0 = UIActivityIndicatorView()
+    
     var listOfIbadahs: NSArray!
+    
+    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
-        
+        tableView.registerNib(UINib(nibName: "IbadahTableViewCell", bundle: nil), forCellReuseIdentifier: "ibadahCell")
+        tableView.dataSource = self
+
         /* detail view */
-        valueLabel.center.x = detailView.center.x
+        valueLabel.hidden = true
         
         spinner = UIActivityIndicatorView(frame: CGRectMake(self.mainView.center.x, self.tableView.center.y - 50, 10, 10))
+        spinner0 = UIActivityIndicatorView(frame: CGRectMake(self.mainView.center.x, self.detailView.center.y, 10, 10))
         spinner.activityIndicatorViewStyle = .Gray
+        spinner0.activityIndicatorViewStyle = .WhiteLarge
+        
+        
+        mainView.addSubview(spinner0)
         mainView.addSubview(spinner)
+        
+        /* start loading view */
+        
+        spinner0.startAnimating()
         spinner.startAnimating()
         
         APIClient.sharedClient.updateUserResources {
             self.loadListOfIbadahs()
         }
         
-        //tableView = mainView.frame.height - detailView.frame.height
+        tableView.userInteractionEnabled = false
     }
     
     func loadListOfIbadahs() {
-        self.spinner.stopAnimating()
+        spinner.stopAnimating()
+        spinner0.stopAnimating()
+        valueLabel.hidden = false
+        tableView.userInteractionEnabled = true
+        
         if let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(0) as? [String:String] {
-            self.valueLabel.text = ibadah["name"]
+            valueLabel.text = ibadah["name"]
         }
-        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -64,11 +84,12 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ibadahCell", forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier("ibadahCell", forIndexPath: indexPath) as! IbadahTableViewCell
         
         let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? Dictionary<String, String>
         
-        cell.textLabel?.text = ibadah!["name"]
+        cell.ibadahLabel.text = ibadah!["name"]
+        cell.ibadahValue.text = String(indexPath.row * 2)
         
         return cell
     }

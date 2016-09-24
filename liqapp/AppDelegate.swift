@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = loginViewController
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahVIdentifier") as! MutabaahViewController
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mainVCIdentifier")
                         
             self.window?.rootViewController = mainViewController
         }
