@@ -26,10 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = loginViewController
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahTVIdentifier") as! MutabaahTableViewController
-            
-            mainViewController.listOfIbadahs = APIClient.sharedClient.fetchListOfIbadahs()
-            
+            let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mutabaahVIdentifier") as! MutabaahViewController
+                        
             self.window?.rootViewController = mainViewController
         }
 

@@ -118,6 +118,16 @@ class OAuthToken: NSObject, NSCoding {
         return true
     }
     
+    class func oAuthTokenWithScope(scope: String) -> OAuthToken? {
+        let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(Constants.kOAuth2TokensKey) as! NSDictionary?
+        if let actualDictionary = dictionary as NSDictionary? {
+            if let token = actualDictionary[scope] as?  OAuthToken? {
+                return token
+            }
+        }
+        return nil
+    }
+    
     class func oAuthTokens() -> Dictionary<String, AnyObject> {
         var tokenArray = Dictionary<String, AnyObject>()
         let dictionary = LUKeychainAccess.standardKeychainAccess().objectForKey(Constants.kOAuth2TokensKey) as! NSDictionary?
@@ -149,6 +159,20 @@ class OAuthToken: NSObject, NSCoding {
                 self.expires = expirationDate
                 storeInKeyChain()
             }
+        }
+    }
+    
+    func removeFromKeychainIfNoAccessToken() {
+        if accessToken == nil {
+            var existingTokens = OAuthToken.oAuthTokens()
+            existingTokens[scope!] = nil
+            LUKeychainAccess.standardKeychainAccess().setObject(existingTokens, forKey: Constants.kOAuth2TokensKey)
+        }
+    }
+    
+    func removeFromKeychainIfNotValid() {
+        if accessToken == nil {
+            removeFromKeychainIfNoAccessToken()
         }
     }
     

@@ -46,6 +46,7 @@ extension APIClient {
     }
     
     private func jsonDataTask(urlRequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void, failure: (error: APIError) -> () ) -> NSURLSessionTask {
+//        print(urlRequest)
         let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
             dispatch_async(dispatch_get_main_queue(), {
                 let httpResponse = response as? NSHTTPURLResponse
@@ -75,8 +76,16 @@ extension APIClient {
                                 let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)
                                 failure(error: err)
                             } else {
-                                let serializer = try! NSJSONSerialization.JSONObjectWithData(actualData, options: NSJSONReadingOptions.AllowFragments) as! Dictionary<String, AnyObject>
-                                success(serializer)
+                                let serialized = try! NSJSONSerialization.JSONObjectWithData(actualData, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>
+                                
+                                if (serialized == nil) {
+                                    let array_serialized = try! NSJSONSerialization.JSONObjectWithData(actualData, options: .AllowFragments) as? [Dictionary<String, AnyObject>]
+                                    var ser_array_serialized = Dictionary<String, AnyObject>()
+                                    ser_array_serialized.updateValue(array_serialized!, forKey: "response")
+                                    success(ser_array_serialized)
+                                } else {
+                                    success(serialized!)
+                                }
                             }
                         }
                     }
@@ -87,7 +96,6 @@ extension APIClient {
         return task
     }
     
-    
     func urlSessionTask(method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: () -> Void, failure: (error: APIError) -> ()) -> NSURLSessionTask {
         let url = NSURL(string: url)
         let urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
@@ -96,6 +104,7 @@ extension APIClient {
         if let actualParameters = parameters {
             urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted)
         }
+        
         // add additional headers
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
@@ -103,11 +112,39 @@ extension APIClient {
         
         let task = dataTask(urlRequest, success: success) { (error) in
             if error.code == Constants.Error.Code.UnauthorizedError.rawValue {
-                /* TODO
-                self.validate {
+                self.validateFullScope {
                     failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
                 }
-                */
+            } else {
+                failure(error: error)
+            }
+        }
+        
+        return task
+    }
+    
+    /**
+     GET a request to server that fetches json structures, like list of documents, list of folders.
+     :param: url       url to fetch data from
+     :param: success   block with json data that has to be inserted to database
+     :param: failure   failure block with error that should be sent to present a UIAlertcontroller with API error
+     :returns: a task to resume when the request should be started
+     */
+    func urlSessionJSONTask(url url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+        
+        let fullURL = NSURL(string: url, relativeToURL: Constants.url.baseURL)
+        let urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.HTTPMethod = httpMethod.get.rawValue
+        for (key, value) in self.additionalHeaders {
+            urlRequest.setValue(value, forHTTPHeaderField: key)
+        }
+        
+        let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.UnauthorizedError.rawValue {
+                self.validateFullScope {
+                    failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                }
+                print(error.responseText)
             } else {
                 failure(error: error)
             }

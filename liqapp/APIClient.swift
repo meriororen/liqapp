@@ -29,6 +29,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
     var session: NSURLSession!
     var additionalHeaders = Dictionary<String, String>()
     var lastPerformedTask: NSURLSessionTask? = nil
+    var listOfIbadahs: NSMutableArray = NSMutableArray()
     
     override init() {
         super.init()
@@ -42,34 +43,55 @@ class APIClient: NSObject, NSURLSessionDelegate {
         self.session = theSession
     }
     
-    func updateAuthorizationHeader(accessToken: String) {
-        self.additionalHeaders["Authorization"] = accessToken
+    func updateAuthorizationHeader(token: OAuthToken?) {
+        if let actualToken = token as OAuthToken! {
+            self.additionalHeaders["Authorization"] = actualToken.accessToken
+        } else {
+            
+        }
     }
     
-    func fetchListOfIbadahs() -> NSArray {
-        let result = NSMutableArray()
-        
-        result.addObject("Test")
-        result.addObject("Ok")
-        result.addObject("Test")
-        result.addObject("Ok")
-        result.addObject("Test")
-        result.addObject("Ok")
-        result.addObject("Test")
-        result.addObject("Ok")
-        result.addObject("Test")
-        result.addObject("Ok")
-        
-        return result as NSArray
+    func fetchListOfIbadahs(then then: () -> Void) {
+        self.validateFullScope {
+            let task = self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
+                    if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
+                        for data in anArray {
+                            APIClient.sharedClient.listOfIbadahs.addObject(data)
+                        }
+                        then()
+                    } else {
+                        for (_, value) in jsonData {
+                            APIClient.sharedClient.listOfIbadahs.addObject(value)
+                        }
+                        then()
+                    }
+                }, failure: { (error) in
+                    print(error)
+                }
+            )
+            
+            task.resume()
+        }
     }
     
+    func validateFullScope(then then: () -> Void) {
+        let fullToken = OAuthToken.oAuthTokenWithScope("fullscope")
+        validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
+            self.updateAuthorizationHeader(chosenToken)
+            then()
+        },failure: nil)
+    }
     
     func validate(oAuthToken oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
-        if oAuthToken?.hasExpired() == false {
-            validationSuccess(chosenToken: oAuthToken!)
-            return
-        } else {
-            failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnauthorizedError.rawValue, userInfo: nil))
+        if oAuthToken != nil {
+            if oAuthToken!.hasExpired() == false {
+                validationSuccess(chosenToken: oAuthToken!)
+            } else {
+                oAuthToken!.removeFromKeychainIfNotValid()
+                // TODO: do another authentication here when user decided to remember username/password
+                
+                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnauthorizedError.rawValue, userInfo: nil))
+            }
         }
     }
     
