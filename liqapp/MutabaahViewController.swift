@@ -8,6 +8,25 @@
 
 import UIKit
 
+extension UIView {
+    func slideInFromBottom(duration: NSTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        let slideInFromBottomTransition = CATransition()
+        
+        if let delegate: AnyObject = completionDelegate {
+            slideInFromBottomTransition.delegate = delegate
+        }
+        
+        slideInFromBottomTransition.type = kCATransitionPush
+        slideInFromBottomTransition.subtype = kCATransitionFromBottom
+        slideInFromBottomTransition.duration = duration
+        slideInFromBottomTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        slideInFromBottomTransition.fillMode = kCAFillModeRemoved
+        
+        self.layer.addAnimation(slideInFromBottomTransition, forKey: "slideInFromBottomTransition")
+    }
+}
+
+
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
@@ -95,8 +114,16 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? [String:String]
-        self.valueLabel.text = ibadah!["name"]
+        struct h { static var previousIndex = 0 }
+        //let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? [String:String]
+        
+        if indexPath.row != h.previousIndex {
+            valueLabel.slideInFromBottom(0.5)
+            //valueLabel.text = ibadah!["name"]
+            valueLabel.text = String(indexPath.row * 2) + " rakaat"
+        }
+        
+        h.previousIndex = indexPath.row
     }
 
 }

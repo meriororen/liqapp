@@ -125,7 +125,7 @@
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="BQO-9y-okC"/>
-                                            <constraint firstAttribute="height" constant="75" id="qeI-nr-T0Q"/>
+                                            <constraint firstAttribute="height" constant="75" id="XDy-Yl-1sd"/>
                                         </constraints>
                                         <attributedString key="attributedText">
                                             <fragment content="0">
@@ -143,24 +143,6 @@
                                             </mask>
                                         </variation>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hau-BM-1gn">
-                                        <rect key="frame" x="331" y="159" width="39" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="A3W-lU-2CU"/>
-                                            <constraint firstAttribute="width" constant="39" id="zpD-j8-Aeu"/>
-                                        </constraints>
-                                        <state key="normal" title="+1"/>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bSa-O9-Kv8">
-                                        <rect key="frame" x="231" y="159" width="39" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="30" id="Z67-9I-h9T"/>
-                                            <constraint firstAttribute="width" constant="39" id="v5m-DV-2SI"/>
-                                        </constraints>
-                                        <state key="normal" title="-1"/>
-                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="62I-yG-psq">
                                         <rect key="frame" x="450" y="167" width="46" height="30"/>
                                         <state key="normal" title="Button"/>
@@ -183,21 +165,16 @@
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstItem="nXq-WP-632" firstAttribute="top" secondItem="ZgA-YL-UcV" secondAttribute="top" constant="2" id="0qa-IX-sPB"/>
-                                    <constraint firstItem="Hau-BM-1gn" firstAttribute="centerX" secondItem="ZgA-YL-UcV" secondAttribute="centerX" constant="50" id="1Zk-Ck-4yc"/>
-                                    <constraint firstItem="bL6-0h-7b2" firstAttribute="centerY" secondItem="ZgA-YL-UcV" secondAttribute="centerY" constant="-26" id="GZB-ok-5BH"/>
-                                    <constraint firstAttribute="bottom" secondItem="Hau-BM-1gn" secondAttribute="bottom" constant="42" id="TK1-gc-71D"/>
-                                    <constraint firstItem="bSa-O9-Kv8" firstAttribute="top" secondItem="bL6-0h-7b2" secondAttribute="bottom" constant="32" id="eSb-4D-kVQ"/>
-                                    <constraint firstItem="bL6-0h-7b2" firstAttribute="centerX" secondItem="ZgA-YL-UcV" secondAttribute="centerX" id="g5J-wK-wSR"/>
-                                    <constraint firstItem="Hau-BM-1gn" firstAttribute="top" secondItem="bL6-0h-7b2" secondAttribute="bottom" constant="32" id="gWy-no-jaM"/>
-                                    <constraint firstAttribute="bottom" secondItem="bSa-O9-Kv8" secondAttribute="bottom" constant="42" id="nNp-mw-mZV"/>
+                                    <constraint firstItem="bL6-0h-7b2" firstAttribute="centerX" secondItem="ZgA-YL-UcV" secondAttribute="centerX" id="Tqh-bL-sdC"/>
+                                    <constraint firstItem="bL6-0h-7b2" firstAttribute="top" secondItem="ZgA-YL-UcV" secondAttribute="top" constant="52" id="xQO-CI-aMC"/>
                                     <constraint firstAttribute="trailing" secondItem="nXq-WP-632" secondAttribute="trailing" constant="1" id="y3J-g0-cC5"/>
-                                    <constraint firstItem="bSa-O9-Kv8" firstAttribute="centerX" secondItem="ZgA-YL-UcV" secondAttribute="centerX" constant="-50" id="z3H-3h-dls"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ohf-D2-7S4">
                                 <rect key="frame" x="0.0" y="231" width="600" height="369"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
+                                    <constraint firstAttribute="height" constant="369" id="mNC-9l-xJc"/>
                                     <constraint firstAttribute="height" constant="379" id="oSP-NB-VO9"/>
                                 </constraints>
                                 <prototypes>

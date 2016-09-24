@@ -14,24 +14,26 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - JDFlipNumberView (2.2.3):
+    - JDFlipNumberView/Core (= 2.2.3)
+    - JDFlipNumberView/DefaultImageBundle (= 2.2.3)
+    - JDFlipNumberView/FlipImageView (= 2.2.3)
+  - JDFlipNumberView/Core (2.2.3)
+  - JDFlipNumberView/DefaultImageBundle (2.2.3):
+    - JDFlipNumberView/Core
+  - JDFlipNumberView/FlipImageView (2.2.3)
   - LUKeychainAccess (1.2.5)
-  - Realm (1.0.2):
-    - Realm/Headers (= 1.0.2)
-  - Realm/Headers (1.0.2)
-  - RealmSwift (1.0.2):
-    - Realm (= 1.0.2)
 
 DEPENDENCIES:
   - AFNetworking
+  - JDFlipNumberView
   - LUKeychainAccess
-  - RealmSwift
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  JDFlipNumberView: e4672404447e7240d26d22f8c850660cd44eef69
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
-  Realm: 9d5c46a4d7d27958530a8dfc58f63a99e5c2cba3
-  RealmSwift: 82f3ac5e24530143dddfde2033acc0d308f27d96
 
-PODFILE CHECKSUM: f1019c3a8567075d0306db51682aef3a24fc4937
+PODFILE CHECKSUM: 7603c6f8f9527f403c20960871e207321c7a6327
 
 COCOAPODS: 1.0.1

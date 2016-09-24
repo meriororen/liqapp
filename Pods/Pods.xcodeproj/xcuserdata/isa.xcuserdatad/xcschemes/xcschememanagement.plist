@@ -9,22 +9,17 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>JDFlipNumberView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>LUKeychainAccess.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>Pods-liqapp.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Realm.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>RealmSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,17 +32,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>3FED33622223F9E0B2837A6CB1D199CF</key>
+		<key>1EC87DCB3C84C44EE1C3C46993292CFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7B029F007C649A74F7B7BD39150165A6</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B473699589740E5C4325E38109F72F22</key>
+		<key>DC2A7837D8805932597CFA77A4141711</key>
 		<dict>
 			<key>primary</key>
 			<true/>

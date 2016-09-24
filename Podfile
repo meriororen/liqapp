@@ -6,8 +6,9 @@ target 'liqapp' do
   use_frameworks!
 
   # Pods for liqapp
-  pod 'RealmSwift'
+  #pod 'RealmSwift'
   pod 'LUKeychainAccess'
   #pod 'Alamofire'
   pod 'AFNetworking'
+  pod 'JDFlipNumberView'
 end
