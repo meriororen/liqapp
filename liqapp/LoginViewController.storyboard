@@ -50,7 +50,7 @@
                                     <action selector="loginButtonPressed:" destination="f8U-PX-Ikn" eventType="touchUpInside" id="nSF-7K-hTB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="debug" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0al-VY-3St">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="debug" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0al-VY-3St">
                                 <rect key="frame" x="70" y="366" width="251" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="251" id="G8H-mG-kng"/>

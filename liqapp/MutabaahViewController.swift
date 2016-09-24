@@ -25,24 +25,15 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
         
-        /*
-        if (APIClient.sharedClient.listOfIbadahs as NSMutableArray!) != nil {
-            listOfIbadahs = APIClient.sharedClient.listOfIbadahs
-        } else {
-            listOfIbadahs = NSArray()
-        }
-        */
-        
         /* detail view */
         valueLabel.center.x = detailView.center.x
         
-        spinner = UIActivityIndicatorView(frame: CGRectMake(0, 0, 70, 70))
+        spinner = UIActivityIndicatorView(frame: CGRectMake(self.mainView.center.x, self.tableView.center.y - 50, 10, 10))
         spinner.activityIndicatorViewStyle = .Gray
-        spinner.center = self.tableView.center
         mainView.addSubview(spinner)
         spinner.startAnimating()
         
-        APIClient.sharedClient.fetchListOfIbadahs {
+        APIClient.sharedClient.updateUserResources {
             self.loadListOfIbadahs()
         }
         

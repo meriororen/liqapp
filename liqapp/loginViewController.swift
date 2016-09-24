@@ -28,10 +28,6 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
         authenticate()
     }
     
-    let getTokenMethod = "api/auth"
-    let baseURLSecureString = "http://liqo.herokuapp.com/"
-    var requestToken: String?
-    
     override func loadView() {
         super.loadView();
         

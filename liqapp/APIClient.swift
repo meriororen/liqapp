@@ -51,9 +51,10 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func fetchListOfIbadahs(then then: () -> Void) {
+    func updateUserResources(then then: () -> Void) {
         self.validateFullScope {
-            let task = self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
+            /* fetch list of ibadahs */
+            self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
                             APIClient.sharedClient.listOfIbadahs.addObject(data)
@@ -68,9 +69,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
                 }, failure: { (error) in
                     print(error)
                 }
-            )
-            
-            task.resume()
+            ).resume()
         }
     }
     
