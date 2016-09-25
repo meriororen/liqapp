@@ -16,6 +16,10 @@
 		4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */; };
 		4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */; };
 		4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */; };
+		4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */; };
+		4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */; };
+		4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */; };
+		4A7AE1B41D97F46E00F466F8 /* IbadahDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1B31D97F46E00F466F8 /* IbadahDetailViewController.swift */; };
 		4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D081D9241B4002E3697 /* APIClient.swift */; };
 		4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */; };
 		4A7E9D101D929A74002E3697 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D0E1D929A74002E3697 /* APIError.swift */; };
@@ -40,6 +44,10 @@
 		4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutabaahViewController.swift; sourceTree = "<group>"; };
 		4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbadahTableViewCell.swift; sourceTree = "<group>"; };
 		4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IbadahTableViewCell.xib; sourceTree = "<group>"; };
+		4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
+		4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideInFromBottom.swift"; sourceTree = "<group>"; };
+		4A7AE1B31D97F46E00F466F8 /* IbadahDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbadahDetailViewController.swift; sourceTree = "<group>"; };
 		4A7E9D081D9241B4002E3697 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+URLSessionTask.swift"; sourceTree = "<group>"; };
 		4A7E9D0E1D929A74002E3697 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
@@ -96,7 +104,11 @@
 				4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */,
 				4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */,
 				4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */,
+				4A7AE1B31D97F46E00F466F8 /* IbadahDetailViewController.swift */,
+				4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */,
+				4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */,
 				4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */,
+				4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */,
 				4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */,
 				4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */,
 				4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */,
@@ -252,14 +264,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A3C88AF1D8FFFED0095D4DE /* LoginViewController.swift in Sources */,
+				4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */,
 				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
 				4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */,
+				4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
 				4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */,
 				4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */,
+				4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */,
 				4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */,
 				4A7E9D101D929A74002E3697 /* APIError.swift in Sources */,
 				4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */,
+				4A7AE1B41D97F46E00F466F8 /* IbadahDetailViewController.swift in Sources */,
 				4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */,
 				4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */,
 				4A7E9D111D929A74002E3697 /* Constants.swift in Sources */,

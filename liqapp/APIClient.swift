@@ -30,6 +30,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
     var additionalHeaders = Dictionary<String, String>()
     var lastPerformedTask: NSURLSessionTask? = nil
     var listOfIbadahs: NSMutableArray = NSMutableArray()
+    var rootResource = Dictionary<String, AnyObject>()
     
     override init() {
         super.init()
@@ -47,12 +48,30 @@ class APIClient: NSObject, NSURLSessionDelegate {
         if let actualToken = token as OAuthToken! {
             self.additionalHeaders["Authorization"] = actualToken.accessToken
         } else {
-            
+            // wat?
         }
     }
     
     func updateUserResources(then then: () -> Void) {
         self.validateFullScope {
+            /* fetch basic info */
+            self.urlSessionJSONTask(url: "api/user", success: { (jsonData) in
+                for (key, value) in jsonData {
+                    if (key == "id" || key == "name" || key == "groups") {
+                        self.rootResource.updateValue(value, forKey: key)
+                    }
+                }
+                then()
+            }, failure: { (error) in
+                print(error) /* TODO: error handling! */
+            }).resume()
+        }
+    }
+    
+    func fetchListOfIbadahs(then then: () -> Void) {
+        self.validateFullScope {
+            if (self.listOfIbadahs.count > 0) { then() }
+
             /* fetch list of ibadahs */
             self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
                     /* clear all first */
@@ -69,7 +88,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
                         then()
                     }
                 }, failure: { (error) in
-                    print(error)
+                    print(error) /* TODO: error handling! */
                 }
             ).resume()
         }
@@ -109,5 +128,26 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
         
         return true
+    }
+    
+    private func logout(success success: () -> Void, failure: (error: APIError) -> ()) {
+        if rootResource.count == 0 && listOfIbadahs.count == 0 {
+            success()
+            return
+        }
+        
+        validateFullScope {
+            self.rootResource.removeAll()
+            self.listOfIbadahs.removeAllObjects()
+        }
+    }
+    
+    func cancelAllRunningTasks () {
+        
+    }
+    
+    
+    func logoutThenDeleteAllStoredData() {
+    
     }
 }

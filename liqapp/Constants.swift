@@ -33,6 +33,7 @@ struct Constants {
     
     struct url {
         static let baseURL = NSURL(string: "http://liqo.herokuapp.com/")
+        //static let baseURL = NSURL(string: "http://localhost:3000/")
         static let authURL = NSURL(string: "api/auth", relativeToURL: baseURL)
     }
 }

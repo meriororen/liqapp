@@ -18,11 +18,11 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ibadah Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bZW-dC-dSz">
-                        <rect key="frame" x="37" y="4" width="112" height="21"/>
+                        <rect key="frame" x="37" y="4" width="222" height="21"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="112" id="NDc-bK-XpY"/>
+                            <constraint firstAttribute="width" constant="222" id="Dhz-6T-Rr2"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -52,17 +52,17 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="bZW-dC-dSz" firstAttribute="leading" secondItem="TMZ-rv-6CG" secondAttribute="trailing" constant="8" symbolic="YES" id="1fi-NC-F40"/>
                     <constraint firstAttribute="trailingMargin" secondItem="39l-tK-T2e" secondAttribute="trailing" constant="-4" id="8FC-tW-TQv"/>
                     <constraint firstItem="kWD-7O-myZ" firstAttribute="firstBaseline" secondItem="39l-tK-T2e" secondAttribute="baseline" id="GVK-DS-MYF"/>
+                    <constraint firstItem="39l-tK-T2e" firstAttribute="leading" secondItem="bZW-dC-dSz" secondAttribute="trailing" constant="8" symbolic="YES" id="HkQ-Eb-CKh"/>
                     <constraint firstItem="39l-tK-T2e" firstAttribute="centerY" secondItem="TMZ-rv-6CG" secondAttribute="centerY" id="OXs-rx-gvP"/>
-                    <constraint firstItem="kWD-7O-myZ" firstAttribute="leading" secondItem="bZW-dC-dSz" secondAttribute="leading" id="aYv-jo-DPo"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="bZW-dC-dSz" secondAttribute="bottom" constant="10" id="c0H-eb-jvE"/>
+                    <constraint firstItem="bZW-dC-dSz" firstAttribute="leading" secondItem="kWD-7O-myZ" secondAttribute="leading" id="RZZ-0J-9P1"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="bZW-dC-dSz" secondAttribute="bottom" constant="10" id="Uk8-l0-sme"/>
+                    <constraint firstItem="bZW-dC-dSz" firstAttribute="top" secondItem="39l-tK-T2e" secondAttribute="top" id="VTl-XF-tYe"/>
                     <constraint firstItem="39l-tK-T2e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="cRV-9i-FDr"/>
                     <constraint firstAttribute="bottomMargin" secondItem="kWD-7O-myZ" secondAttribute="bottom" constant="-6" id="iYp-sZ-rsJ"/>
                     <constraint firstItem="39l-tK-T2e" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-4" id="j0I-6p-KVF"/>
-                    <constraint firstItem="bZW-dC-dSz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="37" id="ks4-EQ-1jS"/>
-                    <constraint firstItem="bZW-dC-dSz" firstAttribute="top" secondItem="39l-tK-T2e" secondAttribute="top" id="lKa-lg-Dqb"/>
+                    <constraint firstItem="bZW-dC-dSz" firstAttribute="leading" secondItem="TMZ-rv-6CG" secondAttribute="trailing" constant="8" symbolic="YES" id="oDA-eV-eL4"/>
                 </constraints>
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>

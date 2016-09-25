@@ -3,15 +3,13 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
-        <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
-        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="cMR-zr-Ajl">
             <objects>
-                <viewController storyboardIdentifier="mainVCIdentifier" id="lFd-U0-ZA4" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainVCIdentifier" id="lFd-U0-ZA4" customClass="MainViewController" customModule="liqapp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="MLc-9r-RgY"/>
                         <viewControllerLayoutGuide type="bottom" id="08H-1w-rfJ"/>
@@ -20,86 +18,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-Z7-24i">
-                                <rect key="frame" x="148" y="166" width="127" height="83"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="83" id="oVa-Rf-EZc"/>
-                                    <constraint firstAttribute="width" constant="127" id="uHg-uq-PJn"/>
-                                </constraints>
-                                <state key="normal" title="Mutabaah">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <connections>
-                                    <segue destination="B8t-Fv-fJc" kind="show" id="JVu-kG-mOp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="57w-pR-uVU">
-                                <rect key="frame" x="148" y="304" width="127" height="83"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="127" id="v2B-lw-MHR"/>
-                                </constraints>
-                                <state key="normal" title="TBD">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="v2B-lw-MHR"/>
-                                    </mask>
-                                </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lvb-l8-oed">
-                                <rect key="frame" x="341" y="304" width="127" height="83"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="127" id="knx-pC-fWU"/>
-                                </constraints>
-                                <state key="normal" title="TBD">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="knx-pC-fWU"/>
-                                    </mask>
-                                </variation>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkO-tT-VjQ">
-                                <rect key="frame" x="341" y="166" width="127" height="83"/>
-                                <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="127" id="AHW-SL-WvW"/>
-                                </constraints>
-                                <state key="normal" title="TBD">
-                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                </state>
-                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g3U-Iw-AAh">
+                                <rect key="frame" x="32" y="138" width="240" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-Z7-24i">
+                                        <rect key="frame" x="7" y="33" width="95" height="62"/>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="Mutabaah">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="B8t-Fv-fJc" kind="show" id="JVu-kG-mOp"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkO-tT-VjQ">
+                                        <rect key="frame" x="138" y="33" width="96" height="62"/>
+                                        <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="TBD">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome, user!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slK-GO-vLZ">
+                                <rect key="frame" x="72" y="76" width="173" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="57w-pR-uVU" firstAttribute="top" secondItem="Lvb-l8-oed" secondAttribute="top" id="9N9-WU-xGS"/>
-                            <constraint firstItem="Lvb-l8-oed" firstAttribute="baseline" secondItem="57w-pR-uVU" secondAttribute="firstBaseline" id="ADz-xP-opV"/>
-                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="baseline" secondItem="VjO-Z7-24i" secondAttribute="firstBaseline" id="Ahc-c4-wDU"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="leading" secondItem="jGk-4p-R2V" secondAttribute="leading" constant="148" id="FpE-Rq-fLP"/>
-                            <constraint firstItem="08H-1w-rfJ" firstAttribute="top" secondItem="57w-pR-uVU" secondAttribute="bottom" constant="360" id="J2z-vr-D04"/>
-                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="leading" secondItem="Lvb-l8-oed" secondAttribute="leading" id="JzM-0b-ji4"/>
-                            <constraint firstItem="57w-pR-uVU" firstAttribute="baseline" secondItem="Lvb-l8-oed" secondAttribute="firstBaseline" id="S6s-Te-l3P"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="leading" secondItem="57w-pR-uVU" secondAttribute="leading" id="b4u-cQ-5Eb"/>
-                            <constraint firstItem="57w-pR-uVU" firstAttribute="top" secondItem="VjO-Z7-24i" secondAttribute="bottom" constant="55" id="gJg-En-Hyw"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="top" secondItem="SkO-tT-VjQ" secondAttribute="top" id="guT-fg-wdC"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="trailing" secondItem="57w-pR-uVU" secondAttribute="trailing" id="ijU-Cr-7XC"/>
-                            <constraint firstItem="08H-1w-rfJ" firstAttribute="top" secondItem="57w-pR-uVU" secondAttribute="bottom" constant="213" id="maC-AL-LnC"/>
-                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="trailing" secondItem="Lvb-l8-oed" secondAttribute="trailing" id="nmo-3z-GSr"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="top" secondItem="MLc-9r-RgY" secondAttribute="bottom" constant="146" id="pgh-rK-8uS"/>
-                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="leading" secondItem="VjO-Z7-24i" secondAttribute="trailing" constant="66" id="tmr-Jv-0RF"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="baseline" secondItem="SkO-tT-VjQ" secondAttribute="firstBaseline" id="tsp-pb-jzd"/>
-                        </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="J2z-vr-D04"/>
-                            </mask>
-                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="TBDButton" destination="SkO-tT-VjQ" id="F6A-q8-rQ4"/>
+                        <outlet property="mutabaahButton" destination="VjO-Z7-24i" id="fD6-J5-9AM"/>
+                        <outlet property="welcomeLabel" destination="slK-GO-vLZ" id="ZuQ-c1-n9n"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I81-Rf-TbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

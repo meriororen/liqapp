@@ -8,25 +8,6 @@
 
 import UIKit
 
-extension UIView {
-    func slideInFromBottom(duration: NSTimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        let slideInFromBottomTransition = CATransition()
-        
-        if let delegate: AnyObject = completionDelegate {
-            slideInFromBottomTransition.delegate = delegate
-        }
-        
-        slideInFromBottomTransition.type = kCATransitionPush
-        slideInFromBottomTransition.subtype = kCATransitionFromBottom
-        slideInFromBottomTransition.duration = duration
-        slideInFromBottomTransition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        slideInFromBottomTransition.fillMode = kCAFillModeRemoved
-        
-        self.layer.addAnimation(slideInFromBottomTransition, forKey: "slideInFromBottomTransition")
-    }
-}
-
-
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
@@ -68,7 +49,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         spinner0.startAnimating()
         spinner.startAnimating()
         
-        APIClient.sharedClient.updateUserResources {
+        APIClient.sharedClient.fetchListOfIbadahs {
             self.loadListOfIbadahs()
         }
         
@@ -82,7 +63,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.userInteractionEnabled = true
         
         if let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(0) as? [String:String] {
-            valueLabel.text = ibadah["name"]
+            valueLabel.text = ibadah["name"]?.separateAndCapitalize("_")
         }
         tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
     }
@@ -107,20 +88,34 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         
         let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? Dictionary<String, String>
         
-        cell.ibadahLabel.text = ibadah!["name"]
-        cell.ibadahValue.text = String(indexPath.row * 2)
+        cell.ibadahLabel.text = ibadah!["name"]?.separateAndCapitalize("_")
+        if ibadah!["type"] == "yesno" {
+            cell.ibadahValue.text = "yes"
+        } else {
+            cell.ibadahValue.text = String(indexPath.row * 2)
+        }
+        cell.ibadahTarget.text = ibadah!["target"]?.separate("_")
         
         return cell
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         struct h { static var previousIndex = 0 }
-        //let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? [String:String]
+        let ibadah = APIClient.sharedClient.listOfIbadahs.objectAtIndex(indexPath.row) as? [String:String]
         
         if indexPath.row != h.previousIndex {
             valueLabel.slideInFromBottom(0.5)
             //valueLabel.text = ibadah!["name"]
-            valueLabel.text = String(indexPath.row * 2) + " rakaat"
+            
+            if ibadah!["type"] == "yesno" {
+                valueLabel.text = "yes"
+            } else {
+                if ibadah!["unit_name"] != nil {
+                    valueLabel.text = String(indexPath.row * 2) + " " + ibadah!["unit_name"]!
+                } else {
+                    valueLabel.text = String(indexPath.row * 2)
+                }
+            }
         }
         
         h.previousIndex = indexPath.row
