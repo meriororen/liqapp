@@ -8,8 +8,8 @@
 
 import Foundation
 
-extension NSHTTPURLResponse {
-    class func isUnauthorized(response: NSHTTPURLResponse?) -> Bool {
+extension HTTPURLResponse {
+    class func isUnauthorized(_ response: HTTPURLResponse?) -> Bool {
         if response == nil {
             return false
         }

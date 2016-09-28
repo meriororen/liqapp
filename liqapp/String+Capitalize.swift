@@ -10,19 +10,19 @@ import Foundation
 
 extension String {
     func capitalize() -> String {
-        return self.capitalizedString
+        return self.capitalized
     }
     
-    func separateAndCapitalize(separator: String) -> String {
-        var strs: [String] = self.componentsSeparatedByString(separator)
+    func separateAndCapitalize(_ separator: String) -> String {
+        var strs: [String] = self.components(separatedBy: separator)
         strs = strs.map { (str) -> String in
             str.capitalize()
         }
-        return strs.joinWithSeparator(" ")
+        return strs.joined(separator: " ")
     }
     
-    func separate(separator: String) -> String {
-        let strs: [String] = self.componentsSeparatedByString(separator)
-        return strs.joinWithSeparator(" ")
+    func separate(_ separator: String) -> String {
+        let strs: [String] = self.components(separatedBy: separator)
+        return strs.joined(separator: " ")
     }
 }

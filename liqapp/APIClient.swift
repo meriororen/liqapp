@@ -8,7 +8,7 @@
 
 import UIKit
 
-class APIClient: NSObject, NSURLSessionDelegate {
+class APIClient: NSObject, URLSessionDelegate {
     
     class var sharedClient: APIClient {
         struct Singleton {
@@ -26,9 +26,9 @@ class APIClient: NSObject, NSURLSessionDelegate {
         case get = "GET"
     }
     
-    var session: NSURLSession!
+    var session: URLSession!
     var additionalHeaders = Dictionary<String, String>()
-    var lastPerformedTask: NSURLSessionTask? = nil
+    var lastPerformedTask: URLSessionTask? = nil
     var listOfIbadahs: NSMutableArray = NSMutableArray()
     var rootResource = Dictionary<String, AnyObject>()
     
@@ -37,14 +37,14 @@ class APIClient: NSObject, NSURLSessionDelegate {
         
         self.additionalHeaders[Constants.HTTPHeaderKeys.contentType] = Constants.HTTPHeaderValues.urlencoded
         
-        let sessionConfiguration = NSURLSessionConfiguration.ephemeralSessionConfiguration()
-        sessionConfiguration.requestCachePolicy = NSURLRequestCachePolicy.ReturnCacheDataElseLoad
+        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        sessionConfiguration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         
-        let theSession = NSURLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         self.session = theSession
     }
     
-    func updateAuthorizationHeader(token: OAuthToken?) {
+    func updateAuthorizationHeader(_ token: OAuthToken?) {
         if let actualToken = token as OAuthToken! {
             self.additionalHeaders["Authorization"] = actualToken.accessToken
         } else {
@@ -52,7 +52,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func updateUserBasicInfo(then then: () -> Void) {
+    func updateUserBasicInfo(then: @escaping () -> Void) {
         self.validateFullScope {
             /* fetch basic info */
             self.urlSessionJSONTask(url: "api/user", success: { (jsonData) in
@@ -68,11 +68,11 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func getUserMutabaahForDate(date: String, success: () -> Void, failure: (error: APIError) -> ()) {
+    func getUserMutabaahForDate(_ date: String, success: () -> Void, failure: (_ error: APIError) -> ()) {
         // not yet available
     }
     
-    func getUserMutabaahs(then then: () -> Void) {
+    func getUserMutabaahs(then: @escaping () -> Void) {
         self.validateFullScope {
             /* fetch mutabaahs */
             self.urlSessionJSONTask(url: "api/user/mutabaahs", success: { (jsonData) in
@@ -87,9 +87,9 @@ class APIClient: NSObject, NSURLSessionDelegate {
                                 group_id: data["group_id"]! as! String,
                                 records: records)
                             */
-                            mutabaah.updateValue(data, forKey: data["date"] as! String)
+                            mutabaah.updateValue(data as AnyObject, forKey: data["date"] as! String)
                         }
-                        self.rootResource.updateValue(mutabaah, forKey: "mutabaah")
+                        self.rootResource.updateValue(mutabaah as AnyObject, forKey: "mutabaah")
                         then()
                     }
                 }, failure: { (error) in
@@ -98,7 +98,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func fetchListOfIbadahs(then then: () -> Void) {
+    func fetchListOfIbadahs(then: @escaping () -> Void) {
         self.validateFullScope {
             if (self.listOfIbadahs.count > 0) { then() }
             /* fetch list of ibadahs */
@@ -107,7 +107,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
                     self.listOfIbadahs.removeAllObjects()
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            self.listOfIbadahs.addObject(data)
+                            self.listOfIbadahs.add(data)
                         }
                         then()
                     }
@@ -118,7 +118,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func validateFullScope(then then: () -> Void) {
+    func validateFullScope(then: @escaping () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope("fullscope")
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(chosenToken)
@@ -126,15 +126,15 @@ class APIClient: NSObject, NSURLSessionDelegate {
         },failure: nil)
     }
     
-    func validate(oAuthToken oAuthToken: OAuthToken?, validationSuccess: (chosenToken: OAuthToken) -> Void, failure: ((error: NSError) -> Void)?) {
+    func validate(oAuthToken: OAuthToken?, validationSuccess: (_ chosenToken: OAuthToken) -> Void, failure: ((_ error: NSError) -> Void)?) {
         if oAuthToken != nil {
             if oAuthToken!.hasExpired() == false {
-                validationSuccess(chosenToken: oAuthToken!)
+                validationSuccess(oAuthToken!)
             } else {
                 oAuthToken!.removeFromKeychainIfNotValid()
                 // TODO: do another authentication here when user decided to remember username/password
                 
-                failure?(error: NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnauthorizedError.rawValue, userInfo: nil))
+                failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil))
             }
         }
     }
@@ -154,7 +154,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
         return true
     }
     
-    private func logout(success success: () -> Void, failure: (error: APIError) -> ()) {
+    fileprivate func logout(success: @escaping () -> Void, failure: (_ error: APIError) -> ()) {
         if rootResource.count == 0 && listOfIbadahs.count == 0 {
             success()
             return
@@ -169,15 +169,15 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    private func cancelTasks(tasks: [AnyObject]) {
+    fileprivate func cancelTasks(_ tasks: [AnyObject]) {
         for object in tasks {
-            if let task = object as? NSURLSessionTask {
+            if let task = object as? URLSessionTask {
                 task.cancel()
             }
         }
     }
     
-    func cancelAllRunningTasks (then then: () -> Void) {
+    func cancelAllRunningTasks (then: () -> Void) {
         self.session.getTasksWithCompletionHandler { ( dataTasks, uploadTasks, downloadTasks) in
             self.cancelTasks(dataTasks)
             self.cancelTasks(uploadTasks)
@@ -190,9 +190,9 @@ class APIClient: NSObject, NSURLSessionDelegate {
     func logoutThenDeleteAllStoredData() {
         self.cancelAllRunningTasks {
             self.logout(success: { 
-                    dispatch_async(dispatch_get_main_queue(), {
+                    DispatchQueue.main.async(execute: {
                         print("show login")
-                        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.startApplicationFromAuth()
                     })
                 }, failure: { (error) in
