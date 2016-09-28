@@ -176,7 +176,7 @@
 				TargetAttributes = {
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QG2FZSM37L;
+						DevelopmentTeam = YPDXF2GCX2;
 					};
 				};
 			};
@@ -400,7 +400,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.duldul.liqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
@@ -416,7 +416,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = jp.duldul.liqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
