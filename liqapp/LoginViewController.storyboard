@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--Login View Controller-->
         <scene sceneID="LPv-d8-dML">
             <objects>
                 <viewController storyboardIdentifier="loginVIdentifier" id="f8U-PX-Ikn" customClass="LoginViewController" customModule="liqapp" customModuleProvider="target" sceneMemberID="viewController">
@@ -75,7 +75,8 @@
                             <constraint firstItem="wHi-ci-EzB" firstAttribute="top" secondItem="0al-VY-3St" secondAttribute="bottom" constant="213" id="xqs-dP-Pj0"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="Afe-re-OVK"/>
+                    <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                    <size key="freeformSize" width="600" height="600"/>
                     <connections>
                         <outlet property="debugLabel" destination="0al-VY-3St" id="dqT-oO-w2v"/>
                         <outlet property="loginButton" destination="ynz-za-bYd" id="nuB-iC-UDp"/>
@@ -85,7 +86,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0r8-b9-k4A" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="290" y="360"/>
+            <point key="canvasLocation" x="272" y="-394"/>
         </scene>
     </scenes>
 </document>

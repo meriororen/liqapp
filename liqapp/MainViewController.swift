@@ -19,9 +19,13 @@ class MainViewController: UIViewController {
         TBDButton.layer.cornerRadius = 10
         welcomeLabel.hidden = true
         
-        APIClient.sharedClient.updateUserResources {
+        APIClient.sharedClient.updateUserBasicInfo {
             self.welcomeLabel.text = "Welcome, " + (APIClient.sharedClient.rootResource["name"] as! String) + "!"
             self.welcomeLabel.hidden = false
         }
+    }
+    
+    @IBAction func logoutUser() {
+        APIClient.sharedClient.logoutThenDeleteAllStoredData()
     }
 }

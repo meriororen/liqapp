@@ -14,10 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-
-    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
+    func startApplicationFromAuth() {
         self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
         
         if (APIClient.sharedClient.isSessionInvalid()) {
@@ -27,11 +24,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let mainViewController = storyboard.instantiateViewControllerWithIdentifier("mainVCIdentifier")
-                        
+            
             self.window?.rootViewController = mainViewController
         }
-
+        
         self.window?.makeKeyAndVisible()
+    }
+
+    func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+        // Override point for customization after application launch.
+        
+        startApplicationFromAuth()
         
         return true
     }

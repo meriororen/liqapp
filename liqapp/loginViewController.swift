@@ -10,22 +10,34 @@ import QuartzCore
 import UIKit
 import Foundation
 
-class LoginViewController : UIViewController, NSURLSessionDataDelegate {
+struct Notif {
+    static let kLoginViewControllerShow = "showLoginViewController"
+}
+
+class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINavigationBarDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var logoutButton: UIButton!
     
     var spinner = UIActivityIndicatorView()
     
     @IBAction func loginButtonPressed(sender: UIButton) {
-        spinner = UIActivityIndicatorView(frame: CGRectMake(0, 0, 70, 70))
+        spinner = UIActivityIndicatorView(frame: CGRectMake(self.loginButton.center.x, self.loginButton.center.y, 70, 70))
         spinner.activityIndicatorViewStyle = .Gray
         spinner.center = self.loginButton.center
-        loginButton.addSubview(spinner)
+        view.addSubview(spinner)
+        self.loginButton.adjustsImageWhenDisabled = true
+        self.loginButton.enabled = false
+        self.loginButton.alpha = 0.25
         spinner.startAnimating()
         
         authenticate()
+    }
+    
+    override func viewDidLoad() {
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.popToSelf), name: Notif.kLoginViewControllerShow, object: nil)
     }
     
     override func loadView() {
@@ -33,6 +45,10 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
         
         loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
+    }
+    
+    func popToSelf() {
+        self.presentViewController(self, animated: true, completion: nil)
     }
     
     func authenticate() {
@@ -56,5 +72,9 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate {
     
             }
         )
+    }
+        
+    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+        return .TopAttached
     }
 }

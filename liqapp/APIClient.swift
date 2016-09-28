@@ -52,7 +52,7 @@ class APIClient: NSObject, NSURLSessionDelegate {
         }
     }
     
-    func updateUserResources(then then: () -> Void) {
+    func updateUserBasicInfo(then then: () -> Void) {
         self.validateFullScope {
             /* fetch basic info */
             self.urlSessionJSONTask(url: "api/user", success: { (jsonData) in
@@ -62,8 +62,38 @@ class APIClient: NSObject, NSURLSessionDelegate {
                     }
                 }
                 then()
-            }, failure: { (error) in
-                print(error) /* TODO: error handling! */
+                }, failure: { (error) in
+                    print(error) /* TODO: error handling! */
+            }).resume()
+        }
+    }
+    
+    func getUserMutabaahForDate(date: String, success: () -> Void, failure: (error: APIError) -> ()) {
+        // not yet available
+    }
+    
+    func getUserMutabaahs(then then: () -> Void) {
+        self.validateFullScope {
+            /* fetch mutabaahs */
+            self.urlSessionJSONTask(url: "api/user/mutabaahs", success: { (jsonData) in
+                    if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
+                        var mutabaah = Dictionary<String, AnyObject>()
+                        for data in anArray {
+                            /*
+                            let records = data["records"] as! Dictionary<String, String>
+                            let m = Mutabaah(id: data["_id"]! as! String,
+                                date: data["date"]! as! String,
+                                user_id: data["user_id"]! as! String,
+                                group_id: data["group_id"]! as! String,
+                                records: records)
+                            */
+                            mutabaah.updateValue(data, forKey: data["date"] as! String)
+                        }
+                        self.rootResource.updateValue(mutabaah, forKey: "mutabaah")
+                        then()
+                    }
+                }, failure: { (error) in
+                    print(error) /* TODO: error handling! */
             }).resume()
         }
     }
@@ -71,7 +101,6 @@ class APIClient: NSObject, NSURLSessionDelegate {
     func fetchListOfIbadahs(then then: () -> Void) {
         self.validateFullScope {
             if (self.listOfIbadahs.count > 0) { then() }
-
             /* fetch list of ibadahs */
             self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
                     /* clear all first */
@@ -79,11 +108,6 @@ class APIClient: NSObject, NSURLSessionDelegate {
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
                             self.listOfIbadahs.addObject(data)
-                        }
-                        then()
-                    } else {
-                        for (_, value) in jsonData {
-                            self.listOfIbadahs.addObject(value)
                         }
                         then()
                     }
@@ -139,15 +163,42 @@ class APIClient: NSObject, NSURLSessionDelegate {
         validateFullScope {
             self.rootResource.removeAll()
             self.listOfIbadahs.removeAllObjects()
+            
+            OAuthToken.removeAllTokens()
+            success()
         }
     }
     
-    func cancelAllRunningTasks () {
-        
+    private func cancelTasks(tasks: [AnyObject]) {
+        for object in tasks {
+            if let task = object as? NSURLSessionTask {
+                task.cancel()
+            }
+        }
     }
     
+    func cancelAllRunningTasks (then then: () -> Void) {
+        self.session.getTasksWithCompletionHandler { ( dataTasks, uploadTasks, downloadTasks) in
+            self.cancelTasks(dataTasks)
+            self.cancelTasks(uploadTasks)
+            self.cancelTasks(downloadTasks)
+        }
+        print("cancel tasks")
+        then()
+    }
     
     func logoutThenDeleteAllStoredData() {
-    
+        self.cancelAllRunningTasks {
+            self.logout(success: { 
+                    dispatch_async(dispatch_get_main_queue(), {
+                        print("show login")
+                        let appdelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+                        appdelegate.startApplicationFromAuth()
+                    })
+                }, failure: { (error) in
+                    // TODO: proper error handling
+                    print("cannot logout")
+            })
+        }
     }
 }
