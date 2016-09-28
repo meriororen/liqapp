@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>JDFlipNumberView.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>LUKeychainAccess.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,12 +27,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1EC87DCB3C84C44EE1C3C46993292CFC</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DC2A7837D8805932597CFA77A4141711</key>
+		<key>9C18A76D60F5850CA22C1607CEEB6E5C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

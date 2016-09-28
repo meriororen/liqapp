@@ -25,6 +25,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var ibadahLabel: UILabel!
     
     /* detail view */
     @IBOutlet weak var valueLabel: UILabel!
@@ -109,14 +110,14 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         dateLabel.hidden = false
         tableView.userInteractionEnabled = true
         
-        if let ibadah = listOfIbadahs.objectAtIndex(0) as? [String:String] {
-            valueLabel.text = ibadah["name"]?.separateAndCapitalize("_")
-        }
+       // if let ibadah = listOfIbadahs.objectAtIndex(0) as? [String:String] {
+            valueLabel.text = "Pilih!"
+       // }
         tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
     }
     
     override func viewDidAppear(animated: Bool) {
-        mainView.insertSubview(detailView, aboveSubview: tableView)
+       // mainView.insertSubview(detailView, aboveSubview: tableView)
     }
     
     // MARK: - Table view data source
@@ -148,21 +149,24 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        struct h { static var previousIndex = 0 }
+        struct h { static var previousIndex = -1000 }
         let ibadah = listOfIbadahs.objectAtIndex(indexPath.row) as? [String:String]
         
         if indexPath.row != h.previousIndex {
             valueLabel.slideInFromBottom(0.5)
+            ibadahLabel.slideInFromBottom(0.5)
             //valueLabel.text = ibadah!["name"]
             
-            if ibadah!["type"] == "yesno" {
-                valueLabel.text = "yes"
-            } else {
+            ibadahLabel.text = ibadah!["name"]?.separateAndCapitalize("_")
+            
+            if let value = ibadah!["value"] {
                 if ibadah!["unit_name"] != nil {
-                    valueLabel.text = String(indexPath.row * 2) + " " + ibadah!["unit_name"]!
+                    valueLabel.text = value + " " + ibadah!["unit_name"]!
                 } else {
-                    valueLabel.text = String(indexPath.row * 2)
+                    valueLabel.text = value
                 }
+            } else {
+                valueLabel.text = "No Record"
             }
         }
         

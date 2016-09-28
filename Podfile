@@ -10,5 +10,5 @@ target 'liqapp' do
   pod 'LUKeychainAccess'
   #pod 'Alamofire'
   pod 'AFNetworking'
-  pod 'JDFlipNumberView'
+  #pod 'JDFlipNumberView'
 end
