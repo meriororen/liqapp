@@ -16,6 +16,7 @@
 		4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */; };
 		4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */; };
 		4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */; };
+		4A70D3971D9D2FDC00C9E07B /* DateFormatter+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */; };
 		4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */; };
 		4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */; };
 		4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */; };
@@ -45,6 +46,8 @@
 		4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutabaahViewController.swift; sourceTree = "<group>"; };
 		4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbadahTableViewCell.swift; sourceTree = "<group>"; };
 		4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IbadahTableViewCell.xib; sourceTree = "<group>"; };
+		4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Defaults.swift"; sourceTree = "<group>"; };
+		4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = liqapp.entitlements; sourceTree = "<group>"; };
 		4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
 		4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SlideInFromBottom.swift"; sourceTree = "<group>"; };
@@ -96,6 +99,8 @@
 		4A3C88981D8FC6EF0095D4DE /* liqapp */ = {
 			isa = PBXGroup;
 			children = (
+				4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */,
+				4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */,
 				4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */,
 				4A7E9D0F1D929A74002E3697 /* Constants.swift */,
 				4A7E9D081D9241B4002E3697 /* APIClient.swift */,
@@ -171,12 +176,18 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0730;
-				LastUpgradeCheck = 0730;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = DuldulStudio;
 				TargetAttributes = {
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YPDXF2GCX2;
+						LastSwiftMigration = 0800;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -274,6 +285,7 @@
 				4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
 				4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */,
+				4A70D3971D9D2FDC00C9E07B /* DateFormatter+Defaults.swift in Sources */,
 				4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */,
 				4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */,
 				4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */,
@@ -322,8 +334,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -345,7 +359,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -367,8 +381,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -384,9 +400,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -396,6 +413,7 @@
 			baseConfigurationReference = 20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
@@ -404,6 +422,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -412,6 +431,7 @@
 			baseConfigurationReference = 6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = liqapp/Info.plist;
@@ -420,6 +440,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
