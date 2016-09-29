@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension NSDateFormatter {
-    func defaultDateFormatter() -> NSDateFormatter {
+extension DateFormatter {
+    func defaultDateFormatter() -> DateFormatter {
         self.dateFormat = "yyyy-MM-dd"
         return self
     }
     
-    func readableDateFormatter() -> NSDateFormatter {
+    func readableDateFormatter() -> DateFormatter {
         self.dateFormat = "d MMMM yyyy"
         return self
     }
@@ -34,50 +34,50 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     
     var spinner = UIActivityIndicatorView()
     var spinner0 = UIActivityIndicatorView()
-    let dateFormatter = NSDateFormatter().defaultDateFormatter()
-    let readableDateFormatter = NSDateFormatter().readableDateFormatter()
-    var currentDate: NSDate! = NSDate()
+    let dateFormatter = DateFormatter().defaultDateFormatter()
+    let readableDateFormatter = DateFormatter().readableDateFormatter()
+    var currentDate: Date! = Date()
     var listOfIbadahs = NSMutableArray()
     var selectedIndex = -1000
-    var selectedIndexPath: NSIndexPath!
+    var selectedIndexPath: IndexPath!
     
-    @IBAction override func unwindForSegue(unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
     }
     
     
     @IBAction func plusButtonPressed() {
         if selectedIndex >= 0 {
-            var ibadah = (listOfIbadahs.objectAtIndex(selectedIndex) as? [String:AnyObject])!
+            var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
             if let value = ibadah["value"] as? Int {
                 ibadah.updateValue(value + 1, forKey: "value")
             } else {
-                ibadah.updateValue(0, forKey: "value")
+                ibadah.updateValue(0 as AnyObject, forKey: "value")
             }
             updateValueLabel(ibadah)
-            listOfIbadahs.replaceObjectAtIndex(selectedIndex, withObject: ibadah)
-            tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+            listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
         }
     }
     
     @IBAction func minusButtonPressed() {
         if selectedIndex >= 0 {
-            var ibadah = (listOfIbadahs.objectAtIndex(selectedIndex) as? [String:AnyObject])!
+            var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
             if let value = ibadah["value"] as? Int {
                 ibadah.updateValue(value - 1, forKey: "value")
             } else {
-                ibadah.updateValue(0, forKey: "value")
+                ibadah.updateValue(0 as AnyObject, forKey: "value")
             }
             updateValueLabel(ibadah)
-            listOfIbadahs.replaceObjectAtIndex(selectedIndex, withObject: ibadah)
-            tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+            listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
+            tableView.reloadRows(at: [selectedIndexPath], with: .none)
         }
     }
     
-    func updateValueLabel(ibadah: [String:AnyObject]) {
+    func updateValueLabel(_ ibadah: [String:AnyObject]) {
         if ibadah["unit_name"] != nil {
-            valueLabel.text = String(ibadah["value"]!) + " " + (ibadah["unit_name"]! as! String)
+            valueLabel.text = String(describing: ibadah["value"]!) + " " + (ibadah["unit_name"]! as! String)
         } else {
-            valueLabel.text = String(ibadah["value"]!)
+            valueLabel.text = String(describing: ibadah["value"]!)
         }
     }
     
@@ -86,18 +86,18 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.delegate = self
         tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
-        tableView.registerNib(UINib(nibName: "IbadahTableViewCell", bundle: nil), forCellReuseIdentifier: "ibadahCell")
+        tableView.register(UINib(nibName: "IbadahTableViewCell", bundle: nil), forCellReuseIdentifier: "ibadahCell")
         tableView.dataSource = self
 
         /* detail view */
-        valueLabel.hidden = true
-        dateLabel.hidden = true
-        dateLabel.text = readableDateFormatter.stringFromDate(currentDate)
+        valueLabel.isHidden = true
+        dateLabel.isHidden = true
+        dateLabel.text = readableDateFormatter.string(from: currentDate)
         
-        spinner = UIActivityIndicatorView(frame: CGRectMake(self.mainView.center.x, self.tableView.center.y - 50, 10, 10))
-        spinner0 = UIActivityIndicatorView(frame: CGRectMake(self.mainView.center.x, self.detailView.center.y, 10, 10))
-        spinner.activityIndicatorViewStyle = .Gray
-        spinner0.activityIndicatorViewStyle = .WhiteLarge
+        spinner = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.tableView.center.y - 50, width: 10, height: 10))
+        spinner0 = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.detailView.center.y, width: 10, height: 10))
+        spinner.activityIndicatorViewStyle = .gray
+        spinner0.activityIndicatorViewStyle = .whiteLarge
         
         mainView.addSubview(spinner0)
         mainView.addSubview(spinner)
@@ -117,13 +117,13 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         }
         
-        tableView.userInteractionEnabled = false
+        tableView.isUserInteractionEnabled = false
     }
     
-    func decodeMutabaahsForDate(date: NSDate) {
+    func decodeMutabaahsForDate(_ date: Date) {
         var records: [[String: AnyObject]] = [[String:AnyObject]]()
         if let mutabaah = APIClient.sharedClient.rootResource["mutabaah"] as? [String:AnyObject] {
-            if let currentMutabaah = mutabaah[dateFormatter.stringFromDate(date)] as? [String:AnyObject] {
+            if let currentMutabaah = mutabaah[dateFormatter.string(from: date)] as? [String:AnyObject] {
                 if let currentRecords = currentMutabaah["records"] as? [[String:AnyObject]] {
                     records = currentRecords
                     //print(records)
@@ -136,7 +136,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
                 var _ibadah = ibadah as? [String:AnyObject]
                 if (record["ibadah_id"] as! String == _ibadah!["_id"]! as! String)  {
                     _ibadah!.updateValue(record["value"]!, forKey: "value")
-                    listOfIbadahs.replaceObjectAtIndex(listOfIbadahs.indexOfObject(ibadah), withObject: _ibadah!)
+                    listOfIbadahs.replaceObject(at: listOfIbadahs.index(of: ibadah), with: _ibadah!)
                 }
             }
         }
@@ -146,44 +146,44 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     func loadListOfIbadahs() {
         spinner.stopAnimating()
         spinner0.stopAnimating()
-        valueLabel.hidden = false
-        dateLabel.hidden = false
-        tableView.userInteractionEnabled = true
+        valueLabel.isHidden = false
+        dateLabel.isHidden = false
+        tableView.isUserInteractionEnabled = true
         
        // if let ibadah = listOfIbadahs.objectAtIndex(0) as? [String:String] {
             valueLabel.text = "Pilih!"
        // }
-        tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: UITableViewRowAnimation.Fade)
+        tableView.reloadSections(IndexSet(integer: 0), with: UITableViewRowAnimation.fade)
     }
     
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
        // mainView.insertSubview(detailView, aboveSubview: tableView)
     }
     
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         selectedIndex = -1000
     }
     
     // MARK: - Table view data source
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return listOfIbadahs.count
     }
     
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ibadahCell", forIndexPath: indexPath) as! IbadahTableViewCell
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ibadahCell", for: indexPath) as! IbadahTableViewCell
         
-        if let ibadah = listOfIbadahs.objectAtIndex(indexPath.row) as? Dictionary<String, AnyObject> {
+        if let ibadah = listOfIbadahs.object(at: (indexPath as NSIndexPath).row) as? Dictionary<String, AnyObject> {
             cell.ibadahTarget.text = (ibadah["target"] as! String).separate("_")
             cell.ibadahLabel.text = (ibadah["name"] as! String).separateAndCapitalize("_")
             
             if let value = ibadah["value"] {
-                cell.ibadahValue.text = String(value)
+                cell.ibadahValue.text = String(describing: value)
             } else {
                 cell.ibadahValue.text = "n/a"
             }
@@ -193,9 +193,9 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         return cell
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if let ibadah = listOfIbadahs.objectAtIndex(indexPath.row) as? [String:AnyObject] {
-            if indexPath.row != selectedIndex {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if let ibadah = listOfIbadahs.object(at: (indexPath as NSIndexPath).row) as? [String:AnyObject] {
+            if (indexPath as NSIndexPath).row != selectedIndex {
                 valueLabel.slideInFromBottom(0.5)
                 ibadahLabel.slideInFromBottom(0.5)
                 //valueLabel.text = ibadah!["name"]
@@ -204,16 +204,16 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             
                 if let value = ibadah["value"] {
                     if ibadah["unit_name"] != nil {
-                        valueLabel.text = String(value) + " " + (ibadah["unit_name"] as! String)
+                        valueLabel.text = String(describing: value) + " " + (ibadah["unit_name"] as! String)
                     } else {
-                        valueLabel.text = String(value)
+                        valueLabel.text = String(describing: value)
                     }
                 } else {
                     valueLabel.text = "No Record"
                 }
             }
         }
-        selectedIndex = indexPath.row
+        selectedIndex = (indexPath as NSIndexPath).row
         selectedIndexPath = indexPath
     }
 

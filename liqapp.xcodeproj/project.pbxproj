@@ -177,6 +177,7 @@
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
 						DevelopmentTeam = YPDXF2GCX2;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -404,6 +405,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -420,6 +422,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

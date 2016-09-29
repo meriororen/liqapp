@@ -17,11 +17,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         mutabaahButton.layer.cornerRadius = 10
         TBDButton.layer.cornerRadius = 10
-        welcomeLabel.hidden = true
+        welcomeLabel.isHidden = true
         
         APIClient.sharedClient.updateUserBasicInfo {
             self.welcomeLabel.text = "Welcome, " + (APIClient.sharedClient.rootResource["name"] as! String) + "!"
-            self.welcomeLabel.hidden = false
+            self.welcomeLabel.isHidden = false
         }
     }
     

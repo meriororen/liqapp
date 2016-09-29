@@ -10,12 +10,12 @@ import Foundation
 
 extension APIClient {
     
-    private func dataTask(urlRequest: NSURLRequest, success: () -> Void, failure: (error:APIError) -> ()) -> NSURLSessionTask {
-        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
+    fileprivate func dataTask(_ urlRequest: URLRequest, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) -> URLSessionTask {
+        let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             let serializedResponse: Dictionary<String, AnyObject>? = {
                 if let data = data {
                     do {
-                        return try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>
+                        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject>
                     } catch {
                         return nil
                     }
@@ -23,20 +23,20 @@ extension APIClient {
                 return nil
             }()
             if let actualError = error as NSError! {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
                     failure(error: error)
                 })
-            } else if NSHTTPURLResponse.isUnauthorized(response as? NSHTTPURLResponse) {
+            } else if HTTPURLResponse.isUnauthorized(response as? HTTPURLResponse) {
                 //failure(error: error)
-            } else if (response as! NSHTTPURLResponse).didFail() {
-                let err = APIError(urlResponse: (response as! NSHTTPURLResponse), jsonResponse: serializedResponse!)
-                dispatch_async(dispatch_get_main_queue(), {
+            } else if (response as! HTTPURLResponse).didFail() {
+                let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse!)
+                DispatchQueue.main.async(execute: {
                     failure(error: err)
                 })
             } else {
-                dispatch_async(dispatch_get_main_queue(), {
+                DispatchQueue.main.async(execute: {
                     success()
                 })
             }
@@ -45,41 +45,41 @@ extension APIClient {
         return task
     }
     
-    private func jsonDataTask(urlRequest: NSURLRequest, success: (Dictionary<String, AnyObject>) -> Void, failure: (error: APIError) -> () ) -> NSURLSessionTask {
+    fileprivate func jsonDataTask(_ urlRequest: URLRequest, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> () ) -> URLSessionTask {
 //        print(urlRequest)
-        let task = session.dataTaskWithRequest(urlRequest, completionHandler: { (data, response, error) in
-            dispatch_async(dispatch_get_main_queue(), {
-                let httpResponse = response as? NSHTTPURLResponse
+        let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+            DispatchQueue.main.async(execute: {
+                let httpResponse = response as? HTTPURLResponse
                 
                 // if actual error happens (no internet, timeout, etc.)
                 if let actualError = error as NSError!, let actualData = data {
                     let error = APIError(error: actualError)
-                    let string = NSString(data: actualData, encoding: NSASCIIStringEncoding)
+                    let string = NSString(data: actualData, encoding: String.Encoding.ascii)
                     error.responseText = string as? String
                     failure(error: error)
                 } else {
                     let code: Int = {
                         if httpResponse == nil {
-                            return Constants.Error.Code.UnknownError.rawValue
+                            return Constants.Error.Code.unknownError.rawValue
                         } else {
                             return httpResponse!.statusCode
                         }
                     }()
-                    if NSHTTPURLResponse.isUnauthorized(httpResponse) {
-                        let error = APIError(domain:Constants.Error.apiClientErrorDomain, code:Constants.Error.Code.UnauthorizedError.rawValue, userInfo: nil)
+                    if HTTPURLResponse.isUnauthorized(httpResponse) {
+                        let error = APIError(domain:Constants.Error.apiClientErrorDomain, code:Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil)
                         failure(error: error)
                     } else {
-                        if let actualData = data as NSData? {
-                            if actualData.length == 0 {
+                        if let actualData = data as Data? {
+                            if actualData.count == 0 {
                                 failure(error:APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil))
-                            } else if (response as! NSHTTPURLResponse).didFail() {
+                            } else if (response as! HTTPURLResponse).didFail() {
                                 let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)
                                 failure(error: err)
                             } else {
-                                let serialized = try! NSJSONSerialization.JSONObjectWithData(actualData, options: NSJSONReadingOptions.AllowFragments) as? Dictionary<String, AnyObject>
+                                let serialized = try! JSONSerialization.jsonObject(with: actualData, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject>
                                 
                                 if (serialized == nil) {
-                                    let array_serialized = try! NSJSONSerialization.JSONObjectWithData(actualData, options: .AllowFragments) as? [Dictionary<String, AnyObject>]
+                                    let array_serialized = try! JSONSerialization.jsonObject(with: actualData, options: .allowFragments) as? [Dictionary<String, AnyObject>]
                                     var ser_array_serialized = Dictionary<String, AnyObject>()
                                     ser_array_serialized.updateValue(array_serialized!, forKey: "response")
                                     success(ser_array_serialized)
@@ -96,13 +96,13 @@ extension APIClient {
         return task
     }
     
-    func urlSessionTask(method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: () -> Void, failure: (error: APIError) -> ()) -> NSURLSessionTask {
-        let url = NSURL(string: url)
-        let urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = method.rawValue
+    func urlSessionTask(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        let url = URL(string: url)
+        let urlRequest = NSMutableURLRequest(url: url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.httpMethod = method.rawValue
         
         if let actualParameters = parameters {
-            urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(actualParameters, options: NSJSONWritingOptions.PrettyPrinted)
+            urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: actualParameters, options: JSONSerialization.WritingOptions.prettyPrinted)
         }
         
         // add additional headers
@@ -110,13 +110,13 @@ extension APIClient {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        let task = dataTask(urlRequest, success: success) { (error) in
-            if error.code == Constants.Error.Code.UnauthorizedError.rawValue {
+        let task = dataTask(urlRequest as URLRequest, success: success) { (error) in
+            if error.code == Constants.Error.Code.unauthorizedError.rawValue {
                 self.validateFullScope {
-                    failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                    failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
                 }
             } else {
-                failure(error: error)
+                failure(error)
             }
         }
         
@@ -130,37 +130,37 @@ extension APIClient {
      :param: failure   failure block with error that should be sent to present a UIAlertcontroller with API error
      :returns: a task to resume when the request should be started
      */
-    func urlSessionJSONTask(url url: String,  success: (Dictionary<String,AnyObject>) -> Void , failure: (error: APIError) -> ()) -> NSURLSessionTask {
+    func urlSessionJSONTask(url: String,  success: @escaping (Dictionary<String,AnyObject>) -> Void , failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
         
-        let fullURL = NSURL(string: url, relativeToURL: Constants.url.baseURL)
-        let urlRequest = NSMutableURLRequest(URL: fullURL!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = httpMethod.get.rawValue
+        let fullURL = URL(string: url, relativeTo: Constants.url.baseURL as URL?)
+        let urlRequest = NSMutableURLRequest(url: fullURL!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.httpMethod = httpMethod.get.rawValue
         for (key, value) in self.additionalHeaders {
             urlRequest.setValue(value, forHTTPHeaderField: key)
         }
         
-        let task = jsonDataTask(urlRequest, success: success) { (error) -> () in
-            if error.code == Constants.Error.Code.UnauthorizedError.rawValue {
+        let task = jsonDataTask(urlRequest as URLRequest, success: success) { (error) -> () in
+            if error.code == Constants.Error.Code.unauthorizedError.rawValue {
                 self.validateFullScope {
-                    failure(error: APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.UnknownError.rawValue, userInfo: nil))
+                    failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
                 }
                 print(error.responseText)
             } else {
-                failure(error: error)
+                failure(error)
             }
         }
         
         return task
     }
     
-    func urlSessionTaskWithNoAuthorizationHeader(method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: () -> Void, failure: (error: APIError) -> ()) -> NSURLSessionTask {
-        let url = NSURL(string: url)
-        let urlRequest = NSMutableURLRequest(URL: url!, cachePolicy: .ReturnCacheDataElseLoad, timeoutInterval: 50)
-        urlRequest.HTTPMethod = method.rawValue
-        urlRequest.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(parameters!, options: NSJSONWritingOptions.PrettyPrinted)
+    func urlSessionTaskWithNoAuthorizationHeader(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        let url = URL(string: url)
+        let urlRequest = NSMutableURLRequest(url: url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.httpMethod = method.rawValue
+        urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: parameters!, options: JSONSerialization.WritingOptions.prettyPrinted)
         urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
         
-        let task = dataTask(urlRequest, success: success, failure: failure)
+        let task = dataTask(urlRequest as URLRequest, success: success, failure: failure)
         return task
     }
 }
