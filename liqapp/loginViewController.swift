@@ -14,7 +14,7 @@ struct Notif {
     static let kLoginViewControllerShow = "showLoginViewController"
 }
 
-class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINavigationBarDelegate {
+class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigationBarDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var debugLabel: UILabel!
@@ -23,13 +23,13 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINaviga
     
     var spinner = UIActivityIndicatorView()
     
-    @IBAction func loginButtonPressed(sender: UIButton) {
-        spinner = UIActivityIndicatorView(frame: CGRectMake(self.loginButton.center.x, self.loginButton.center.y, 70, 70))
-        spinner.activityIndicatorViewStyle = .Gray
+    @IBAction func loginButtonPressed(_ sender: UIButton) {
+        spinner = UIActivityIndicatorView(frame: CGRect(x: self.loginButton.center.x, y: self.loginButton.center.y, width: 70, height: 70))
+        spinner.activityIndicatorViewStyle = .gray
         spinner.center = self.loginButton.center
         view.addSubview(spinner)
         self.loginButton.adjustsImageWhenDisabled = true
-        self.loginButton.enabled = false
+        self.loginButton.isEnabled = false
         self.loginButton.alpha = 0.25
         spinner.startAnimating()
         
@@ -37,7 +37,7 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINaviga
     }
     
     override func viewDidLoad() {
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(LoginViewController.popToSelf), name: Notif.kLoginViewControllerShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShow), object: nil)
     }
     
     override func loadView() {
@@ -48,25 +48,25 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINaviga
     }
     
     func popToSelf() {
-        self.presentViewController(self, animated: true, completion: nil)
+        self.present(self, animated: true, completion: nil)
     }
     
     func authenticate() {
         var params = Dictionary<String, AnyObject>()
-        params.updateValue("\(usernameTextField.text!)", forKey: "username")
-        params.updateValue("\(passwordTextField.text!)", forKey: "password")
+        params.updateValue("\(usernameTextField.text!)" as AnyObject, forKey: "username")
+        params.updateValue("\(passwordTextField.text!)" as AnyObject, forKey: "password")
 
         AuthManager.sharedManager.authenticateWithCode(params, success: {
-            dispatch_async(dispatch_get_main_queue(), {            
+            DispatchQueue.main.async(execute: {            
                 let storyboard = UIStoryboard(name: "Main", bundle:nil)
-                let mutabaahViewController = storyboard.instantiateViewControllerWithIdentifier("mainVCIdentifier")
+                let mutabaahViewController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier")
                 
                 self.spinner.stopAnimating()
                 
-                self.presentViewController(mutabaahViewController, animated: true, completion: nil)
+                self.present(mutabaahViewController, animated: true, completion: nil)
             })
         }, failure: { (error) in
-                dispatch_async(dispatch_get_main_queue()) {
+                DispatchQueue.main.async {
                     self.debugLabel.text = "Failed"
                 }
     
@@ -74,7 +74,7 @@ class LoginViewController : UIViewController, NSURLSessionDataDelegate, UINaviga
         )
     }
         
-    func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
-        return .TopAttached
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .topAttached
     }
 }
