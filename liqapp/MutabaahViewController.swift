@@ -11,23 +11,6 @@ import UIKit
 
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ibadahCell", for: indexPath as IndexPath) as! IbadahTableViewCell
-        
-        if let ibadah = listOfIbadahs.object(at: indexPath.row) as? Dictionary<String, AnyObject> {
-            cell.ibadahTarget.text = (ibadah["target"] as! String).separate("_")
-            cell.ibadahLabel.text = (ibadah["name"] as! String).separateAndCapitalize("_")
-            
-            if let value = ibadah["value"] {
-                cell.ibadahValue.text = String(describing: value)
-            } else {
-                cell.ibadahValue.text = "n/a"
-            }
-        }
-        
-        return cell
-    }
-
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -58,7 +41,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             if let value = ibadah["value"] as? Int {
                 ibadah.updateValue((value + 1) as AnyObject, forKey: "value")
             } else {
-                ibadah.updateValue(0 as AnyObject, forKey: "value")
+                ibadah.updateValue(1 as AnyObject, forKey: "value")
             }
             updateValueLabel(ibadah: ibadah)
             listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
@@ -72,7 +55,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             if let value = ibadah["value"] as? Int {
                 ibadah.updateValue((value - 1) as AnyObject, forKey: "value")
             } else {
-                ibadah.updateValue(0 as AnyObject, forKey: "value")
+                ibadah.updateValue(1 as AnyObject, forKey: "value")
             }
             updateValueLabel(ibadah: ibadah)
             listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
@@ -181,6 +164,26 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         return listOfIbadahs.count
     }
     
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ibadahCell", for: indexPath as IndexPath) as! IbadahTableViewCell
+        
+        if let ibadah = listOfIbadahs.object(at: indexPath.row) as? Dictionary<String, AnyObject> {
+            cell.ibadahTarget.text = (ibadah["target"] as! String).separate("_")
+            cell.ibadahLabel.text = (ibadah["name"] as! String).separateAndCapitalize("_")
+            
+            if let value = ibadah["value"] {
+                cell.ibadahValue.text = String(describing: value)
+            } else {
+                if ibadah["type"] as! String == "yesno" {
+                    cell.ibadahValue.text = "no"
+                } else {
+                    cell.ibadahValue.text = "0"
+                }
+            }
+        }
+        
+        return cell
+    }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let ibadah = listOfIbadahs.object(at: indexPath.row) as? [String:AnyObject] {
@@ -198,7 +201,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
                         valueLabel.text = String(describing: value)
                     }
                 } else {
-                    valueLabel.text = "No Record"
+                    valueLabel.text = "Not Yet"
                 }
             }
         }

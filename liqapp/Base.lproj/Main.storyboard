@@ -157,17 +157,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA3-Hk-mIQ">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="946-di-wjU">
-                                        <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="-1"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="+1">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
-                                            <action selector="minusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="fAv-Za-1pj"/>
+                                            <action selector="plusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="BwO-SY-rJQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SC-4g-Kvf">
                                         <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="+1"/>
+                                        <state key="normal" title="-1"/>
                                         <connections>
-                                            <action selector="plusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="o8m-d9-7ai"/>
+                                            <action selector="minusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="y0g-AZ-gLH"/>
                                         </connections>
                                     </button>
                                 </subviews>
