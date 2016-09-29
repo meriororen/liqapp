@@ -26,6 +26,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var ibadahLabel: UILabel!
+    @IBOutlet weak var plusButton: UIButton!
+    @IBOutlet weak var minusButton: UIButton!
     
     /* detail view */
     @IBOutlet weak var valueLabel: UILabel!
@@ -36,11 +38,48 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     let readableDateFormatter = DateFormatter().readableDateFormatter()
     var currentDate: Date! = Date()
     var listOfIbadahs = NSMutableArray()
-    
+    var selectedIndex = -1000
+    var selectedIndexPath: IndexPath!
     
     @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
     }
     
+    
+    @IBAction func plusButtonPressed() {
+        if selectedIndex >= 0 {
+            var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
+            if let value = ibadah["value"] as? Int {
+                ibadah.updateValue(Int(value + 1) as AnyObject, forKey: "value")
+            } else {
+                ibadah.updateValue(0 as AnyObject, forKey: "value")
+            }
+            updateValueLabel(ibadah: ibadah)
+            listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
+            tableView.reloadRows(at: [selectedIndexPath as IndexPath], with: .none)
+        }
+    }
+    
+    @IBAction func minusButtonPressed() {
+        if selectedIndex >= 0 {
+            var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
+            if let value = ibadah["value"] as? Int {
+                ibadah.updateValue(Int(value - 1) as AnyObject, forKey: "value")
+            } else {
+                ibadah.updateValue(0 as AnyObject, forKey: "value")
+            }
+            updateValueLabel(ibadah: ibadah)
+            listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
+            tableView.reloadRows(at: [selectedIndexPath as IndexPath], with: .none)
+        }
+    }
+    
+    func updateValueLabel(ibadah: [String:AnyObject]) {
+        if ibadah["unit_name"] != nil {
+            valueLabel.text = String(describing: ibadah["value"]!) + " " + (ibadah["unit_name"]! as! String)
+        } else {
+            valueLabel.text = String(describing: ibadah["value"]!)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +142,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         }
     }
     
+    
     func loadListOfIbadahs() {
         spinner.stopAnimating()
         spinner0.stopAnimating()
@@ -120,6 +160,10 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
        // mainView.insertSubview(detailView, aboveSubview: tableView)
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        selectedIndex = -1000
+    }
+    
     // MARK: - Table view data source
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -133,44 +177,44 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ibadahCell", for: indexPath) as! IbadahTableViewCell
-        
-        let ibadah = listOfIbadahs.object(at: (indexPath as NSIndexPath).row) as? Dictionary<String, String>
-        
-        cell.ibadahTarget.text = ibadah!["target"]?.separate("_")
-        cell.ibadahLabel.text = ibadah!["name"]?.separateAndCapitalize("_")
-        
-        if let value = ibadah!["value"] {
-            cell.ibadahValue.text = value
-        } else {
-            cell.ibadahValue.text = "n/a"
+
+        if let ibadah = listOfIbadahs.object(at: indexPath.row) as? Dictionary<String, String> {
+            cell.ibadahTarget.text = ibadah["target"]?.separate("_")
+            cell.ibadahLabel.text = ibadah["name"]?.separateAndCapitalize("_")
+            
+            if let value = ibadah["value"] {
+                cell.ibadahValue.text = String(describing: value)
+            } else {
+                cell.ibadahValue.text = "n/a"
+            }
         }
+        
 
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        struct h { static var previousIndex = -1000 }
-        let ibadah = listOfIbadahs.object(at: (indexPath as NSIndexPath).row) as? [String:String]
-        
-        if (indexPath as NSIndexPath).row != h.previousIndex {
-            valueLabel.slideInFromBottom(0.5)
-            ibadahLabel.slideInFromBottom(0.5)
-            //valueLabel.text = ibadah!["name"]
+        if let ibadah = listOfIbadahs.object(at: indexPath.row) as? [String:AnyObject] {
+            if indexPath.row != selectedIndex {
+                valueLabel.slideInFromBottom(0.5)
+                ibadahLabel.slideInFromBottom(0.5)
+                //valueLabel.text = ibadah!["name"]
             
-            ibadahLabel.text = ibadah!["name"]?.separateAndCapitalize("_")
+                ibadahLabel.text = (ibadah["name"] as! String).separateAndCapitalize("_")
             
-            if let value = ibadah!["value"] {
-                if ibadah!["unit_name"] != nil {
-                    valueLabel.text = value + " " + ibadah!["unit_name"]!
+                if let value = ibadah["value"] {
+                    if ibadah["unit_name"] != nil {
+                        valueLabel.text = String(describing: value) + " " + (ibadah["unit_name"] as! String)
+                    } else {
+                        valueLabel.text = String(describing: value)
+                    }
                 } else {
-                    valueLabel.text = value
+                    valueLabel.text = "No Record"
                 }
-            } else {
-                valueLabel.text = "No Record"
             }
         }
-        
-        h.previousIndex = (indexPath as NSIndexPath).row
+        selectedIndex = indexPath.row
+        selectedIndexPath = indexPath
     }
 
 }

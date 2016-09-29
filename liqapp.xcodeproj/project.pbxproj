@@ -407,7 +407,7 @@
 				DEVELOPMENT_TEAM = YPDXF2GCX2;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
@@ -425,7 +425,7 @@
 				DEVELOPMENT_TEAM = YPDXF2GCX2;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqapp;
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Liqapp-Bridging-Header.h";
