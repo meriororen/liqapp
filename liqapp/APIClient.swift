@@ -87,9 +87,9 @@ class APIClient: NSObject, URLSessionDelegate {
                                 group_id: data["group_id"]! as! String,
                                 records: records)
                             */
-                            mutabaah.updateValue(data, forKey: data["date"] as! String)
+                            mutabaah.updateValue(data as AnyObject, forKey: data["date"] as! String)
                         }
-                        self.rootResource.updateValue(mutabaah, forKey: "mutabaah")
+                        self.rootResource.updateValue(mutabaah as AnyObject, forKey: "mutabaah")
                         then()
                     }
                 }, failure: { (error) in
@@ -123,7 +123,10 @@ class APIClient: NSObject, URLSessionDelegate {
         validate(oAuthToken: fullToken, validationSuccess: { (chosenToken) -> Void in
             self.updateAuthorizationHeader(chosenToken)
             then()
-        },failure: nil)
+            }, failure: { (error: NSError) -> Void in
+                // TODO: error handling!
+                print("cannot validate")
+        })
     }
     
     func validate(oAuthToken: OAuthToken?, validationSuccess: (_ chosenToken: OAuthToken) -> Void, failure: ((_ error: NSError) -> Void)?) {
@@ -136,6 +139,9 @@ class APIClient: NSObject, URLSessionDelegate {
                 
                 failure?(NSError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil))
             }
+        } else {
+            // TODO: error handling
+            print("oAuthToken is nil!")
         }
     }
     

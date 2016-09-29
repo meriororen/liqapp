@@ -37,11 +37,11 @@ class AuthManager: NSObject {
                     if (oAuthToken != nil) {
                         success()
                     } else {
-                        failure(error: APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
+                        failure(APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
                     }
                 }
             }, failure: { (task, error) in
-                failure(error: APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
+                failure(APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
         })
     }
     

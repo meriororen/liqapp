@@ -26,14 +26,14 @@ extension APIClient {
                 DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
                     error.responseText = serializedResponse?.description
-                    failure(error: error)
+                    failure(error)
                 })
             } else if HTTPURLResponse.isUnauthorized(response as? HTTPURLResponse) {
                 //failure(error: error)
             } else if (response as! HTTPURLResponse).didFail() {
                 let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse!)
                 DispatchQueue.main.async(execute: {
-                    failure(error: err)
+                    failure(err)
                 })
             } else {
                 DispatchQueue.main.async(execute: {
@@ -46,7 +46,7 @@ extension APIClient {
     }
     
     fileprivate func jsonDataTask(_ urlRequest: URLRequest, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> () ) -> URLSessionTask {
-//        print(urlRequest)
+        print(urlRequest)
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             DispatchQueue.main.async(execute: {
                 let httpResponse = response as? HTTPURLResponse
@@ -54,9 +54,9 @@ extension APIClient {
                 // if actual error happens (no internet, timeout, etc.)
                 if let actualError = error as NSError!, let actualData = data {
                     let error = APIError(error: actualError)
-                    let string = NSString(data: actualData, encoding: String.Encoding.ascii)
+                    let string = NSString(data: actualData, encoding: String.Encoding.ascii.rawValue)
                     error.responseText = string as? String
-                    failure(error: error)
+                    failure(error)
                 } else {
                     let code: Int = {
                         if httpResponse == nil {
@@ -67,21 +67,21 @@ extension APIClient {
                     }()
                     if HTTPURLResponse.isUnauthorized(httpResponse) {
                         let error = APIError(domain:Constants.Error.apiClientErrorDomain, code:Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil)
-                        failure(error: error)
+                        failure(error)
                     } else {
                         if let actualData = data as Data? {
                             if actualData.count == 0 {
-                                failure(error:APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil))
+                                failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil))
                             } else if (response as! HTTPURLResponse).didFail() {
                                 let err = APIError(domain: Constants.Error.apiClientErrorDomain, code: code, userInfo: nil)
-                                failure(error: err)
+                                failure(err)
                             } else {
                                 let serialized = try! JSONSerialization.jsonObject(with: actualData, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject>
                                 
                                 if (serialized == nil) {
                                     let array_serialized = try! JSONSerialization.jsonObject(with: actualData, options: .allowFragments) as? [Dictionary<String, AnyObject>]
                                     var ser_array_serialized = Dictionary<String, AnyObject>()
-                                    ser_array_serialized.updateValue(array_serialized!, forKey: "response")
+                                    ser_array_serialized.updateValue(array_serialized! as AnyObject, forKey: "response")
                                     success(ser_array_serialized)
                                 } else {
                                     success(serialized!)

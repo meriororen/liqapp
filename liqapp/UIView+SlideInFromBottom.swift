@@ -12,7 +12,7 @@ extension UIView {
     func slideInFromBottom(_ duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
         let slideInFromBottomTransition = CATransition()
         
-        if let delegate: AnyObject = completionDelegate {
+        if let delegate: CAAnimationDelegate = completionDelegate as! CAAnimationDelegate? {
             slideInFromBottomTransition.delegate = delegate
         }
         

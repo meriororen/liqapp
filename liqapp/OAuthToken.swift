@@ -90,7 +90,7 @@ class OAuthToken: NSObject, NSCoding {
         let expiresIn: String = attributes["Expires_in"] as! String
         
         if let expiresInSeconds = Int(expiresIn) {
-            self.init(accessToken: anAccessToken, expiresInSeconds: NSNumber(expiresInSeconds))
+            self.init(accessToken: anAccessToken, expiresInSeconds: NSNumber(value: expiresInSeconds))
         } else {
             self.init(expiryDate: Date())
             self.setAllInstanceVariablesToNil()
@@ -119,6 +119,8 @@ class OAuthToken: NSObject, NSCoding {
     }
     
     class func oAuthTokenWithScope(_ scope: String) -> OAuthToken? {
+        let array = self.oAuthTokens()
+        print(array)
         let dictionary = LUKeychainAccess.standard().object(forKey: Constants.kOAuth2TokensKey) as! NSDictionary?
         if let actualDictionary = dictionary as NSDictionary? {
             if let token = actualDictionary[scope] as?  OAuthToken? {
