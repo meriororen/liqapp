@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,7 +34,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        // realm migration
+        let config = Realm.Configuration(schemaVersion: 4, migrationBlock: { (migration, oldVersion) in
+            if (oldVersion <= 1) {
+                migration.enumerateObjects(ofType: Mutabaah.className(), { (old, new) in
+                    old?["id"] = new?["id"]
+                })
+            } else if (oldVersion < 3) {
+                migration.enumerateObjects(ofType: Mutabaah.className(), { (old, new) in
+                    old?["records"] = new?["records"]
+                })
+            } else if (oldVersion < 4) {
+                migration.enumerateObjects(ofType: Record.className(), { (old, new) in
+                    new?["ibadah_id"] = old?["_id"]
+                })
+            }
+        })
         
+        Realm.Configuration.defaultConfiguration = config
+ 
         startApplicationFromAuth()
         
         return true

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
         <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -157,17 +156,19 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VA3-Hk-mIQ">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="946-di-wjU">
-                                        <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="+1">
-                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.50196081400000003" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="plusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="BwO-SY-rJQ"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5SC-4g-Kvf">
-                                        <color key="backgroundColor" red="0.50196081400000003" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal" title="-1"/>
+                                        <color key="backgroundColor" red="1" green="0.0" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="-1">
+                                            <color key="titleColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                                        </state>
                                         <connections>
                                             <action selector="minusButtonPressed" destination="B8t-Fv-fJc" eventType="touchUpInside" id="y0g-AZ-gLH"/>
                                         </connections>
@@ -200,7 +201,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="krf-ti-NhI" id="oIr-ES-WJ3">
-                                            <frame key="frameInset" width="328" height="43"/>
+                                            <frame key="frameInset" width="328" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -239,10 +240,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="XSX-QX-wr6"/>
                     <connections>
+                        <outlet property="controlView" destination="VA3-Hk-mIQ" id="tMm-ku-oTY"/>
                         <outlet property="dateLabel" destination="QMw-iL-Hde" id="sRN-h1-XyS"/>
                         <outlet property="detailView" destination="ZgA-YL-UcV" id="c6l-i8-gO2"/>
                         <outlet property="ibadahLabel" destination="an1-et-KhM" id="eUs-78-Wy5"/>
                         <outlet property="mainView" destination="7y9-aH-dc6" id="1Du-1O-tgS"/>
+                        <outlet property="minusButton" destination="5SC-4g-Kvf" id="IK3-hC-Qh7"/>
+                        <outlet property="plusButton" destination="946-di-wjU" id="IaG-Cc-D11"/>
                         <outlet property="tableView" destination="Ohf-D2-7S4" id="EwM-Qx-PJr"/>
                         <outlet property="valueLabel" destination="bL6-0h-7b2" id="cca-J4-3gB"/>
                     </connections>

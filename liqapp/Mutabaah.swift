@@ -7,25 +7,36 @@
 //
 
 import Foundation
+import RealmSwift
 
-class Mutabaah: NSObject {
-    var date: String!
-    var id: String!
-    var group_id: String!
-    var user_id: String!
-    var records = [Dictionary<String, AnyObject>]()
+class Mutabaah: Object {
+    dynamic var date = ""
+    dynamic var _id = ""
+    dynamic var user_id = ""
+    dynamic var group_id = ""
+    var records = List<Record>()
     
-    override init() {
-        super.init()
-    }
-    
-    convenience init(id: String, date: String, user_id: String, group_id: String, records: [Dictionary<String, AnyObject>]) {
+    convenience init(id: String!) {
         self.init()
-        
-        self.id = id
-        self.date = date
-        self.user_id = user_id
-        self.group_id = group_id
-        self.records = records
+        self._id = id
     }
+
+    override static func primaryKey() -> String? {
+        return "_id"
+    }
+}
+
+class Record: Object {
+    dynamic var ibadah_id = ""
+    dynamic var value = 0
+    dynamic var mutabaah: Mutabaah? = nil
+}
+
+class Ibadah: Object {
+    dynamic var id = ""
+    dynamic var group_id = ""
+    dynamic var name = ""
+    dynamic var type = ""
+    dynamic var target = ""
+    dynamic var unit_name: String? = nil
 }

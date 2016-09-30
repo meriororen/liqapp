@@ -15,15 +15,44 @@ PODS:
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
   - LUKeychainAccess (1.2.5)
+  - Realm (2.0.1):
+    - Realm/Headers (= 2.0.1)
+  - Realm/Headers (2.0.1)
+  - RealmSwift (2.0.1):
+    - Realm (= 2.0.1)
 
 DEPENDENCIES:
   - AFNetworking
   - LUKeychainAccess
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+
+EXTERNAL SOURCES:
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: b7f61f81684b57abb634b202f4e08d6fd447365f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: b7f61f81684b57abb634b202f4e08d6fd447365f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
+  Realm: 0557ee0e4ab4f0936c90e370056d1ed6265f93d6
+  RealmSwift: 64e00af79bdcd7d2a7a23fdc1cb3faf22b80ae4c
 
-PODFILE CHECKSUM: 792c0497831f13a828ba66049eeef122b8cec3d8
+PODFILE CHECKSUM: 6ba6f41a44ddd721d6f38cc8ad9849a4ae236297
 
 COCOAPODS: 1.0.1

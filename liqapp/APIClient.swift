@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class APIClient: NSObject, URLSessionDelegate {
     
@@ -31,6 +32,7 @@ class APIClient: NSObject, URLSessionDelegate {
     var lastPerformedTask: URLSessionTask? = nil
     var listOfIbadahs: NSMutableArray = NSMutableArray()
     var rootResource = Dictionary<String, AnyObject>()
+    var realm: Realm!
     
     override init() {
         super.init()
@@ -41,6 +43,8 @@ class APIClient: NSObject, URLSessionDelegate {
         sessionConfiguration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         
         let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        
+        self.realm = try! Realm()
         self.session = theSession
     }
     
@@ -48,14 +52,14 @@ class APIClient: NSObject, URLSessionDelegate {
         if let actualToken = token as OAuthToken! {
             self.additionalHeaders["Authorization"] = actualToken.accessToken
         } else {
-            // wat?
+            // TODO: error handling
         }
     }
     
     func updateUserBasicInfo(then: @escaping () -> Void) {
         self.validateFullScope {
             /* fetch basic info */
-            self.urlSessionJSONTask(url: "api/user", success: { (jsonData) in
+            self.urlSessionJSONTaskSerialized(url: "api/user", success: { (jsonData) in
                 for (key, value) in jsonData {
                     if (key == "id" || key == "name" || key == "groups") {
                         self.rootResource.updateValue(value, forKey: key)
@@ -75,21 +79,19 @@ class APIClient: NSObject, URLSessionDelegate {
     func getUserMutabaahs(then: @escaping () -> Void) {
         self.validateFullScope {
             /* fetch mutabaahs */
-            self.urlSessionJSONTask(url: "api/user/mutabaahs", success: { (jsonData) in
-                    if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
-                        var mutabaah = Dictionary<String, AnyObject>()
+            self.urlSessionJSONTaskSerialized(url: "api/user/mutabaahs", success: { (jsonData) in
+                if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
+                        /* manage as realm objects */
                         for data in anArray {
-                            /*
-                            let records = data["records"] as! Dictionary<String, String>
-                            let m = Mutabaah(id: data["_id"]! as! String,
-                                date: data["date"]! as! String,
-                                user_id: data["user_id"]! as! String,
-                                group_id: data["group_id"]! as! String,
-                                records: records)
-                            */
-                            mutabaah.updateValue(data as AnyObject, forKey: data["date"] as! String)
+                            do {
+                                try APIClient.sharedClient.realm.write {
+                                    APIClient.sharedClient.realm.create(Mutabaah.self, value: data, update: true)
+                                }
+                            } catch {
+                                print("wat")
+                            }
                         }
-                        self.rootResource.updateValue(mutabaah as AnyObject, forKey: "mutabaah")
+                        //print(anArray)
                         then()
                     }
                 }, failure: { (error) in
@@ -98,11 +100,22 @@ class APIClient: NSObject, URLSessionDelegate {
         }
     }
     
-    func fetchListOfIbadahs(then: @escaping () -> Void) {
+    func postMutabaah(for date: String, records: Dictionary<String, AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> Void) {
+        self.validateFullScope {
+            self.urlSessionTask(httpMethod.post, url: "api/mutabaahs", parameters: records, success: {
+                success()
+                }, failure: { (error) in
+                    print("cannot post mutabaah!")
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    func getListOfIbadahs(then: @escaping () -> Void) {
         self.validateFullScope {
             if (self.listOfIbadahs.count > 0) { then() }
             /* fetch list of ibadahs */
-            self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
+            self.urlSessionJSONTaskSerialized(url: "api/ibadahs", success: { (jsonData) in
                     /* clear all first */
                     self.listOfIbadahs.removeAllObjects()
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
@@ -161,16 +174,15 @@ class APIClient: NSObject, URLSessionDelegate {
     }
     
     fileprivate func logout(success: @escaping () -> Void, failure: (_ error: APIError) -> ()) {
-        if rootResource.count == 0 && listOfIbadahs.count == 0 {
-            success()
-            return
-        }
-        
-        validateFullScope {
-            self.rootResource.removeAll()
-            self.listOfIbadahs.removeAllObjects()
-            
-            OAuthToken.removeAllTokens()
+        if OAuthToken.oAuthTokens().count > 0{
+            validateFullScope {
+                self.rootResource.removeAll()
+                self.listOfIbadahs.removeAllObjects()
+                
+                OAuthToken.removeAllTokens()
+                success()
+            }
+        } else {
             success()
         }
     }
