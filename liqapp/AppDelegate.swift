@@ -35,8 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
         // realm migration
-        let config = Realm.Configuration(schemaVersion: 4, migrationBlock: { (migration, oldVersion) in
+        let config = Realm.Configuration(schemaVersion: 12, migrationBlock: { (migration, oldVersion) in
             if (oldVersion <= 1) {
                 migration.enumerateObjects(ofType: Mutabaah.className(), { (old, new) in
                     old?["id"] = new?["id"]
@@ -49,10 +50,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 migration.enumerateObjects(ofType: Record.className(), { (old, new) in
                     new?["ibadah_id"] = old?["_id"]
                 })
+            } else if (oldVersion < 7) {
+                migration.enumerateObjects(ofType: Record.className(), { (old, new) in
+                    old?["mutabaah"] = new?["mutabaah"]
+                })
+            } else if (oldVersion < 10) {
+                migration.enumerateObjects(ofType: Ibadah.className(), { (old, new) in
+                    new?["_id"] = old?["id"]
+                })
+            } else if (oldVersion < 12) {
             }
         })
         
         Realm.Configuration.defaultConfiguration = config
+ 
  
         startApplicationFromAuth()
         

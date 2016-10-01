@@ -44,6 +44,12 @@ class APIClient: NSObject, URLSessionDelegate {
         
         let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         
+        /*
+        let realmConfig = Realm.Configuration(
+            fileURL: Bundle.main.url(forResource: "APIData", withExtension: "realm")
+        )
+        */
+        
         self.realm = try! Realm()
         self.session = theSession
     }
@@ -83,15 +89,20 @@ class APIClient: NSObject, URLSessionDelegate {
                 if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         /* manage as realm objects */
                         for data in anArray {
-                            do {
-                                try APIClient.sharedClient.realm.write {
-                                    APIClient.sharedClient.realm.create(Mutabaah.self, value: data, update: true)
+                            if (self.realm.object(ofType: Mutabaah.self, forPrimaryKey: data["date"]) == nil) {
+                                do {
+                                    try self.realm.write {
+                                        let m = self.realm.create(Mutabaah.self, value: data, update: true)
+                                        for r in m.records {
+                                            r.mutabaah = m._id!
+                                        }
+                                    }
+                                } catch {
+                                    // TODO: error handling
+                                    print("realm error!")
                                 }
-                            } catch {
-                                print("wat")
                             }
                         }
-                        //print(anArray)
                         then()
                     }
                 }, failure: { (error) in
@@ -116,11 +127,20 @@ class APIClient: NSObject, URLSessionDelegate {
             if (self.listOfIbadahs.count > 0) { then() }
             /* fetch list of ibadahs */
             self.urlSessionJSONTaskSerialized(url: "api/ibadahs", success: { (jsonData) in
-                    /* clear all first */
-                    self.listOfIbadahs.removeAllObjects()
+                    /* self.listOfIbadahs.removeAllObjects() */
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            self.listOfIbadahs.add(data)
+                            // self.listOfIbadahs.add(data)
+                            if self.realm.object(ofType: Ibadah.self, forPrimaryKey: data["_id"]) == nil {
+                                do {
+                                    try self.realm.write {
+                                        self.realm.create(Ibadah.self, value: data, update: true)
+                                    }
+                                } catch {
+                                    // TODO : error handling!
+                                    print("cannot create realm ibadah")
+                                }
+                            }
                         }
                         then()
                     }

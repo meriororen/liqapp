@@ -18,7 +18,7 @@ class Motorcycle: Object {
 
 let realm = try! Realm(configuration: Realm.Configuration(inMemoryIdentifier: "temp"))
 
-print(Realm.Configuration.defaultConfiguration.fileURL!)
+//print(Realm.Configuration.defaultConfiguration.fileURL!)
 
 let base = URL(string: "http://test.com/")
 let full = URL(string: "test", relativeTo: base)
@@ -50,8 +50,8 @@ for d in data {
     }
 }
 
-let results = realm.objects(Person.self)
-
+let results = realm.objects(Person.self).filter(NSPredicate(format:"name = %@", "Isa"))
+print(results.count)
 for i in 0..<results.count {
     print(results[i].bikes)
 }
