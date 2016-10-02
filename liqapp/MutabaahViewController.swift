@@ -8,13 +8,26 @@
 
 import UIKit
 import RealmSwift
+import QuartzCore
+
+extension UIButton {
+    var text: String? {
+        get {
+            return self.currentTitle
+        }
+        set(new) {
+            self.setTitle(new, for: .normal)
+        }
+    }
+}
+
 
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var dateButton: UIButton!
     @IBOutlet weak var ibadahLabel: UILabel!
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
@@ -91,8 +104,10 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
 
         /* detail view */
         valueLabel.isHidden = true
-        dateLabel.isHidden = true
-        dateLabel.text = readableDateFormatter.string(from: currentDate as Date)
+        dateButton.isHidden = true
+        dateButton.layer.cornerRadius = 8
+        dateButton.clipsToBounds = true
+        dateButton.text = readableDateFormatter.string(from: currentDate as Date)
         
         /* control view */
         controlView.isHidden = true
@@ -164,10 +179,10 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         spinner.stopAnimating()
         spinner0.stopAnimating()
         valueLabel.isHidden = false
-        dateLabel.isHidden = false
+        dateButton.isHidden = false
         ibadahLabel.isHidden = false
         
-        controlView.slideInFromBottom(0.5)
+        //controlView.slideInFromBottom(0.5)
         controlView.isHidden = false
         
         tableView.isUserInteractionEnabled = true
@@ -179,8 +194,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     override func viewWillAppear(_ animated: Bool) {
         ibadahLabel.isHidden = true
         
-        plusButton.setTitle(">", for: .normal)
-        minusButton.setTitle("<", for: .normal)
+        plusButton.text = ">"
+        minusButton.text = "<"
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -254,11 +269,11 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             ibadahLabel.text = ibadah.name.separateAndCapitalize("_")
             
             if (ibadah.type == "yesno") {
-                plusButton.setTitle("yes", for: .normal)
-                minusButton.setTitle("no", for: .normal)
+                plusButton.text = "yes"
+                minusButton.text = "no"
             } else {
-                plusButton.setTitle(">", for: .normal)
-                minusButton.setTitle("<", for: .normal)
+                plusButton.text = ">"
+                minusButton.text = "<"
             }
             
             if record == nil { valueLabel.text = "Not Yet" } // not in records
