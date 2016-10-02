@@ -62,14 +62,12 @@ let prop = result?.objectSchema.properties.map({ (p) -> String in
 
 let dict = result?.dictionaryWithValues(forKeys: prop!) as! [String:AnyObject]
 
-do{
-    let blah = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-    print(dict)
-    let sblah = String(data: blah, encoding: String.Encoding.ascii)
-    print(sblah!)
-} catch {
-    print("naon")
-}
+let blah = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+print(dict)
+
+let sblah = String(data: blah, encoding: String.Encoding.ascii)
+
+print(sblah!)
 
 /*
 for (key, val) in dict! {

@@ -12,5 +12,7 @@ target 'liqapp' do
   pod 'LUKeychainAccess'
   #pod 'Alamofire'
   pod 'AFNetworking'
+  pod 'UIKitResources'
+  pod 'THCalendarDatePicker', '~> 1.2.6'
   #pod 'JDFlipNumberView'
 end

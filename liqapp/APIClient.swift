@@ -91,12 +91,34 @@ class APIClient: NSObject, URLSessionDelegate {
                         for data in anArray {
                             let mutabaah = self.realm.object(ofType: Mutabaah.self, forPrimaryKey: data["date"])
                             /* only update when no such mutabaah, or its id is empty */
-                            if ( mutabaah == nil || mutabaah?._id == nil || mutabaah?._id == "") {
+                            //print(data["date"] as! String)
+                            if ( mutabaah == nil ) {
                                 do {
                                     try self.realm.write {
                                         let m = self.realm.create(Mutabaah.self, value: data, update: true)
                                         for r in m.records {
                                             r.mutabaah = m._id!
+                                        }
+                                    }
+                                } catch {
+                                    // TODO: error handling
+                                    print("realm error!")
+                                }
+                            } else if (mutabaah?._id == nil) {
+                                let newrecords = data["records"] as! [[String:AnyObject]]
+                                do {
+                                    try self.realm.write {
+                                        mutabaah?._id = data["_id"] as? String
+                                        for r in (mutabaah?.records)! {
+                                            r.mutabaah = data["_id"] as? String
+                                            r.value = { () -> Int in
+                                                for n in newrecords {
+                                                    if n["ibadah_id"] as! String == r.ibadah_id {
+                                                        return n["value"] as! Int
+                                                    }
+                                                }
+                                                return 0
+                                            }()
                                         }
                                     }
                                 } catch {

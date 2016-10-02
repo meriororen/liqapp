@@ -9,6 +9,7 @@
 import UIKit
 import RealmSwift
 import QuartzCore
+import THCalendarDatePicker
 
 extension UIButton {
     var text: String? {
@@ -22,7 +23,19 @@ extension UIButton {
 }
 
 
-class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate {
+class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, THDatePickerDelegate {
+    
+    public func datePickerDonePressed(_ datePicker: THDatePickerViewController!) {
+        self.dismissSemiModalView()
+        if let selectedDate = datePicker.selectedDates.first as? NSDate {
+            self.currentDate = selectedDate
+            self.decodeMutabaahsForDate(date: selectedDate)
+        }
+    }
+
+    public func datePickerCancelPressed(_ datePicker: THDatePickerViewController!) {
+        //
+    }
 
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
@@ -32,6 +45,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var controlView: UIView!
+    @IBOutlet weak var backButton: UIButton!
     
     /* detail view */
     @IBOutlet weak var valueLabel: UILabel!
@@ -49,6 +63,35 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     var selectedIbadah: Ibadah?
     
     @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+    }
+    
+    lazy var datePicker: THDatePickerViewController = {
+        var dp = THDatePickerViewController.datePicker()!
+        dp.delegate = self
+        dp.setAllowClearDate(false)
+        dp.setDisableYearSwitch(true)
+        dp.setClearAsToday(true)
+        dp.setAutoCloseOnSelectDate(true)
+        dp.setAllowSelectionOfSelectedDate(true)
+        dp.setDisableHistorySelection(false)
+        dp.setDisableFutureSelection(false)
+        dp.selectedBackgroundColor = UIColor(red: 125/255.0, green: 208/255.0, blue: 0/255.0, alpha: 1.0)
+        dp.currentDateColor = UIColor(red: 242/255.0, green: 121/255.0, blue: 53/255.0, alpha: 1.0)
+        dp.currentDateColorSelected = UIColor.yellow
+        return dp
+    }()
+    
+    @IBAction func dateButtonPressed(sender: AnyObject?) {
+        datePicker.date = currentDate as Date!
+        //datePicker.setDateHasItemsCallback({(date: NSDate!) -> Bool in
+        //
+        //})
+        presentSemiViewController(datePicker, withOptions: [
+            KNSemiModalOptionKeys.pushParentBack.takeRetainedValue() : NSNumber(value: false),
+            KNSemiModalOptionKeys.animationDuration.takeRetainedValue() : NSNumber(value: 0.2),
+            KNSemiModalOptionKeys.parentAlpha.takeRetainedValue() : NSNumber(value: 1.0),
+            //KNSemiModalOptionKeys.transitionStyle.takeRetainedValue() : UIPageViewControllerTransitionStyle.pageCurl
+            ])
     }
     
     func updateSelected(isPlus: Bool) {
@@ -79,7 +122,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             if selectedIbadah!.unit_name != nil {
                 valueLabel.text = String(describing: selectedRecord!.value) + " " + selectedIbadah!.unit_name!
             } else {
-                valueLabel.text = selectedRecord!.value > 0 ? "yes" : "no"
+                valueLabel.text = selectedRecord!.value > 0 ? "Yes" : "No"
             }
 
             tableView.reloadRows(at: [selectedIndexPath as IndexPath], with: .none)
@@ -108,9 +151,11 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         dateButton.layer.cornerRadius = 8
         dateButton.clipsToBounds = true
         dateButton.text = readableDateFormatter.string(from: currentDate as Date)
+        let backImg = UIImage(named: "UIButtonBarArrowDown")?.withRenderingMode(.alwaysTemplate)
+        backButton.setImage(backImg, for: .normal)
+        backButton.tintColor = UIColor.white
         
         /* control view */
-        controlView.isHidden = true
         
         spinner = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.tableView.center.y - 50, width: 10, height: 10))
         spinner0 = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.detailView.center.y, width: 10, height: 10))
@@ -133,7 +178,6 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             APIClient.sharedClient.getUserMutabaahs {
                 // print("fetched mutabaahs")
                 self.decodeMutabaahsForDate(date: self.currentDate)
-                self.loadListOfIbadahs()
             }
         } else {
             APIClient.sharedClient.getListOfIbadahs {
@@ -142,7 +186,6 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
                     // print("fetched mutabaahs")
                     self.listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
                     self.decodeMutabaahsForDate(date: self.currentDate)
-                    self.loadListOfIbadahs()
                 }
             }
         }
@@ -172,6 +215,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         } else {
             currentMutabaah = mutabaah.first!
         }
+        
+        self.loadListOfIbadahs()
     }
     
     
@@ -187,15 +232,35 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.isUserInteractionEnabled = true
         
+        dateButton.text = readableDateFormatter.string(from: currentDate as Date)
+        
         valueLabel.text = "Pilih!"
         tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
+    }
+    
+    func updateControlButtons(ibadah: Ibadah?) {
+        let up = UIImage(named: "shiftOn_split_10key")?.withRenderingMode(.alwaysTemplate)
+        let down = UIImage(cgImage: (up?.cgImage)!, scale: (up?.scale)!, orientation: UIImageOrientation.downMirrored)
+        let no = UIImage(named: "UIAccessoryButtonX")?.withRenderingMode(.alwaysTemplate)
+        let yes = UIImage(named: "UIAccessoryButtonCheckmark")?.withRenderingMode(.alwaysTemplate)
+        
+        if (ibadah == nil || ibadah?.type == "fillnumber") {
+            plusButton.setImage(up, for: .normal)
+            plusButton.tintColor = UIColor(red: 54.0, green: 22.0, blue: 242.0, alpha: 1.0)
+            minusButton.setImage(down, for: .normal)
+            minusButton.tintColor = UIColor.white
+        } else {
+            plusButton.setImage(yes, for: .normal)
+            plusButton.tintColor = UIColor.white
+            minusButton.setImage(no, for: .normal)
+            minusButton.tintColor = UIColor.white
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         ibadahLabel.isHidden = true
         
-        plusButton.text = ">"
-        minusButton.text = "<"
+        updateControlButtons(ibadah: nil)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -268,20 +333,14 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             
             ibadahLabel.text = ibadah.name.separateAndCapitalize("_")
             
-            if (ibadah.type == "yesno") {
-                plusButton.text = "yes"
-                minusButton.text = "no"
-            } else {
-                plusButton.text = ">"
-                minusButton.text = "<"
-            }
+            updateControlButtons(ibadah: ibadah)
             
             if record == nil { valueLabel.text = "Not Yet" } // not in records
             else {
                 if ibadah.unit_name != nil {
                     valueLabel.text = String(describing: record!.value) + " " + ibadah.unit_name!
                 } else {
-                    valueLabel.text = record!.value > 0 ? "yes" : "no"
+                    valueLabel.text = record!.value > 0 ? "Yes" : "No"
                 }
             }
             selectedIbadah = ibadah
