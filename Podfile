@@ -6,9 +6,13 @@ target 'liqapp' do
   use_frameworks!
 
   # Pods for liqapp
-  #pod 'RealmSwift'
+  pod 'Realm', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', submodules: true
+  pod 'RealmSwift', git: 'https://github.com/realm/realm-cocoa.git', branch: 'master', submodules: true
+
   pod 'LUKeychainAccess'
   #pod 'Alamofire'
   pod 'AFNetworking'
+  pod 'UIKitResources'
+  pod 'THCalendarDatePicker', '~> 1.2.6'
   #pod 'JDFlipNumberView'
 end

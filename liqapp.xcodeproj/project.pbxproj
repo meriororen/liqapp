@@ -30,6 +30,7 @@
 		4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D141D92A67D002E3697 /* OAuthToken.swift */; };
 		4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D181D938CB2002E3697 /* AuthManager.swift */; };
 		4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */; };
+		4A8898E51D9E33A8004631BB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4A8898E41D9E33A8004631BB /* Podfile */; };
 		8FCA3B46AE82A8C22F045E16 /* Pods_liqapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,8 @@
 		4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Liqapp-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A7E9D181D938CB2002E3697 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
+		4A8898E41D9E33A8004631BB /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		4A8898E61D9E86F6004631BB /* prototyping.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = prototyping.playground; sourceTree = "<group>"; };
 		6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.release.xcconfig"; sourceTree = "<group>"; };
 		F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liqapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -125,6 +128,7 @@
 				4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */,
 				4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */,
 				4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */,
+				4A8898E61D9E86F6004631BB /* prototyping.playground */,
 			);
 			path = liqapp;
 			sourceTree = "<group>";
@@ -141,6 +145,7 @@
 		8E3670500809ABA5D5143096 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A8898E41D9E33A8004631BB /* Podfile */,
 				F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */,
 			);
 			name = Frameworks;
@@ -214,6 +219,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A8898E51D9E33A8004631BB /* Podfile in Resources */,
 				4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */,
 				4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */,
 				4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */,

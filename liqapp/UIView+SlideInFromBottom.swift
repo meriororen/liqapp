@@ -9,10 +9,10 @@
 import UIKit
 
 extension UIView {
-    func slideInFromBottom(_ duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+    func slideInFromBottom(_ duration: TimeInterval = 1.0, completionDelegate: CAAnimationDelegate? = nil) {
         let slideInFromBottomTransition = CATransition()
         
-        if let delegate: CAAnimationDelegate = completionDelegate as! CAAnimationDelegate? {
+        if let delegate: CAAnimationDelegate = completionDelegate {
             slideInFromBottomTransition.delegate = delegate
         }
         
@@ -23,5 +23,9 @@ extension UIView {
         slideInFromBottomTransition.fillMode = kCAFillModeRemoved
         
         self.layer.add(slideInFromBottomTransition, forKey: "slideInFromBottomTransition")
+    }
+    
+    func expand(_ duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
+        
     }
 }
