@@ -23,25 +23,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var mutabaahButton: mainItemButton!
     @IBOutlet weak var TBDButton: mainItemButton!
     @IBOutlet weak var welcomeLabel: UILabel!
+    @IBOutlet weak var contactImage: UIImageView!
     
     override func viewDidLoad() {
         welcomeLabel.isHidden = true
+        contactImage.isHidden = true
+        contactImage.image?.withRenderingMode(.alwaysTemplate)
         
         APIClient.sharedClient.updateUserBasicInfo {
-            self.welcomeLabel.text = "Welcome, " + (APIClient.sharedClient.rootResource["name"] as! String) + "!"
+            self.welcomeLabel.text = (APIClient.sharedClient.rootResource["name"] as! String)
             self.welcomeLabel.isHidden = false
+            self.contactImage.isHidden = false
+
+            self.contactImage.tintColor = UIColor.darkGray
         }
     }
     
     @IBAction func logoutUser() {
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
-    }
-}
-
-class LaunchScreenViewController: UIViewController {
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
-
-    override func viewDidLoad() {
-        spinner.startAnimating()
     }
 }

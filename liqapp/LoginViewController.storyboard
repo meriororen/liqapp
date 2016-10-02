@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="peK-aK-OeJ">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Username" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="peK-aK-OeJ" customClass="loginTextField" customModule="liqapp" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="XNI-PR-i8Q"/>
                                 </constraints>
@@ -26,7 +26,7 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7I-Vx-S3B">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Password" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="q7I-Vx-S3B" customClass="loginTextField" customModule="liqapp" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="46" id="NcI-eo-Iay"/>
                                 </constraints>
@@ -47,34 +47,26 @@
                                     <action selector="loginButtonPressed:" destination="f8U-PX-Ikn" eventType="touchUpInside" id="nSF-7K-hTB"/>
                                 </connections>
                             </button>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="debug" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0al-VY-3St">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="251" id="G8H-mG-kng"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="peK-aK-OeJ" firstAttribute="leading" secondItem="JpE-On-l94" secondAttribute="leadingMargin" constant="50" id="6rJ-dZ-sUv"/>
-                            <constraint firstItem="0al-VY-3St" firstAttribute="leading" secondItem="ynz-za-bYd" secondAttribute="leading" id="7g6-K1-dRl"/>
+                            <constraint firstItem="peK-aK-OeJ" firstAttribute="centerX" secondItem="JpE-On-l94" secondAttribute="centerX" id="8Ra-pa-sjy"/>
+                            <constraint firstItem="ynz-za-bYd" firstAttribute="centerX" secondItem="JpE-On-l94" secondAttribute="centerX" id="DSl-HC-nOT"/>
                             <constraint firstItem="q7I-Vx-S3B" firstAttribute="leading" secondItem="JpE-On-l94" secondAttribute="leadingMargin" constant="50" id="JT3-Fe-089"/>
                             <constraint firstItem="q7I-Vx-S3B" firstAttribute="top" secondItem="peK-aK-OeJ" secondAttribute="bottom" constant="17" id="Kbx-vM-PcT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="ynz-za-bYd" secondAttribute="trailing" constant="50" id="NdV-hx-W1p"/>
                             <constraint firstItem="ynz-za-bYd" firstAttribute="leading" secondItem="JpE-On-l94" secondAttribute="leadingMargin" constant="50" id="TKB-BH-Ff4"/>
+                            <constraint firstItem="q7I-Vx-S3B" firstAttribute="centerX" secondItem="JpE-On-l94" secondAttribute="centerX" id="UsP-I4-G4g"/>
                             <constraint firstItem="peK-aK-OeJ" firstAttribute="top" secondItem="NC9-z8-Ibq" secondAttribute="bottom" constant="63" id="VeI-Mq-Av5"/>
                             <constraint firstAttribute="trailingMargin" secondItem="peK-aK-OeJ" secondAttribute="trailing" constant="50" id="XY8-YH-eFB"/>
                             <constraint firstItem="ynz-za-bYd" firstAttribute="top" secondItem="q7I-Vx-S3B" secondAttribute="bottom" constant="20" id="q2h-q9-gkL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="q7I-Vx-S3B" secondAttribute="trailing" constant="50" id="qpd-jT-xSo"/>
-                            <constraint firstItem="wHi-ci-EzB" firstAttribute="top" secondItem="0al-VY-3St" secondAttribute="bottom" constant="213" id="xqs-dP-Pj0"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="600" height="600"/>
                     <connections>
-                        <outlet property="debugLabel" destination="0al-VY-3St" id="dqT-oO-w2v"/>
                         <outlet property="loginButton" destination="ynz-za-bYd" id="nuB-iC-UDp"/>
                         <outlet property="passwordTextField" destination="q7I-Vx-S3B" id="hdQ-dW-QfF"/>
                         <outlet property="usernameTextField" destination="peK-aK-OeJ" id="XlG-Kb-9dU"/>

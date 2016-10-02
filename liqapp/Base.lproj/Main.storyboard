@@ -17,14 +17,9 @@
                         <viewControllerLayoutGuide type="bottom" id="08H-1w-rfJ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="jGk-4p-R2V">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome, user!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slK-GO-vLZ">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-Z7-24i" customClass="mainItemButton" customModule="liqapp" customModuleProvider="target">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="L0v-f9-DAP"/>
@@ -42,7 +37,7 @@
                                     <constraint firstAttribute="width" constant="96" id="7se-7y-rAk"/>
                                     <constraint firstAttribute="height" constant="62" id="sxH-Gs-GKI"/>
                                 </constraints>
-                                <state key="normal" title="TBD">
+                                <state key="normal" title="Group">
                                     <color key="titleColor" red="0.12549019607843137" green="0.45098039215686275" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                             </button>
@@ -52,28 +47,54 @@
                                     <action selector="logoutUser" destination="lFd-U0-ZA4" eventType="touchUpInside" id="ALo-py-lv6"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oef-Rq-Tcj">
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UITabBarContactsTemplate" translatesAutoresizingMaskIntoConstraints="NO" id="mhC-1c-5Ll">
+                                        <color key="tintColor" red="0.60000002379999995" green="0.60000002379999995" blue="0.60000002379999995" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="32" id="Swz-y6-Blq"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slK-GO-vLZ">
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="mhC-1c-5Ll" firstAttribute="top" secondItem="oef-Rq-Tcj" secondAttribute="top" constant="1" id="5iH-YD-9zg"/>
+                                    <constraint firstItem="slK-GO-vLZ" firstAttribute="leading" secondItem="mhC-1c-5Ll" secondAttribute="trailing" constant="5" id="K44-r7-apu"/>
+                                    <constraint firstItem="slK-GO-vLZ" firstAttribute="top" secondItem="oef-Rq-Tcj" secondAttribute="top" constant="5" id="Vrs-sR-MjO"/>
+                                    <constraint firstAttribute="trailing" secondItem="slK-GO-vLZ" secondAttribute="trailing" constant="15" id="eua-SD-mjh"/>
+                                    <constraint firstItem="mhC-1c-5Ll" firstAttribute="leading" secondItem="oef-Rq-Tcj" secondAttribute="leading" constant="5" id="gAB-0R-0S0"/>
+                                    <constraint firstAttribute="bottom" secondItem="slK-GO-vLZ" secondAttribute="bottom" constant="6" id="mQg-Qz-0Rp"/>
+                                    <constraint firstAttribute="bottom" secondItem="mhC-1c-5Ll" secondAttribute="bottom" constant="1" id="tVY-jq-1zN"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="1AG-QJ-oDe" firstAttribute="centerX" secondItem="jGk-4p-R2V" secondAttribute="centerX" id="2P3-RE-vzl"/>
-                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="leading" secondItem="jGk-4p-R2V" secondAttribute="centerX" multiplier="1.2" id="8Pg-3V-p9T"/>
-                            <constraint firstItem="slK-GO-vLZ" firstAttribute="centerX" secondItem="jGk-4p-R2V" secondAttribute="centerX" id="ARf-8S-jRj"/>
+                            <constraint firstItem="SkO-tT-VjQ" firstAttribute="leading" secondItem="jGk-4p-R2V" secondAttribute="centerX" multiplier="1.1" id="8Pg-3V-p9T"/>
                             <constraint firstItem="1AG-QJ-oDe" firstAttribute="centerY" secondItem="jGk-4p-R2V" secondAttribute="bottom" constant="-40" id="IDg-Ag-ikL"/>
-                            <constraint firstItem="VjO-Z7-24i" firstAttribute="trailing" secondItem="jGk-4p-R2V" secondAttribute="centerX" multiplier="0.8" id="IHF-OM-oM0"/>
+                            <constraint firstItem="VjO-Z7-24i" firstAttribute="trailing" secondItem="jGk-4p-R2V" secondAttribute="centerX" multiplier="0.9" id="IHF-OM-oM0"/>
+                            <constraint firstItem="oef-Rq-Tcj" firstAttribute="centerY" secondItem="jGk-4p-R2V" secondAttribute="centerY" multiplier="0.2" id="VAw-Aa-Dfl"/>
                             <constraint firstItem="VjO-Z7-24i" firstAttribute="centerY" secondItem="jGk-4p-R2V" secondAttribute="centerY" multiplier="0.6" id="b7Q-4L-612"/>
-                            <constraint firstItem="slK-GO-vLZ" firstAttribute="top" secondItem="jGk-4p-R2V" secondAttribute="topMargin" constant="50" id="gdA-Yv-Xut"/>
+                            <constraint firstItem="oef-Rq-Tcj" firstAttribute="centerX" secondItem="jGk-4p-R2V" secondAttribute="centerX" id="dyv-PO-hzV"/>
                             <constraint firstItem="SkO-tT-VjQ" firstAttribute="centerY" secondItem="jGk-4p-R2V" secondAttribute="centerY" multiplier="0.6" id="iA6-Z0-eG9"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="TBDButton" destination="SkO-tT-VjQ" id="F6A-q8-rQ4"/>
+                        <outlet property="contactImage" destination="mhC-1c-5Ll" id="vtC-Ig-sqf"/>
                         <outlet property="mutabaahButton" destination="VjO-Z7-24i" id="fD6-J5-9AM"/>
                         <outlet property="welcomeLabel" destination="slK-GO-vLZ" id="ZuQ-c1-n9n"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I81-Rf-TbD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-657" y="155"/>
+            <point key="canvasLocation" x="-658.39999999999998" y="154.27286356821591"/>
         </scene>
         <!--Mutabaah View Controller-->
         <scene sceneID="Ce8-Il-hHc">
@@ -84,7 +105,7 @@
                         <viewControllerLayoutGuide type="bottom" id="z4D-y7-WbF"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="7y9-aH-dc6">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZgA-YL-UcV">
@@ -205,10 +226,10 @@
                                 <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="detailButton" indentationWidth="10" reuseIdentifier="ibadahCell" id="krf-ti-NhI" customClass="IbadahTableViewCell" customModule="liqapp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="krf-ti-NhI" id="oIr-ES-WJ3">
-                                            <frame key="frameInset" width="367" height="44"/>
+                                            <frame key="frameInset" width="328" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -268,5 +289,6 @@
     </scenes>
     <resources>
         <image name="UIButtonBarArrowDown" width="20" height="11"/>
+        <image name="UITabBarContactsTemplate" width="25" height="25"/>
     </resources>
 </document>

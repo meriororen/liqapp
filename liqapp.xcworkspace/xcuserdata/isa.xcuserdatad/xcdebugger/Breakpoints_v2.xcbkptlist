@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/LoginViewController.swift"
-            timestampString = "496841991.449663"
+            timestampString = "497116705.771777"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "17"
-            endingLineNumber = "17"
+            startingLineNumber = "27"
+            endingLineNumber = "27"
             landmarkName = "LoginViewController"
             landmarkType = "3">
          </BreakpointContent>

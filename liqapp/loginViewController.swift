@@ -14,23 +14,36 @@ struct Notif {
     static let kLoginViewControllerShow = "showLoginViewController"
 }
 
+class loginTextField: UITextField {
+    override func textRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+    }
+    
+    override func editingRect(forBounds bounds: CGRect) -> CGRect {
+        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
+    }
+}
+
 class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigationBarDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var debugLabel: UILabel!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
     var spinner = UIActivityIndicatorView()
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
+        if (usernameTextField.text == "" || passwordTextField.text == "") { return }
+        
         spinner = UIActivityIndicatorView(frame: CGRect(x: self.loginButton.center.x, y: self.loginButton.center.y, width: 70, height: 70))
         spinner.activityIndicatorViewStyle = .gray
         spinner.center = self.loginButton.center
         view.addSubview(spinner)
+        
         self.loginButton.adjustsImageWhenDisabled = true
         self.loginButton.isEnabled = false
         self.loginButton.alpha = 0.25
+        
         spinner.startAnimating()
         
         authenticate()
@@ -43,7 +56,6 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
     override func loadView() {
         super.loadView();
         
-        loginButton.layer.cornerRadius = 10
         loginButton.clipsToBounds = true
     }
     
@@ -66,12 +78,7 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
                 self.present(mutabaahViewController, animated: true, completion: nil)
             })
         }, failure: { (error) in
-                DispatchQueue.main.async {
-                    self.debugLabel.text = "Failed"
-                }
-    
-            }
-        )
+        })
     }
         
     func position(for bar: UIBarPositioning) -> UIBarPosition {
