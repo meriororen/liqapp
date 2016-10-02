@@ -22,6 +22,7 @@ extension APIClient {
                 }
                 return nil
             }()
+            print(response)
             if let actualError = error as NSError! {
                 DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
@@ -31,6 +32,7 @@ extension APIClient {
             } else if HTTPURLResponse.isUnauthorized(response as? HTTPURLResponse) {
                 //failure(error: error)
             } else if (response as! HTTPURLResponse).didFail() {
+                
                 let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse!)
                 DispatchQueue.main.async(execute: {
                     failure(err)
@@ -94,7 +96,8 @@ extension APIClient {
         urlRequest.httpMethod = method.rawValue
         
         if let actualParameters = parameters {
-            urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: actualParameters, options: JSONSerialization.WritingOptions.prettyPrinted)
+            urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: actualParameters, options: .prettyPrinted)
+           // print(String(data: urlRequest.httpBody!, encoding: .ascii)!)
         }
         
         // add additional headers
@@ -113,6 +116,16 @@ extension APIClient {
         }
         
         return task
+    }
+    
+    func urlSessionPostJSONTask(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        self.additionalHeaders[Constants.HTTPHeaderKeys.contentType] = Constants.HTTPHeaderValues.json
+        return urlSessionTask(method, url: url, parameters: parameters, success: success, failure: failure)
+    }
+    
+    func urlSessionTaskURLEncodedTask(_ url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        self.additionalHeaders[Constants.HTTPHeaderKeys.contentType] = Constants.HTTPHeaderValues.urlencoded
+        return urlSessionTask(APIClient.httpMethod.post, url: url, parameters: parameters, success: success, failure: failure)
     }
     
     func urlSessionJSONTask(url: String, success: @escaping (Data) -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {

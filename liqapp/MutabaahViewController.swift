@@ -28,7 +28,6 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     let dateFormatter = DateFormatter().defaultDateFormatter()
     let readableDateFormatter = DateFormatter().readableDateFormatter()
     var currentDate: NSDate! = NSDate()
-    //var listOfIbadahs = NSMutableArray()
     var listOfIbadahs = [Ibadah]()
     var currentMutabaah = Mutabaah()
     var selectedIndex = -1000
@@ -76,60 +75,11 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     
     @IBAction func plusButtonPressed() {
         updateSelected(isPlus: true)
-        /*if selectedIndex >= 0 {
-            //var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
-            let fillnumber_type = (ibadah["type"] as! String) == "fillnumber"
-            let record = ibadah["record"] as? Record
-            var value = { () -> Int in 
-                if record != nil { return record!.value }
-                else { return 0 }
-            }()
-            
-            if record != nil && fillnumber_type {
-                value = value + 1
-            } else {
-                value = 1
-            }
-            
-           // ibadah.updateValue(record!, forKey: "record")
-            //listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
-            updateValueLabel(ibadah: ibadah)
-        } */
     }
     
     @IBAction func minusButtonPressed() {
         updateSelected(isPlus: false)
-        /*
-        if selectedIndex >= 0 {
-           // var ibadah = (listOfIbadahs.object(at: selectedIndex) as? [String:AnyObject])!
-            let fillnumber_type = (ibadah["type"] as! String) == "fillnumber"
-            let value = ibadah["value"] as? Int
-            if value != nil && fillnumber_type && value != 0 {
-                ibadah.updateValue((value! - 1) as AnyObject, forKey: "value")
-            } else {
-                ibadah.updateValue(0 as AnyObject, forKey: "value")
-            }
-           // listOfIbadahs.replaceObject(at: selectedIndex, with: ibadah)
-            updateValueLabel(ibadah: ibadah)
-        }*/
     }
-    
-    /*
-    func updateValueLabel(ibadah: [String:AnyObject]) {
-        let type = (ibadah["type"] as! String) == "fillnumber"
-        let value = ibadah["value"] as? Int
-        if ibadah["unit_name"] != nil {
-            valueLabel.text = String(describing: ibadah["value"]!) + " " + (ibadah["unit_name"]! as! String)
-        } else {
-            if (type) {
-                valueLabel.text = String(describing: ibadah["value"]!)
-            } else {
-                valueLabel.text = (value == 0) ? "no" : "yes"
-            }
-        }
-        
-        tableView.reloadRows(at: [selectedIndexPath as IndexPath], with: .none)
-    }*/
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,7 +92,6 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         /* detail view */
         valueLabel.isHidden = true
         dateLabel.isHidden = true
-        ibadahLabel.isHidden = true
         dateLabel.text = readableDateFormatter.string(from: currentDate as Date)
         
         /* control view */
@@ -166,8 +115,11 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
         
         if listOfIbadahs.count > 0 {
-            decodeMutabaahsForDate(date: self.currentDate)
-            loadListOfIbadahs()
+            APIClient.sharedClient.getUserMutabaahs {
+                // print("fetched mutabaahs")
+                self.decodeMutabaahsForDate(date: self.currentDate)
+                self.loadListOfIbadahs()
+            }
         } else {
             APIClient.sharedClient.getListOfIbadahs {
                 //print("fetched ibadahs")
@@ -224,8 +176,21 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        ibadahLabel.isHidden = true
+        
+        plusButton.setTitle(">", for: .normal)
+        minusButton.setTitle("<", for: .normal)
+    }
+    
     override func viewDidDisappear(_ animated: Bool) {
         selectedIndex = -1000
+        
+        APIClient.sharedClient.postMutabaah(mutabaah: currentMutabaah, success: { 
+            // do
+            }) { (error) in
+                print(error)
+        }
     }
     
     // MARK: - Table view data source
@@ -281,6 +246,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             return r.ibadah_id == ibadah._id
         })
         
+        ibadahLabel.isHidden = false
         if indexPath.row != selectedIndex {
             valueLabel.slideInFromBottom(0.5)
             ibadahLabel.slideInFromBottom(0.5)
@@ -291,8 +257,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
                 plusButton.setTitle("yes", for: .normal)
                 minusButton.setTitle("no", for: .normal)
             } else {
-                plusButton.setTitle("+1", for: .normal)
-                minusButton.setTitle("-1", for: .normal)
+                plusButton.setTitle(">", for: .normal)
+                minusButton.setTitle("<", for: .normal)
             }
             
             if record == nil { valueLabel.text = "Not Yet" } // not in records

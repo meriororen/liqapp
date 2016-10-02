@@ -18,6 +18,7 @@ struct Constants {
     
     struct HTTPHeaderValues {
         static let urlencoded = "application/x-www-form-urlencoded"
+        static let json = "application/json"
     }
     
     struct Error {

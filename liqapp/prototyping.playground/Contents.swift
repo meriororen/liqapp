@@ -35,7 +35,9 @@ Realm.Configuration.defaultConfiguration = Realm.Configuration(
 )
 */
 
-let jsondata = "[{\"name\" : \"Isa\", \"age\" : 23, \"bikes\" : [ { \"maker\" : \"Honda\", \"year\" : 1994 }] }, {\"name\" : \"hadi\", \"bikes\" : []}]".data(using: .utf8)
+//let jsondata = "[{\"name\" : \"Isa\", \"age\" : 23, \"bikes\" : [ { \"maker\" : \"Honda\", \"year\" : 1994 }] }, {\"name\" : \"hadi\", \"bikes\" : [], \"age\": 25}]".data(using: .utf8)
+
+let jsondata = "[{ \"maker\" : \"Honda\", \"year\" : 1994 }]".data(using: .utf8)
 
 let data = try JSONSerialization.jsonObject(with: jsondata!, options: JSONSerialization.ReadingOptions.allowFragments) as! [[String:AnyObject]]
 
@@ -43,18 +45,49 @@ let data = try JSONSerialization.jsonObject(with: jsondata!, options: JSONSerial
 for d in data {
     do {
         try realm.write {
-            let person = realm.create(Person.self, value: d)
+            let person = realm.create(Motorcycle.self, value: d)
         }
     } catch {
         print("wat")
     }
 }
 
-let results = realm.objects(Person.self).filter(NSPredicate(format:"name = %@", "Isa"))
+let result = realm.objects(Motorcycle.self).first { (bike) -> Bool in
+    return bike.maker == "Honda"
+}
+
+let prop = result?.objectSchema.properties.map({ (p) -> String in
+    return p.name
+})
+
+let dict = result?.dictionaryWithValues(forKeys: prop!) as! [String:AnyObject]
+
+do{
+    let blah = try! JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+    print(dict)
+    let sblah = String(data: blah, encoding: String.Encoding.ascii)
+    print(sblah!)
+} catch {
+    print("naon")
+}
+
+/*
+for (key, val) in dict! {
+    print(key)
+    if let v = val as? String {
+        print(v)
+    } else if let iv = val as? Int {
+        print(iv)
+    }
+}
+
+
 print(results.count)
+
 for i in 0..<results.count {
     print(results[i].bikes)
 }
+*/
 
 
 

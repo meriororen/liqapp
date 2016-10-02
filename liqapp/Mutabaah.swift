@@ -43,6 +43,28 @@ class Mutabaah: Object {
     override static func primaryKey() -> String? {
         return "date"
     }
+    
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        let properties = self.objectSchema.properties.map { (p) -> String in return p.name }
+        var mutabledic = Dictionary<String, AnyObject>()
+        for prop in properties as [String] {
+            
+            if prop == "_id" { continue }
+            
+            if let stringVal = self[prop] as? String {
+                mutabledic.updateValue(stringVal as AnyObject, forKey: prop)
+            } else if let recordList = self[prop] as? List<Record> {
+                var records = [Dictionary<String, AnyObject>]()
+                for rec in recordList {
+                    let recVal = rec.toDictionary()
+                    records.append(recVal)
+                }
+                mutabledic.updateValue(records as AnyObject, forKey: prop)
+            }
+        }
+        
+        return mutabledic
+    }
 }
 
 class Record: Object {
@@ -61,6 +83,21 @@ class Record: Object {
         self.init()
         self.ibadah_id = id
         self.value = value
+    }
+    
+    func toDictionary() -> Dictionary<String, AnyObject> {
+        let properties = self.objectSchema.properties.map { (p) -> String in return p.name }
+        var mutabledic = Dictionary<String, AnyObject>()
+        for prop in properties as [String] {
+            
+            if prop == "mutabaah" { continue }
+            
+            if let val = self[prop] {
+                mutabledic.updateValue(val as AnyObject, forKey: prop)
+            }
+        }
+        
+        return mutabledic
     }
 }
 

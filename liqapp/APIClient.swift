@@ -89,7 +89,9 @@ class APIClient: NSObject, URLSessionDelegate {
                 if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         /* manage as realm objects */
                         for data in anArray {
-                            if (self.realm.object(ofType: Mutabaah.self, forPrimaryKey: data["date"]) == nil) {
+                            let mutabaah = self.realm.object(ofType: Mutabaah.self, forPrimaryKey: data["date"])
+                            /* only update when no such mutabaah, or its id is empty */
+                            if ( mutabaah == nil || mutabaah?._id == nil || mutabaah?._id == "") {
                                 do {
                                     try self.realm.write {
                                         let m = self.realm.create(Mutabaah.self, value: data, update: true)
@@ -111,14 +113,22 @@ class APIClient: NSObject, URLSessionDelegate {
         }
     }
     
-    func postMutabaah(for date: String, records: Dictionary<String, AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> Void) {
+    func postMutabaah(mutabaah: Mutabaah, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> Void) {
+        //print(mutabaah.toDictionary())
         self.validateFullScope {
-            self.urlSessionTask(httpMethod.post, url: "api/mutabaahs", parameters: records, success: {
-                success()
-                }, failure: { (error) in
-                    print("cannot post mutabaah!")
-                    failure(error)
-            }).resume()
+            if mutabaah._id == nil || mutabaah._id == "" {
+                self.urlSessionPostJSONTask(httpMethod.post, url: "api/mutabaahs", parameters: mutabaah.toDictionary(), success: {
+                        success()
+                    }, failure: { (error) in
+                        print("cannot post mutabaah!")
+                        failure(error)
+                }).resume()
+            } else {
+                self.urlSessionPostJSONTask(httpMethod.put, url: "api/mutabaahs/\(mutabaah._id!)", parameters: mutabaah.toDictionary(), success: success, failure: { (error) in
+                        print("cannot update mutabaah!")
+                        failure(error)
+                }).resume()
+            }
         }
     }
     
@@ -127,10 +137,8 @@ class APIClient: NSObject, URLSessionDelegate {
             if (self.listOfIbadahs.count > 0) { then() }
             /* fetch list of ibadahs */
             self.urlSessionJSONTaskSerialized(url: "api/ibadahs", success: { (jsonData) in
-                    /* self.listOfIbadahs.removeAllObjects() */
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            // self.listOfIbadahs.add(data)
                             if self.realm.object(ofType: Ibadah.self, forPrimaryKey: data["_id"]) == nil {
                                 do {
                                     try self.realm.write {
