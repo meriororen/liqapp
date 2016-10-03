@@ -42,7 +42,9 @@
                                     <constraint firstAttribute="height" constant="46" id="Qbq-ef-xlk"/>
                                 </constraints>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="Login"/>
+                                <state key="normal" title="Login">
+                                    <color key="titleColor" red="0.79614093959731547" green="0.67003984899328861" blue="0.68579593120805371" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginButtonPressed:" destination="f8U-PX-Ikn" eventType="touchUpInside" id="nSF-7K-hTB"/>
                                 </connections>

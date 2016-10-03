@@ -11,7 +11,8 @@ import UIKit
 import Foundation
 
 struct Notif {
-    static let kLoginViewControllerShow = "showLoginViewController"
+    static let kLoginViewControllerShowLoginFailed = "showLoginViewControllerLoginFailed"
+    static let kLoginViewControllerShowLoggedOutSessionExpired = "showLoginViewControllerLoggedOutSessionExpired"
 }
 
 class loginTextField: UITextField {
@@ -50,7 +51,11 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
     }
     
     override func viewDidLoad() {
-        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShow), object: nil)
+        usernameTextField.layer.borderWidth = 1.0
+        passwordTextField.layer.borderWidth = 1.0
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoginFailed), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoggedOutSessionExpired), object: nil)
     }
     
     override func loadView() {
@@ -59,17 +64,28 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
         loginButton.clipsToBounds = true
     }
     
-    func popToSelf() {
-        self.present(self, animated: true, completion: nil)
+    func popToSelf(notification: NSNotification) {
+        if (notification.name.rawValue == Notif.kLoginViewControllerShowLoginFailed) {
+            spinner.stopAnimating()
+            loginButton.alpha = 1.0
+            loginButton.isEnabled = true
+            usernameTextField.layer.borderColor = UIColor.red.cgColor
+            passwordTextField.layer.borderColor = UIColor.red.cgColor
+            
+            let errorBgColor = UIColor(red: 203.0/255.0, green: 171.0/255.0, blue: 175.0/255.0, alpha: 0.5).cgColor
+            usernameTextField.layer.backgroundColor = errorBgColor
+            passwordTextField.layer.backgroundColor = errorBgColor
+            print("login failed!")
+        }
     }
     
     func authenticate() {
         var params = Dictionary<String, AnyObject>()
         params.updateValue("\(usernameTextField.text!)" as AnyObject, forKey: "username")
         params.updateValue("\(passwordTextField.text!)" as AnyObject, forKey: "password")
-
+        
         AuthManager.sharedManager.authenticateWithCode(params, success: {
-            DispatchQueue.main.async(execute: {            
+            DispatchQueue.main.async(execute: {
                 let storyboard = UIStoryboard(name: "Main", bundle:nil)
                 let mutabaahViewController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier")
                 
@@ -77,10 +93,11 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
                 
                 self.present(mutabaahViewController, animated: true, completion: nil)
             })
-        }, failure: { (error) in
+            }, failure: { (error) in
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoginFailed), object: self)
         })
     }
-        
+    
     func position(for bar: UIBarPositioning) -> UIBarPosition {
         return .topAttached
     }

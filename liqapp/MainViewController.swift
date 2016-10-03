@@ -41,5 +41,6 @@ class MainViewController: UIViewController {
     
     @IBAction func logoutUser() {
         APIClient.sharedClient.logoutThenDeleteAllStoredData()
+        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoggedOutSessionExpired), object: self)
     }
 }

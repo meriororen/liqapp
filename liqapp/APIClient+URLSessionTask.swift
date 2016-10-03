@@ -12,17 +12,19 @@ extension APIClient {
     
     fileprivate func dataTask(_ urlRequest: URLRequest, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) -> URLSessionTask {
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
+            
             let serializedResponse: Dictionary<String, AnyObject>? = {
                 if let data = data {
                     do {
                         return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject>
                     } catch {
-                        return nil
+                        return [String:AnyObject]()
                     }
                 }
-                return nil
+                return [String:AnyObject]()
             }()
-            print(response)
+            
+            
             if let actualError = error as NSError! {
                 DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
@@ -31,6 +33,7 @@ extension APIClient {
                 })
             } else if HTTPURLResponse.isUnauthorized(response as? HTTPURLResponse) {
                 //failure(error: error)
+                /* TODO: reauth here */
             } else if (response as! HTTPURLResponse).didFail() {
                 
                 let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse!)

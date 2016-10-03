@@ -9,6 +9,10 @@
       "idiom" : "universal",
       "filename" : "emoji_symbols@2x.png",
       "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {

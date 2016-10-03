@@ -241,8 +241,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     func updateControlButtons(ibadah: Ibadah?) {
         let up = UIImage(named: "shiftOn_split_10key")?.withRenderingMode(.alwaysTemplate)
         let down = UIImage(cgImage: (up?.cgImage)!, scale: (up?.scale)!, orientation: UIImageOrientation.downMirrored)
-        let no = UIImage(named: "UIAccessoryButtonX")?.withRenderingMode(.alwaysTemplate)
-        let yes = UIImage(named: "UIAccessoryButtonCheckmark")?.withRenderingMode(.alwaysTemplate)
+        let no = UIImage(named: "UIButtonBarStop")?.withRenderingMode(.alwaysTemplate)
+        let yes = UIImage(named: "UITintedCircularButtonCheckmark")?.withRenderingMode(.alwaysTemplate)
         
         if (ibadah == nil || ibadah?.type == "fillnumber") {
             plusButton.setImage(up, for: .normal)

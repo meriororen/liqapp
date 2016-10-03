@@ -259,7 +259,6 @@ class APIClient: NSObject, URLSessionDelegate {
         self.cancelAllRunningTasks {
             self.logout(success: { 
                     DispatchQueue.main.async(execute: {
-                        print("show login")
                         let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.startApplicationFromAuth()
                     })
