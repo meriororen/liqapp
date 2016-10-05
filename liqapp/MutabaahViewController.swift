@@ -11,16 +11,6 @@ import RealmSwift
 import QuartzCore
 import THCalendarDatePicker
 
-extension UIButton {
-    var text: String? {
-        get {
-            return self.currentTitle
-        }
-        set(new) {
-            self.setTitle(new, for: .normal)
-        }
-    }
-}
 
 
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, THDatePickerDelegate {

@@ -13,30 +13,24 @@ extension APIClient {
     fileprivate func dataTask(_ urlRequest: URLRequest, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) -> URLSessionTask {
         let task = session.dataTask(with: urlRequest, completionHandler: { (data, response, error) in
             
-            let serializedResponse: Dictionary<String, AnyObject>? = {
-                if let data = data {
-                    do {
-                        return try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as? Dictionary<String, AnyObject>
-                    } catch {
-                        return [String:AnyObject]()
-                    }
-                }
-                return [String:AnyObject]()
-            }()
-            
+            // default as connection error
+            var stringdata = "Connection Error"
+            // If there's actual error message, get it.
+            if let data = data {
+                stringdata = String(data:data, encoding: String.Encoding.utf8)!
+            }
             
             if let actualError = error as NSError! {
+                // actual connection error
                 DispatchQueue.main.async(execute: {
                     let error = APIError(error: actualError)
-                    error.responseText = serializedResponse?.description
+                    error.responseText = stringdata
                     failure(error)
                 })
             } else if HTTPURLResponse.isUnauthorized(response as? HTTPURLResponse) {
-                //failure(error: error)
-                /* TODO: reauth here */
+                failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil))
             } else if (response as! HTTPURLResponse).didFail() {
-                
-                let err = APIError(urlResponse: (response as! HTTPURLResponse), jsonResponse: serializedResponse!)
+                let err = APIError(urlResponse: (response as! HTTPURLResponse), response: stringdata)
                 DispatchQueue.main.async(execute: {
                     failure(err)
                 })
@@ -198,11 +192,32 @@ extension APIClient {
         return task
     }
     
-    func urlSessionTaskWithNoAuthorizationHeader(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
-        let url = URL(string: url)
-        let urlRequest = NSMutableURLRequest(url: url!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
+    func urlSessionPostJSONTaskWithNoAuthorizationHeader(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        let fullURL = URL(string: url, relativeTo: Constants.url.baseURL)
+        let urlRequest = NSMutableURLRequest(url: fullURL!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
         urlRequest.httpMethod = method.rawValue
-        urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: parameters!, options: JSONSerialization.WritingOptions.prettyPrinted)
+    
+        if let actualParameters = parameters as? Dictionary<String,String> {
+            urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: actualParameters, options: .prettyPrinted)
+        }
+    
+        urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(Constants.HTTPHeaderValues.json, forHTTPHeaderField: Constants.HTTPHeaderKeys.contentType)
+    
+        let task = dataTask(urlRequest as URLRequest, success: success, failure: failure)
+        return task
+    }
+    
+    func urlSessionTaskWithNoAuthorizationHeader(_ method: httpMethod, url: String, parameters: Dictionary<String, AnyObject>? = nil, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) -> URLSessionTask {
+        
+        let fullURL = URL(string: url, relativeTo: Constants.url.baseURL)
+        let urlRequest = NSMutableURLRequest(url: fullURL!, cachePolicy: .returnCacheDataElseLoad, timeoutInterval: 50)
+        urlRequest.httpMethod = method.rawValue
+        
+        if let actualParameters = parameters as? Dictionary<String,String> {
+            urlRequest.httpBody = try! JSONSerialization.data(withJSONObject: actualParameters, options: .prettyPrinted)
+        }
+        
         urlRequest.setValue(nil, forHTTPHeaderField: "Authorization")
         
         let task = dataTask(urlRequest as URLRequest, success: success, failure: failure)

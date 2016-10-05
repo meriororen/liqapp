@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/LoginViewController.swift"
-            timestampString = "497185749.499972"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "LoginViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "168"
+            endingLineNumber = "168"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,11 +266,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "146"
-            endingLineNumber = "146"
+            startingLineNumber = "156"
+            endingLineNumber = "156"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -282,11 +282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "156"
-            endingLineNumber = "156"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "APIClient"
             landmarkType = "3">
          </BreakpointContent>
@@ -298,11 +298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "154"
-            endingLineNumber = "154"
+            startingLineNumber = "164"
+            endingLineNumber = "164"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "148"
-            endingLineNumber = "148"
+            startingLineNumber = "158"
+            endingLineNumber = "158"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "228"
+            endingLineNumber = "228"
             landmarkName = "loadListOfIbadahs()"
             landmarkType = "7">
          </BreakpointContent>
@@ -394,11 +394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "184"
-            endingLineNumber = "184"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
          </BreakpointContent>
@@ -410,11 +410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,11 +426,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "jsonDataTask(_:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -442,11 +442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "173"
-            endingLineNumber = "173"
+            startingLineNumber = "167"
+            endingLineNumber = "167"
             landmarkName = "urlSessionJSONTaskSerialized(url:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -490,11 +490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
+            startingLineNumber = "152"
+            endingLineNumber = "152"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -538,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
             <Locations>
@@ -586,11 +586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "184"
+            endingLineNumber = "184"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -602,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "183"
-            endingLineNumber = "183"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
             <Locations>
@@ -698,11 +698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "APIClient"
             landmarkType = "3">
          </BreakpointContent>
@@ -906,11 +906,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1298,11 +1298,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1314,11 +1314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "203"
-            endingLineNumber = "203"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "validate(oAuthToken:validationSuccess:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1330,11 +1330,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "194"
-            endingLineNumber = "194"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
             landmarkName = "urlSessionJSONTaskSerialized(url:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1346,11 +1346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "151"
-            endingLineNumber = "151"
+            startingLineNumber = "145"
+            endingLineNumber = "145"
             landmarkName = "urlSessionJSONTask(url:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1362,11 +1362,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "149"
-            endingLineNumber = "149"
+            startingLineNumber = "143"
+            endingLineNumber = "143"
             landmarkName = "urlSessionJSONTask(url:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1378,11 +1378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "147"
-            endingLineNumber = "147"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "urlSessionJSONTask(url:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1394,11 +1394,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
             landmarkName = "jsonDataTask(_:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1410,11 +1410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "jsonDataTask(_:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -1474,11 +1474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497107465.344575"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "225"
+            endingLineNumber = "225"
             landmarkName = "isSessionInvalid()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1490,11 +1490,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
             landmarkName = "dataTask(_:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -1505,12 +1505,12 @@
                   symbolName = "liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1)"
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/isa/code/Xcode/liqapp/liqapp/APIClient+URLSessionTask.swift"
-                  timestampString = "497070756.711"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497271181.573002"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
+                  startingLineNumber = "40"
+                  endingLineNumber = "40"
                   offsetFromSymbolStart = "1632">
                </Location>
                <Location
@@ -1520,12 +1520,12 @@
                   symbolName = "liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1).(closure #3)"
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/isa/code/Xcode/liqapp/liqapp/APIClient+URLSessionTask.swift"
-                  timestampString = "497070756.713089"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497271181.57502"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "37"
-                  endingLineNumber = "37"
+                  startingLineNumber = "41"
+                  endingLineNumber = "41"
                   offsetFromSymbolStart = "20">
                </Location>
             </Locations>
@@ -1538,11 +1538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "dataTask(_:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1554,11 +1554,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497348857.436863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
             landmarkName = "dataTask(_:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1570,11 +1570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497348857.436863"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "26"
-            endingLineNumber = "26"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
             landmarkName = "dataTask(_:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1586,11 +1586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "urlSessionTask(_:url:parameters:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1602,11 +1602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "99"
-            endingLineNumber = "99"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "urlSessionTask(_:url:parameters:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1618,11 +1618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient+URLSessionTask.swift"
-            timestampString = "497174327.198788"
+            timestampString = "497346480.026209"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "96"
+            endingLineNumber = "96"
             landmarkName = "urlSessionTask(_:url:parameters:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1634,11 +1634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "116"
-            endingLineNumber = "116"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
             landmarkName = "updateSelected(isPlus:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1650,11 +1650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
             landmarkName = "updateSelected(isPlus:)"
             landmarkType = "7">
             <Locations>
@@ -1698,11 +1698,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "decodeMutabaahsForDate(date:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1714,11 +1714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497106084.076601"
+            timestampString = "497356560.032876"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "216"
-            endingLineNumber = "216"
+            startingLineNumber = "206"
+            endingLineNumber = "206"
             landmarkName = "decodeMutabaahsForDate(date:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1730,11 +1730,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497106447.402885"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1746,13 +1746,269 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497106522.770984"
+            timestampString = "497268759.822808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "98"
-            endingLineNumber = "98"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "497268759.822808"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "registerUser(_:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497346480.026209"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "urlSessionTaskWithNoAuthorizationHeader(_:url:parameters:success:failure:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIClient.urlSessionTaskWithNoAuthorizationHeader (liqapp.APIClient.httpMethod, url : Swift.String, parameters : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497270989.536672"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "507">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIClient.urlSessionTaskWithNoAuthorizationHeader (liqapp.APIClient.httpMethod, url : Swift.String, parameters : Swift.Optional&lt;Swift.Dictionary&lt;Swift.String, Swift.AnyObject&gt;&gt;, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497270989.538919"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "207"
+                  endingLineNumber = "207"
+                  offsetFromSymbolStart = "795">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497346480.026209"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "221"
+            endingLineNumber = "221"
+            landmarkName = "urlSessionTaskWithNoAuthorizationHeader(_:url:parameters:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497348857.436863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "dataTask(_:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497348857.436863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "dataTask(_:success:failure:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1)"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497347917.74049"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "138">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1)"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497347917.743577"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "202">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497348857.436863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "dataTask(_:success:failure:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1)"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497347950.230421"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "562">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "function signature specialization &lt;Arg[1] = Value Promoted from Box&gt; of liqapp.APIClient.((dataTask in _37D69FBBB341DA6DBC93DB645EA0195F) (Foundation.URLRequest, success : () -&gt; (), failure : (liqapp.APIError) -&gt; ()) -&gt; __ObjC.URLSessionTask).(closure #1).(closure #1)"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient+URLSessionTask.swift"
+                  timestampString = "497347950.233429"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "35">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient+URLSessionTask.swift"
+            timestampString = "497348857.436863"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "dataTask(_:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIError.swift"
+            timestampString = "497356560.032876"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "displayAlert(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIError.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;liqapp.APIError&gt;"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIError.swift"
+                  timestampString = "497355135.054395"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.APIError.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;liqapp.APIError&gt;"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIError.swift"
+                  timestampString = "497355135.058047"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "17"
+                  endingLineNumber = "17"
+                  offsetFromSymbolStart = "65">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

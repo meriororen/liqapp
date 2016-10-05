@@ -78,6 +78,16 @@ class APIClient: NSObject, URLSessionDelegate {
         }
     }
     
+    func registerUser(_ userInfo: Dictionary<String,AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ())
+    {
+        self.urlSessionPostJSONTaskWithNoAuthorizationHeader(APIClient.httpMethod.post, url: "api/users", parameters: userInfo, success: {
+                print("success registering user")
+                success()
+            }, failure: { (error:APIError) in
+                failure(error)
+        }).resume()
+    }
+    
     func getUserMutabaahForDate(_ date: String, success: () -> Void, failure: (_ error: APIError) -> ()) {
         // not yet available
     }
@@ -180,6 +190,8 @@ class APIClient: NSObject, URLSessionDelegate {
             ).resume()
         }
     }
+    
+    // MARK - Detail
     
     func validateFullScope(then: @escaping () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope("fullscope")

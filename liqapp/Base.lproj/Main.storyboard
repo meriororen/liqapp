@@ -267,7 +267,6 @@
                             <constraint firstItem="ZgA-YL-UcV" firstAttribute="bottom" secondItem="7y9-aH-dc6" secondAttribute="centerYWithinMargins" multiplier="0.65" id="yH2-8C-ied"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XSX-QX-wr6"/>
                     <connections>
                         <outlet property="backButton" destination="nXq-WP-632" id="TGY-mY-8wg"/>
                         <outlet property="controlView" destination="VA3-Hk-mIQ" id="tMm-ku-oTY"/>

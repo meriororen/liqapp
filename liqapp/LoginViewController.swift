@@ -15,19 +15,9 @@ struct Notif {
     static let kLoginViewControllerShowLoggedOutSessionExpired = "showLoginViewControllerLoggedOutSessionExpired"
 }
 
-class loginTextField: UITextField {
-    override func textRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
-    }
-    
-    override func editingRect(forBounds bounds: CGRect) -> CGRect {
-        return CGRect(x: bounds.origin.x + 10, y: bounds.origin.y, width: bounds.width, height: bounds.height)
-    }
-}
-
 class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigationBarDelegate {
-    @IBOutlet weak var usernameTextField: UITextField!
-    @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var usernameTextField: UIAuthTextField!
+    @IBOutlet weak var passwordTextField: UIAuthTextField!
     @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var logoutButton: UIButton!
     
@@ -50,10 +40,8 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
         authenticate()
     }
     
+    
     override func viewDidLoad() {
-        usernameTextField.layer.borderWidth = 1.0
-        passwordTextField.layer.borderWidth = 1.0
-        
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoginFailed), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(LoginViewController.popToSelf), name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoggedOutSessionExpired), object: nil)
     }
@@ -69,13 +57,14 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
             spinner.stopAnimating()
             loginButton.alpha = 1.0
             loginButton.isEnabled = true
-            usernameTextField.layer.borderColor = UIColor.red.cgColor
-            passwordTextField.layer.borderColor = UIColor.red.cgColor
             
-            let errorBgColor = UIColor(red: 203.0/255.0, green: 171.0/255.0, blue: 175.0/255.0, alpha: 0.5).cgColor
-            usernameTextField.layer.backgroundColor = errorBgColor
-            passwordTextField.layer.backgroundColor = errorBgColor
-            print("login failed!")
+            usernameTextField.authState = .authError
+            passwordTextField.authState = .authError
+            
+            let alert = UIAlertController(title: "Error", message: "Invalid Username or Password", preferredStyle: .alert)
+            let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(ok)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     

@@ -31,10 +31,9 @@ struct Constants {
         }
     }
     
-    
     struct url {
-        static let baseURL = URL(string: "http://liqo.herokuapp.com/")
-        //static let baseURL = URL(string: "http://localhost:3000/")
+        //static let baseURL = URL(string: "http://liqo.herokuapp.com/")
+        static let baseURL = URL(string: "http://localhost:3000/")
         static let authURL = URL(string: "api/auth", relativeTo: baseURL)
     }
 }
