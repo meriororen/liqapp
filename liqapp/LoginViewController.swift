@@ -9,6 +9,7 @@
 import QuartzCore
 import UIKit
 import Foundation
+import RealmSwift
 
 struct Notif {
     static let kLoginViewControllerShowLoginFailed = "showLoginViewControllerLoginFailed"
@@ -61,10 +62,19 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
             usernameTextField.authState = .authError
             passwordTextField.authState = .authError
             
+            let error: APIError = (notification.userInfo as! [String:APIError])["error"]!
+            let alert = error.alert
+            if error.code == Constants.Error.Code.unauthorizedError.rawValue {
+                alert!.message = "Invalid Username or Password"
+            } else {
+                alert!.message = "Connection Error"
+            }
+            /*
             let alert = UIAlertController(title: "Error", message: "Invalid Username or Password", preferredStyle: .alert)
             let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
             alert.addAction(ok)
-            self.present(alert, animated: true, completion: nil)
+            */
+            self.present(alert!, animated: true, completion: nil)
         }
     }
     
@@ -75,15 +85,15 @@ class LoginViewController : UIViewController, URLSessionDataDelegate, UINavigati
         
         AuthManager.sharedManager.authenticateWithCode(params, success: {
             DispatchQueue.main.async(execute: {
+                /* present main view */
+                
                 let storyboard = UIStoryboard(name: "Main", bundle:nil)
-                let mutabaahViewController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier")
-                
+                let mainViewController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier")
                 self.spinner.stopAnimating()
-                
-                self.present(mutabaahViewController, animated: true, completion: nil)
+                self.present(mainViewController, animated: true, completion: nil)
             })
             }, failure: { (error) in
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoginFailed), object: self)
+                NotificationCenter.default.post(NSNotification(name: NSNotification.Name(rawValue: Notif.kLoginViewControllerShowLoginFailed), object:nil, userInfo:["error":error]) as Notification)
         })
     }
     

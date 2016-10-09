@@ -41,7 +41,7 @@ class APIError: NSError {
     }
     
     override init(domain: String, code: Int, userInfo dict: [AnyHashable: Any]?) {
-        super.init(domain: domain, code: code, userInfo: nil)
+        super.init(domain: domain, code: code, userInfo: dict)
     }
     
     func displayAlert(_ message: String? = nil) -> UIAlertController {

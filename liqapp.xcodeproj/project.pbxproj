@@ -17,6 +17,7 @@
 		4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */; };
 		4A4F53031DA4FB8B008E4F3A /* UIButton+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53021DA4FB8B008E4F3A /* UIButton+Text.swift */; };
 		4A4F53051DA4FC36008E4F3A /* UIAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53041DA4FC36008E4F3A /* UIAuthTextField.swift */; };
+		4A4F53071DA53CAA008E4F3A /* GroupMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */; };
 		4A669DE71DA2698D00451A7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669DE61DA2698D00451A7F /* LoginViewController.swift */; };
 		4A669DE91DA27E4100451A7F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669DE81DA27E4100451A7F /* RegisterViewController.swift */; };
 		4A70D3971D9D2FDC00C9E07B /* DateFormatter+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */; };
@@ -51,6 +52,7 @@
 		4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IbadahTableViewCell.xib; sourceTree = "<group>"; };
 		4A4F53021DA4FB8B008E4F3A /* UIButton+Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Text.swift"; sourceTree = "<group>"; };
 		4A4F53041DA4FC36008E4F3A /* UIAuthTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAuthTextField.swift; sourceTree = "<group>"; };
+		4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMainViewController.swift; sourceTree = "<group>"; };
 		4A669DE61DA2698D00451A7F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4A669DE81DA27E4100451A7F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Defaults.swift"; sourceTree = "<group>"; };
@@ -109,13 +111,13 @@
 			isa = PBXGroup;
 			children = (
 				4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */,
-				4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */,
 				4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */,
 				4A7E9D0F1D929A74002E3697 /* Constants.swift */,
 				4A7E9D081D9241B4002E3697 /* APIClient.swift */,
 				4A7AE1B51D9B822000F466F8 /* Mutabaah.swift */,
 				4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */,
 				4A7E9D0E1D929A74002E3697 /* APIError.swift */,
+				4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */,
 				4A7E9D181D938CB2002E3697 /* AuthManager.swift */,
 				4A7E9D141D92A67D002E3697 /* OAuthToken.swift */,
 				4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */,
@@ -128,6 +130,7 @@
 				4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */,
 				4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */,
 				4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */,
+				4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */,
 				4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */,
 				4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */,
 				4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */,
@@ -311,6 +314,7 @@
 				4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */,
 				4A7AE1B41D97F46E00F466F8 /* IbadahDetailViewController.swift in Sources */,
 				4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */,
+				4A4F53071DA53CAA008E4F3A /* GroupMainViewController.swift in Sources */,
 				4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */,
 				4A7E9D111D929A74002E3697 /* Constants.swift in Sources */,
 			);

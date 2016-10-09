@@ -33,6 +33,7 @@ class APIClient: NSObject, URLSessionDelegate {
     var listOfIbadahs: NSMutableArray = NSMutableArray()
     var rootResource = Dictionary<String, AnyObject>()
     var realm: Realm!
+    var realmConfig: Realm.Configuration!
     
     override init() {
         super.init()
@@ -44,22 +45,26 @@ class APIClient: NSObject, URLSessionDelegate {
         
         let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
         
-        /*
-        let realmConfig = Realm.Configuration(
-            fileURL: Bundle.main.url(forResource: "APIData", withExtension: "realm")
-        )
-        */
-        
-        self.realm = try! Realm()
         self.session = theSession
     }
     
     func updateAuthorizationHeader(_ token: OAuthToken?) {
         if let actualToken = token as OAuthToken! {
             self.additionalHeaders["Authorization"] = actualToken.accessToken
-        } else {
-            // TODO: error handling
         }
+    }
+    
+    func updateRealmDB() {
+        /* realm config */
+        var config = Realm.Configuration()
+        
+        let userid = APIClient.sharedClient.rootResource["id"] as! String
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("\(userid).realm")
+        
+        //print(config.fileURL)
+        
+        self.realmConfig = config
+        self.realm = try! Realm(configuration: self.realmConfig)
     }
     
     func updateUserBasicInfo(then: @escaping () -> Void) {
@@ -71,6 +76,10 @@ class APIClient: NSObject, URLSessionDelegate {
                         self.rootResource.updateValue(value, forKey: key)
                     }
                 }
+                
+                /* first time opening realm is after we get the user id*/
+                self.updateRealmDB()
+                
                 then()
                 }, failure: { (error) in
                     print(error) /* TODO: error handling! */
@@ -171,7 +180,10 @@ class APIClient: NSObject, URLSessionDelegate {
             self.urlSessionJSONTaskSerialized(url: "api/ibadahs", success: { (jsonData) in
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            if self.realm.object(ofType: Ibadah.self, forPrimaryKey: data["_id"]) == nil {
+                            let id = data["_id"] as! String
+                            let existing = self.realm.object(ofType: Ibadah.self, forPrimaryKey: id)
+                            print(existing?._id)
+                            if existing == nil || existing?._id == "" {
                                 do {
                                     try self.realm.write {
                                         self.realm.create(Ibadah.self, value: data, update: true)

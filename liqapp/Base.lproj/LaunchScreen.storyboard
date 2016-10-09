@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -15,40 +15,30 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LIQAPP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ISI-D1-f4J">
-                                <fontDescription key="fontDescription" name="Optima-Italic" family="Optima" pointSize="25"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <activityIndicatorView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Kac-wU-BLr"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liqapp" translatesAutoresizingMaskIntoConstraints="NO" id="bjE-wy-D2i">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="101" id="mfm-K6-EKa"/>
+                                    <constraint firstAttribute="width" secondItem="bjE-wy-D2i" secondAttribute="height" multiplier="234:101" id="vNq-Aq-LPG"/>
+                                    <constraint firstAttribute="width" constant="234" id="zJQ-cJ-R07"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="ISI-D1-f4J" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="6zW-Ax-kB9"/>
-                            <constraint firstItem="Kac-wU-BLr" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="7H7-SN-pwn"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="ISI-D1-f4J" secondAttribute="bottom" constant="290" id="DOc-Rs-ciT"/>
-                            <constraint firstItem="ISI-D1-f4J" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="213" id="NkT-tk-OB6"/>
-                            <constraint firstItem="ISI-D1-f4J" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="T7v-Qc-4dZ"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ISI-D1-f4J" secondAttribute="trailing" constant="289" id="aK7-Zg-1i1"/>
-                            <constraint firstItem="ISI-D1-f4J" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="269" id="hhX-ci-h8Y"/>
-                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="Kac-wU-BLr" secondAttribute="bottom" constant="20" id="tAt-bg-1hX"/>
+                            <constraint firstItem="bjE-wy-D2i" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="5Zo-Bq-Vkf"/>
+                            <constraint firstItem="bjE-wy-D2i" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="6Vs-fj-yjW"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="NkT-tk-OB6"/>
-                                <exclude reference="aK7-Zg-1i1"/>
-                                <exclude reference="hhX-ci-h8Y"/>
-                                <exclude reference="DOc-Rs-ciT"/>
-                            </mask>
-                        </variation>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="liqapp" width="604" height="259"/>
+    </resources>
 </document>

@@ -32,8 +32,8 @@ class Mutabaah: Object {
             }
         }()
         self.group_id = {
-            if let group_id = APIClient.sharedClient.rootResource["groups"] as? [String] {
-                return group_id[0]
+            if let groupids = APIClient.sharedClient.rootResource["groups"] as? [String] {
+                return groupids.count > 0 ? groupids[0] : ""
             } else {
                 return ""
             }

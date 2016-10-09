@@ -100,7 +100,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
                 else { value = 0 }
             }
             
-            let realm = try! Realm()
+            let realm = APIClient.sharedClient.realm!
             do {
                 try realm.write {
                     if selectedRecord != nil { selectedRecord!.value = value }
@@ -141,7 +141,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         dateButton.layer.cornerRadius = 8
         dateButton.clipsToBounds = true
         dateButton.text = readableDateFormatter.string(from: currentDate as Date)
-        let backImg = UIImage(named: "UIButtonBarArrowDown")?.withRenderingMode(.alwaysTemplate)
+        let backImg = UIImage(named: "UIButtonBarArrowLeft")?.withRenderingMode(.alwaysTemplate)
         backButton.setImage(backImg, for: .normal)
         backButton.tintColor = UIColor.white
         
@@ -161,8 +161,10 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         spinner.startAnimating()
         tableView.isUserInteractionEnabled = false
 
-        let realm = try! Realm()
+        let realm = APIClient.sharedClient.realm!
         listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
+        print(realm.configuration.fileURL)
+        
         
         if listOfIbadahs.count > 0 {
             APIClient.sharedClient.getUserMutabaahs {
@@ -171,9 +173,9 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             }
         } else {
             APIClient.sharedClient.getListOfIbadahs {
-                //print("fetched ibadahs")
+                print("fetched ibadahs")
                 APIClient.sharedClient.getUserMutabaahs {
-                    // print("fetched mutabaahs")
+                    print("fetched mutabaahs")
                     self.listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
                     self.decodeMutabaahsForDate(date: self.currentDate)
                 }
@@ -182,28 +184,34 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     }
     
     func decodeMutabaahsForDate(date: NSDate) {
-        let realm = try! Realm()
+        let realm = APIClient.sharedClient.realm!
         
         let ds = dateFormatter.string(from:date as Date)
         let queryfilter = NSPredicate(format: "date = %@", ds)
         let mutabaah = Array(realm.objects(Mutabaah.self).filter(queryfilter)) as [Mutabaah]
         
+        
         if mutabaah.count == 0 {
             // create a new mutabaah record
             currentMutabaah = Mutabaah(date: ds)
-            for i in listOfIbadahs {
-                let rec = Record(id: i._id, value: 0)
-                do {
-                    try realm.write {
-                        realm.add(currentMutabaah)
-                        currentMutabaah.records.append(rec)
-                    }
-                } catch {
-                    print("cannot create new mutabaah realm")
-                }
-            }
+            try! realm.write { realm.add(currentMutabaah) }
         } else {
             currentMutabaah = mutabaah.first!
+        }
+        
+        for i in listOfIbadahs {
+            let q = NSPredicate(format: "ibadah_id = %@", i._id)
+            let recs = currentMutabaah.records.filter(q)
+            
+            if recs.count > 0 {
+                // TODO?
+            } else {
+                let rec = Record(id: i._id, value: 0)
+                try! realm.write {
+                    currentMutabaah.records.append(rec)
+                }
+
+            }
         }
         
         self.loadListOfIbadahs()

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class mainItemButton: UIButton {
     required init(coder aDecoder: NSCoder) {
@@ -25,18 +26,33 @@ class MainViewController: UIViewController {
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var contactImage: UIImageView!
     
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var spinnerLabel: UILabel!
+    
     override func viewDidLoad() {
         welcomeLabel.isHidden = true
         contactImage.isHidden = true
         contactImage.image?.withRenderingMode(.alwaysTemplate)
+        contactImage.tintColor = UIColor.darkGray
         
-        APIClient.sharedClient.updateUserBasicInfo {
-            self.welcomeLabel.text = (APIClient.sharedClient.rootResource["name"] as! String)
-            self.welcomeLabel.isHidden = false
-            self.contactImage.isHidden = false
-
-            self.contactImage.tintColor = UIColor.darkGray
+        spinner.startAnimating()
+        spinnerLabel.text = "Loading..."
+        
+        if APIClient.sharedClient.rootResource.count > 0 {
+            userReady()
+        } else {
+            APIClient.sharedClient.updateUserBasicInfo {
+                self.userReady()
+            }
         }
+    }
+    
+    func userReady() {
+        self.welcomeLabel.text = (APIClient.sharedClient.rootResource["name"] as! String)
+        self.welcomeLabel.isHidden = false
+        self.contactImage.isHidden = false
+        self.spinnerLabel.isHidden = true
+        self.spinner.stopAnimating()
     }
     
     @IBAction func logoutUser() {
