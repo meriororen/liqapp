@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "497804899.056498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "218"
-            endingLineNumber = "218"
+            startingLineNumber = "278"
+            endingLineNumber = "278"
             landmarkName = "APIClient"
             landmarkType = "3">
          </BreakpointContent>
@@ -858,7 +858,7 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497678811.780203"
+                  timestampString = "497716537.342573"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "181"
@@ -873,7 +873,7 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497678811.784398"
+                  timestampString = "497716537.3446"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "181"
@@ -1282,11 +1282,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "497804899.056498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
+            startingLineNumber = "291"
+            endingLineNumber = "291"
             landmarkName = "validate(oAuthToken:validationSuccess:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1442,11 +1442,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "497804899.056498"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "301"
+            endingLineNumber = "301"
             landmarkName = "isSessionInvalid()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2098,7 +2098,7 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497678811.817725"
+                  timestampString = "497716537.371631"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "188"
@@ -2113,7 +2113,7 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497678811.819744"
+                  timestampString = "497716537.374337"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "189"
@@ -2296,6 +2296,70 @@
             startingLineNumber = "318"
             endingLineNumber = "318"
             landmarkName = "tableView(_:cellForRowAt:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "497804899.056498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "validateUserGroup(success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "497804899.056498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "255"
+            endingLineNumber = "255"
+            landmarkName = "validateUserGroup(success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "497804899.056498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
+            landmarkName = "validateUserGroup(success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "497804899.056498"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "258"
+            endingLineNumber = "258"
+            landmarkName = "validateUserGroup(success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

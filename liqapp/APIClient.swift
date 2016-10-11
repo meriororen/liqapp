@@ -203,7 +203,67 @@ class APIClient: NSObject, URLSessionDelegate {
         }
     }
     
+    func getAllGroups(_ success: @escaping (_ arrayData:[Dictionary<String,AnyObject>]) -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/groups", success: { (jsonData) in
+                    if let arrayData = jsonData["response"] as? [Dictionary<String,AnyObject>] {
+                        success(arrayData)
+                    }
+                }, failure: { (error) in
+                    failure(error)
+            }).resume()
+            }
+    }
+    
+    func getGroupInformation(_ success: @escaping (_ groupInfo:Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            self.validateUserGroup(success: { 
+                    let groupid = (self.rootResource["groups"] as! [String])[0]
+                    self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupid)", success: { (jsonData) in
+                        success(jsonData)
+                    }, failure: { (error) in
+                        // reauth?
+                        // TODO: what should we do when failed fetching groups?
+                    }).resume()
+                }, failure: { (error) in
+                    failure(error)
+                    print("error validating user/group info")
+            })
+        }
+    }
+    
+    func requestJoinGroup(_ groupid: String!, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            let memberParam = ["user_id" : self.rootResource["_id"] as AnyObject,
+                               "group_id" : groupid as AnyObject]
+            
+            self.urlSessionPostJSONTask(.post, url: "api/members", parameters: memberParam, success: {
+                    success()
+                }, failure: { (error:APIError) in
+                    print("cannot join group!")
+                    failure(error)
+            }).resume()
+        }
+    }
+    
     // MARK - Detail
+
+    func validateUserGroup(success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> Void) {
+        if ((self.rootResource["id"] as? String) != nil) {
+            if let groups = self.rootResource["groups"] as? [String] {
+                if groups.count > 0 {
+                    success()
+                } else {
+                    // no group yet
+                    failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userGroupNotExistError.rawValue, userInfo: nil))
+                }
+            }
+        } else {
+            // no user info yet
+            print("no user info yet")
+            failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userInfoError.rawValue, userInfo: nil))
+        }
+    }
     
     func validateFullScope(then: @escaping () -> Void) {
         let fullToken = OAuthToken.oAuthTokenWithScope("fullscope")
@@ -219,6 +279,10 @@ class APIClient: NSObject, URLSessionDelegate {
     func validate(oAuthToken: OAuthToken?, validationSuccess: (_ chosenToken: OAuthToken) -> Void, failure: ((_ error: NSError) -> Void)?) {
         if oAuthToken != nil {
             if oAuthToken!.hasExpired() == false {
+                /* validate info and group */
+                //if let groups = self.rootResource["groups"] as? [String] {
+                //}
+                
                 validationSuccess(oAuthToken!)
             } else {
                 oAuthToken!.removeFromKeychainIfNotValid()

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0C7C631DAA957B00B31EBC /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */; };
+		4A0C7C651DAA9FB700B31EBC /* JoinGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */; };
+		4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */; };
 		4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */; };
 		4A3C889F1D8FC6EF0095D4DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */; };
 		4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */; };
@@ -40,6 +43,9 @@
 
 /* Begin PBXFileReference section */
 		20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.debug.xcconfig"; sourceTree = "<group>"; };
+		4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
+		4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinGroupTableViewCell.xib; sourceTree = "<group>"; };
+		4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupTableViewCell.swift; sourceTree = "<group>"; };
 		4A3C88961D8FC6EF0095D4DE /* liqapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liqapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A3C889E1D8FC6EF0095D4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -130,6 +136,9 @@
 				4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */,
 				4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */,
 				4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */,
+				4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */,
+				4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */,
+				4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */,
 				4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */,
 				4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */,
 				4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */,
@@ -198,7 +207,7 @@
 				TargetAttributes = {
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = QG2FZSM37L;
+						DevelopmentTeam = GJ2YY87752;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -231,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0C7C651DAA9FB700B31EBC /* JoinGroupTableViewCell.xib in Resources */,
 				4A8898E51D9E33A8004631BB /* Podfile in Resources */,
 				4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */,
 				4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */,
@@ -297,10 +307,12 @@
 			files = (
 				4A4F53031DA4FB8B008E4F3A /* UIButton+Text.swift in Sources */,
 				4A669DE71DA2698D00451A7F /* LoginViewController.swift in Sources */,
+				4A0C7C631DAA957B00B31EBC /* JoinGroupViewController.swift in Sources */,
 				4A7AE1B61D9B822000F466F8 /* Mutabaah.swift in Sources */,
 				4A4F53051DA4FC36008E4F3A /* UIAuthTextField.swift in Sources */,
 				4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */,
 				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
+				4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */,
 				4A669DE91DA27E4100451A7F /* RegisterViewController.swift in Sources */,
 				4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */,
 				4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */,
@@ -362,7 +374,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = QG2FZSM37L;
@@ -410,7 +423,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = QG2FZSM37L;
@@ -441,6 +455,7 @@
 				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GJ2YY87752;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
@@ -460,6 +475,7 @@
 				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GJ2YY87752;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
