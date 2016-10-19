@@ -16,7 +16,12 @@ extension DateFormatter {
     }
     
     func readableDateFormatter() -> DateFormatter {
-        self.dateFormat = "d MMMM yyyy"
+        //print(Locale.current.identifier)
+        if (Locale.current.identifier == "ja_US" || Locale.current.identifier == "ja_JP") {
+            self.dateFormat = "yyyy年MMMMd日"
+        } else {
+            self.dateFormat = "d MMMM yyyy"
+        }
         return self
     }
 }

@@ -18,14 +18,17 @@ class JoinGroupTableViewCell: UITableViewCell {
     
     @IBAction func groupJoinRequestPressed(sender: AnyObject?) {
         groupJoinRequest.isHidden = true
-        spinner.frame = CGRect(x: groupJoinRequest.center.x, y: groupJoinRequest.center.y, width: 5.0, height: 5.0)
+        spinner.frame = CGRect(x: groupJoinRequest.center.x, y: groupJoinRequest.center.y, width: 10.0, height: 10.0)
         spinner.startAnimating()
         
-        APIClient.sharedClient.requestJoinGroup(groupId, success: { 
-            self.spinner.stopAnimating()
-            self.spinner.isHidden = true
-            self.groupJoinRequest.text = "Joined"
-            self.groupJoinRequest.isHidden = false
+        APIClient.sharedClient.requestJoinGroup(groupId, success: {
+            APIClient.sharedClient.updateUserBasicInfo {
+                self.spinner.stopAnimating()
+                self.spinner.isHidden = true
+                self.groupJoinRequest.isEnabled = false
+                self.groupJoinRequest.setTitle("Joined", for: .disabled)
+                self.groupJoinRequest.isHidden = false
+            }
         }, failure: { (error) in
             print("NO!")
         })

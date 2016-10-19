@@ -10,23 +10,11 @@ import UIKit
 import RealmSwift
 import QuartzCore
 import THCalendarDatePicker
-
+import FontAwesome_swift
 
 
 class MutabaahViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIScrollViewDelegate, THDatePickerDelegate {
     
-    public func datePickerDonePressed(_ datePicker: THDatePickerViewController!) {
-        self.dismissSemiModalView()
-        if let selectedDate = datePicker.selectedDates.first as? NSDate {
-            self.currentDate = selectedDate
-            self.decodeMutabaahsForDate(date: selectedDate)
-        }
-    }
-
-    public func datePickerCancelPressed(_ datePicker: THDatePickerViewController!) {
-        //
-    }
-
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var detailView: UIView!
     @IBOutlet weak var tableView: UITableView!
@@ -35,7 +23,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var plusButton: UIButton!
     @IBOutlet weak var minusButton: UIButton!
     @IBOutlet weak var controlView: UIView!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var nextDateButton: UIButton!
+    @IBOutlet weak var prevDateButton: UIButton!
     
     /* detail view */
     @IBOutlet weak var valueLabel: UILabel!
@@ -44,7 +33,7 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     var spinner0 = UIActivityIndicatorView()
     let dateFormatter = DateFormatter().defaultDateFormatter()
     let readableDateFormatter = DateFormatter().readableDateFormatter()
-    var currentDate: NSDate! = NSDate()
+    var currentDate: Date? = Date()
     var listOfIbadahs = [Ibadah]()
     var currentMutabaah = Mutabaah()
     var selectedIndex = -1000
@@ -52,7 +41,68 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
     var selectedRecord: Record?
     var selectedIbadah: Ibadah?
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
+        tableView.register(UINib(nibName: "IbadahTableViewCell", bundle: nil), forCellReuseIdentifier: "ibadahCell")
+        tableView.dataSource = self
+        
+        nextDateButton.titleLabel?.font = UIFont.fontAwesomeOfSize(20.0)
+        prevDateButton.titleLabel?.font = UIFont.fontAwesomeOfSize(20.0)
+        nextDateButton.text = String.fontAwesomeIconWithName(.CaretRight)
+        prevDateButton.text = String.fontAwesomeIconWithName(.CaretLeft)
+        
+        /* detail view */
+        valueLabel.isHidden = true
+        dateButton.isHidden = true
+        dateButton.layer.cornerRadius = 8
+        dateButton.clipsToBounds = true
+        dateButton.text = readableDateFormatter.string(from: currentDate!)
+        
+        /* control view */
+        spinner = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.tableView.center.y - 50, width: 10, height: 10))
+        spinner0 = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.detailView.center.y, width: 10, height: 10))
+        spinner.activityIndicatorViewStyle = .gray
+        spinner0.activityIndicatorViewStyle = .whiteLarge
+        
+        mainView.addSubview(spinner0)
+        mainView.addSubview(spinner)
+        
+        /* start loading view */
+        spinner0.startAnimating()
+        spinner.startAnimating()
+        tableView.isUserInteractionEnabled = false
+        
+        let realm = APIClient.sharedClient.realm!
+        listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
+        print(realm.configuration.fileURL)
+        
+        
+        if listOfIbadahs.count > 0 {
+            APIClient.sharedClient.getUserMutabaahs {
+                // print("fetched mutabaahs")
+                self.decodeMutabaahsForDate(date: self.currentDate!)
+            }
+        } else {
+            APIClient.sharedClient.getListOfIbadahs {
+                //print("fetched ibadahs")
+                APIClient.sharedClient.getUserMutabaahs {
+                    //print("fetched mutabaahs")
+                    self.listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
+                    self.decodeMutabaahsForDate(date: self.currentDate!)
+                }
+            }
+        }
+    }
+    
     @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        APIClient.sharedClient.postMutabaah(mutabaah: currentMutabaah, success: {
+            // do
+        }) { (error) in
+            print(error)
+        }
     }
     
     lazy var datePicker: THDatePickerViewController = {
@@ -71,6 +121,19 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         return dp
     }()
     
+    @IBAction func nextDatePressed(sender: AnyObject?) {
+        let nextDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: 1, to: currentDate!)
+        self.currentDate = nextDate
+        self.decodeMutabaahsForDate(date: nextDate!)
+    }
+    
+    @IBAction func prevDatePressed(sender: AnyObject?) {
+        let prevDate = Calendar(identifier: .gregorian).date(byAdding: .day, value: -1, to: currentDate!)
+        self.currentDate = prevDate
+        self.decodeMutabaahsForDate(date: prevDate!)
+    }
+    
+    
     @IBAction func dateButtonPressed(sender: AnyObject?) {
         datePicker.date = currentDate as Date!
         //datePicker.setDateHasItemsCallback({(date: NSDate!) -> Bool in
@@ -83,6 +146,19 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
             //KNSemiModalOptionKeys.transitionStyle.takeRetainedValue() : UIPageViewControllerTransitionStyle.pageCurl
             ])
     }
+    
+    public func datePickerDonePressed(_ datePicker: THDatePickerViewController!) {
+        self.dismissSemiModalView()
+        if let selectedDate = datePicker.selectedDates.first as? Date {
+            self.currentDate = selectedDate
+            self.decodeMutabaahsForDate(date: selectedDate)
+        }
+    }
+    
+    public func datePickerCancelPressed(_ datePicker: THDatePickerViewController!) {
+        //
+    }
+
     
     func updateSelected(isPlus: Bool) {
         if selectedIbadah != nil {
@@ -127,66 +203,10 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         updateSelected(isPlus: false)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        tableView.delegate = self
-        tableView.contentInset = UIEdgeInsetsMake(0, 0, 50, 0)
-        tableView.register(UINib(nibName: "IbadahTableViewCell", bundle: nil), forCellReuseIdentifier: "ibadahCell")
-        tableView.dataSource = self
-
-        /* detail view */
-        valueLabel.isHidden = true
-        dateButton.isHidden = true
-        dateButton.layer.cornerRadius = 8
-        dateButton.clipsToBounds = true
-        dateButton.text = readableDateFormatter.string(from: currentDate as Date)
-        let backImg = UIImage(named: "UIButtonBarArrowLeft")?.withRenderingMode(.alwaysTemplate)
-        backButton.setImage(backImg, for: .normal)
-        backButton.tintColor = UIColor.white
-        
-        /* control view */
-        
-        spinner = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.tableView.center.y - 50, width: 10, height: 10))
-        spinner0 = UIActivityIndicatorView(frame: CGRect(x: self.mainView.center.x, y: self.detailView.center.y, width: 10, height: 10))
-        spinner.activityIndicatorViewStyle = .gray
-        spinner0.activityIndicatorViewStyle = .whiteLarge
-        
-        mainView.addSubview(spinner0)
-        mainView.addSubview(spinner)
-        
-        /* start loading view */
-        
-        spinner0.startAnimating()
-        spinner.startAnimating()
-        tableView.isUserInteractionEnabled = false
-
-        let realm = APIClient.sharedClient.realm!
-        listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
-        print(realm.configuration.fileURL)
-        
-        
-        if listOfIbadahs.count > 0 {
-            APIClient.sharedClient.getUserMutabaahs {
-                // print("fetched mutabaahs")
-                self.decodeMutabaahsForDate(date: self.currentDate)
-            }
-        } else {
-            APIClient.sharedClient.getListOfIbadahs {
-                print("fetched ibadahs")
-                APIClient.sharedClient.getUserMutabaahs {
-                    print("fetched mutabaahs")
-                    self.listOfIbadahs = Array(realm.objects(Ibadah.self)) as [Ibadah]
-                    self.decodeMutabaahsForDate(date: self.currentDate)
-                }
-            }
-        }
-    }
-    
-    func decodeMutabaahsForDate(date: NSDate) {
+    func decodeMutabaahsForDate(date: Date) {
         let realm = APIClient.sharedClient.realm!
         
-        let ds = dateFormatter.string(from:date as Date)
+        let ds = dateFormatter.string(from:date)
         let queryfilter = NSPredicate(format: "date = %@", ds)
         let mutabaah = Array(realm.objects(Mutabaah.self).filter(queryfilter)) as [Mutabaah]
         
@@ -230,28 +250,22 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         
         tableView.isUserInteractionEnabled = true
         
-        dateButton.text = readableDateFormatter.string(from: currentDate as Date)
+        dateButton.text = readableDateFormatter.string(from: currentDate!)
         
-        valueLabel.text = "Pilih!"
+        valueLabel.text = "*"
         tableView.reloadSections(NSIndexSet(index: 0) as IndexSet, with: .fade)
     }
     
     func updateControlButtons(ibadah: Ibadah?) {
-        let up = UIImage(named: "shiftOn_split_10key")?.withRenderingMode(.alwaysTemplate)
-        let down = UIImage(cgImage: (up?.cgImage)!, scale: (up?.scale)!, orientation: UIImageOrientation.downMirrored)
-        let no = UIImage(named: "UIButtonBarStop")?.withRenderingMode(.alwaysTemplate)
-        let yes = UIImage(named: "UITintedCircularButtonCheckmark")?.withRenderingMode(.alwaysTemplate)
+        plusButton.titleLabel?.font = UIFont.fontAwesomeOfSize(20.0)
+        minusButton.titleLabel?.font = UIFont.fontAwesomeOfSize(20.0)
         
         if (ibadah == nil || ibadah?.type == "fillnumber") {
-            plusButton.setImage(up, for: .normal)
-            plusButton.tintColor = UIColor(red: 54.0, green: 22.0, blue: 242.0, alpha: 1.0)
-            minusButton.setImage(down, for: .normal)
-            minusButton.tintColor = UIColor.white
+            plusButton.setTitle(String.fontAwesomeIconWithName(.ArrowUp), for: .normal)
+            minusButton.setTitle(String.fontAwesomeIconWithName(.ArrowDown), for: .normal)
         } else {
-            plusButton.setImage(yes, for: .normal)
-            plusButton.tintColor = UIColor.white
-            minusButton.setImage(no, for: .normal)
-            minusButton.tintColor = UIColor.white
+            plusButton.setTitle(String.fontAwesomeIconWithName(.Check), for: .normal)
+            minusButton.setTitle(String.fontAwesomeIconWithName(.Close), for: .normal)
         }
     }
     
@@ -261,14 +275,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         updateControlButtons(ibadah: nil)
     }
     
-    override func viewDidDisappear(_ animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         selectedIndex = -1000
-        
-        APIClient.sharedClient.postMutabaah(mutabaah: currentMutabaah, success: { 
-            // do
-            }) { (error) in
-                print(error)
-        }
     }
     
     // MARK: - Table view data source
@@ -327,7 +335,8 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         ibadahLabel.isHidden = false
         if indexPath.row != selectedIndex {
             valueLabel.slideInFromBottom(0.5)
-            ibadahLabel.slideInFromBottom(0.5)
+            //ibadahLabel.slideInFromBottom(0.5)
+            ibadahLabel.fadeIn(0.5)
             
             ibadahLabel.text = ibadah.name.separateAndCapitalize("_")
             

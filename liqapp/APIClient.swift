@@ -97,6 +97,14 @@ class APIClient: NSObject, URLSessionDelegate {
         }).resume()
     }
     
+    func getGroupForId(_ groupId: String, success: @escaping (Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> ()) {
+        self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupId)", success: { (jsonData) in
+                success(jsonData)
+            }, failure: { (error:APIError) in
+                failure(error)
+        }).resume()
+    }
+    
     func getUserMutabaahForDate(_ date: String, success: () -> Void, failure: (_ error: APIError) -> ()) {
         // not yet available
     }
@@ -161,7 +169,7 @@ class APIClient: NSObject, URLSessionDelegate {
                 self.urlSessionPostJSONTask(httpMethod.post, url: "api/mutabaahs", parameters: mutabaah.toDictionary(), success: {
                         success()
                     }, failure: { (error) in
-                        print("cannot post mutabaah!")
+                        //print("cannot post mutabaah!")
                         failure(error)
                 }).resume()
             } else {
@@ -234,8 +242,10 @@ class APIClient: NSObject, URLSessionDelegate {
     
     func requestJoinGroup(_ groupid: String!, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) {
         self.validateFullScope {
-            let memberParam = ["user_id" : self.rootResource["_id"] as AnyObject,
+            let memberParam = ["user_id" : self.rootResource["id"]! as AnyObject,
                                "group_id" : groupid as AnyObject]
+            
+            //print(memberParam)
             
             self.urlSessionPostJSONTask(.post, url: "api/members", parameters: memberParam, success: {
                     success()
@@ -273,6 +283,7 @@ class APIClient: NSObject, URLSessionDelegate {
             }, failure: { (error: NSError) -> Void in
                 // TODO: error handling!
                 print("cannot validate")
+                self.logoutThenDeleteAllStoredData()
         })
     }
     

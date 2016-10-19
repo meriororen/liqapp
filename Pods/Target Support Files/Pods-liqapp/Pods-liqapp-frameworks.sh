@@ -85,6 +85,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KNSemiModalViewController_hons82/KNSemiModalViewController_hons82.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LUKeychainAccess/LUKeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
@@ -93,6 +94,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/AFNetworking/AFNetworking.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/FontAwesome.swift/FontAwesome_swift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/KNSemiModalViewController_hons82/KNSemiModalViewController_hons82.framework"
   install_framework "$BUILT_PRODUCTS_DIR/LUKeychainAccess/LUKeychainAccess.framework"
   install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"

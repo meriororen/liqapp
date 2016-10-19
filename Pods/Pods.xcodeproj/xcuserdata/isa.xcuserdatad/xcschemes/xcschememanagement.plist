@@ -9,6 +9,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>FontAwesome.swift-FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>FontAwesome.swift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>KNSemiModalViewController_hons82.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,22 +62,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>99021D17449ABCE2ED7A5772D8DA738E</key>
+		<key>1FE2578FF0805299395CF2A0206BB671</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9B718EE21FA1410E54F608F7E05C5CCB</key>
+		<key>745593EA61E179AA73AFEEC1ED7519A8</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C291E4FA23A4B404E3B9AC6CBEC688A1</key>
+		<key>A7FD08FEC5136157217F1DE1CC1AE1DF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D11A30858F1B2FC9CFA64CD1E1EB4D78</key>
+		<key>DCCC56D9B35F670F292ABEC920D9CBB8</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>ED9C01E59B02ECB5C2C76D09AD9FF419</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>EF4F067C2D0E135B80299B089E168BDA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

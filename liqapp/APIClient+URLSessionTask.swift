@@ -140,7 +140,7 @@ extension APIClient {
                     self.validateFullScope {
                         failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
                     }
-                    print(error.responseText)
+                    //print(error.responseText)
                 } else {
                     failure(error)
                 }

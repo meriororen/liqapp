@@ -25,6 +25,19 @@ extension UIView {
         self.layer.add(slideInFromBottomTransition, forKey: "slideInFromBottomTransition")
     }
     
+    func fadeIn(_ duration: TimeInterval = 1.0, completionDelegate: CAAnimationDelegate? = nil) {
+        let fadeInTransition = CATransition()
+        
+        if let delegate: CAAnimationDelegate = completionDelegate {
+            fadeInTransition.delegate = delegate
+        }
+        
+        fadeInTransition.type = kCATransitionFade
+        fadeInTransition.duration = duration
+        
+        self.layer.add(fadeInTransition, forKey: "fadeInTransition")
+    }
+    
     func expand(_ duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
         
     }

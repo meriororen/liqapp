@@ -122,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,39 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "postMutabaah(mutabaah:success:failure:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "APIClient"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "173"
@@ -314,11 +282,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "167"
-            endingLineNumber = "167"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "APIClient"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "498065927.368489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -330,11 +314,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
+            landmarkName = "postMutabaah(mutabaah:success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "498065927.368489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -378,11 +378,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "236"
-            endingLineNumber = "236"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "loadListOfIbadahs()"
             landmarkType = "7">
          </BreakpointContent>
@@ -393,28 +393,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497378127.471598"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "176"
-            endingLineNumber = "176"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,11 +474,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "161"
-            endingLineNumber = "161"
+            startingLineNumber = "169"
+            endingLineNumber = "169"
             landmarkName = "postMutabaah(mutabaah:success:failure:)"
             landmarkType = "7">
             <Locations>
@@ -538,11 +522,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "186"
-            endingLineNumber = "186"
+            startingLineNumber = "194"
+            endingLineNumber = "194"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -554,11 +538,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -569,28 +553,12 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497378127.471598"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "175"
-            endingLineNumber = "175"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
             <Locations>
@@ -634,11 +602,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "208"
+            endingLineNumber = "208"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -650,11 +618,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498489905.776294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "289"
+            endingLineNumber = "289"
             landmarkName = "APIClient"
             landmarkType = "3">
          </BreakpointContent>
@@ -842,11 +810,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
             <Locations>
@@ -858,12 +826,12 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497716537.342573"
+                  timestampString = "498588540.61928"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "181"
-                  endingLineNumber = "181"
-                  offsetFromSymbolStart = "60">
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "80">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -873,12 +841,12 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497716537.3446"
+                  timestampString = "498588540.621642"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "181"
-                  endingLineNumber = "181"
-                  offsetFromSymbolStart = "392">
+                  startingLineNumber = "189"
+                  endingLineNumber = "189"
+                  offsetFromSymbolStart = "436">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -1266,11 +1234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "160"
+            endingLineNumber = "160"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1282,11 +1250,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498489905.776294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "291"
-            endingLineNumber = "291"
+            startingLineNumber = "302"
+            endingLineNumber = "302"
             landmarkName = "validate(oAuthToken:validationSuccess:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1442,11 +1410,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498489905.776294"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "301"
-            endingLineNumber = "301"
+            startingLineNumber = "312"
+            endingLineNumber = "312"
             landmarkName = "isSessionInvalid()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1602,11 +1570,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497356560.032876"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "106"
-            endingLineNumber = "106"
+            startingLineNumber = "182"
+            endingLineNumber = "182"
             landmarkName = "updateSelected(isPlus:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1618,11 +1586,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497356560.032876"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
             landmarkName = "updateSelected(isPlus:)"
             landmarkType = "7">
             <Locations>
@@ -1666,11 +1634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "114"
-            endingLineNumber = "114"
+            startingLineNumber = "122"
+            endingLineNumber = "122"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1682,11 +1650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "117"
-            endingLineNumber = "117"
+            startingLineNumber = "125"
+            endingLineNumber = "125"
             landmarkName = "getUserMutabaahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1982,79 +1950,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497378127.471598"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497378141.751431"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "170"
-            endingLineNumber = "170"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "liqapp.MutabaahViewController.viewDidLoad () -&gt; ()"
-                  moduleName = "liqapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/MutabaahViewController.swift"
-                  timestampString = "497673316.488213"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "170"
-                  endingLineNumber = "170"
-                  offsetFromSymbolStart = "6570">
-               </Location>
-               <Location
-                  shouldBeEnabled = "No"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "liqapp.MutabaahViewController.(viewDidLoad () -&gt; ()).(closure #1)"
-                  moduleName = "liqapp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/MutabaahViewController.swift"
-                  timestampString = "497673316.491301"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "172"
-                  endingLineNumber = "172"
-                  offsetFromSymbolStart = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "189"
-            endingLineNumber = "189"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2066,11 +1970,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2082,11 +1986,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497671919.655184"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "getListOfIbadahs(then:)"
             landmarkType = "7">
             <Locations>
@@ -2098,12 +2002,12 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497716537.371631"
+                  timestampString = "498588540.648272"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "188"
-                  endingLineNumber = "188"
-                  offsetFromSymbolStart = "2320">
+                  startingLineNumber = "196"
+                  endingLineNumber = "196"
+                  offsetFromSymbolStart = "2506">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2113,12 +2017,12 @@
                   moduleName = "liqapp"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/APIClient.swift"
-                  timestampString = "497716537.374337"
+                  timestampString = "498588540.650289"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "189"
-                  endingLineNumber = "189"
-                  offsetFromSymbolStart = "26">
+                  startingLineNumber = "197"
+                  endingLineNumber = "197"
+                  offsetFromSymbolStart = "27">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2130,11 +2034,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MainViewController.swift"
-            timestampString = "497672255.076517"
+            timestampString = "498588539.405297"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "viewDidLoad()"
             landmarkType = "7">
             <Locations>
@@ -2194,27 +2098,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497672641.578634"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "237"
-            endingLineNumber = "237"
+            startingLineNumber = "257"
+            endingLineNumber = "257"
             landmarkName = "loadListOfIbadahs()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2226,11 +2114,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2242,11 +2130,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "299"
-            endingLineNumber = "299"
+            startingLineNumber = "307"
+            endingLineNumber = "307"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2258,11 +2146,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "308"
-            endingLineNumber = "308"
+            startingLineNumber = "316"
+            endingLineNumber = "316"
             landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2274,23 +2162,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "310"
-            endingLineNumber = "310"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "liqapp/MutabaahViewController.swift"
-            timestampString = "497678810.395406"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "318"
@@ -2305,28 +2177,28 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            filePath = "liqapp/MutabaahViewController.swift"
+            timestampString = "498494204.943734"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
-            landmarkName = "validateUserGroup(success:failure:)"
+            startingLineNumber = "326"
+            endingLineNumber = "326"
+            landmarkName = "tableView(_:cellForRowAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "262"
+            endingLineNumber = "262"
             landmarkName = "validateUserGroup(success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2338,11 +2210,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "257"
-            endingLineNumber = "257"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
             landmarkName = "validateUserGroup(success:failure:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -2350,17 +2222,254 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "liqapp/APIClient.swift"
-            timestampString = "497804899.056498"
+            timestampString = "498065927.368489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "267"
+            endingLineNumber = "267"
             landmarkName = "validateUserGroup(success:failure:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/APIClient.swift"
+            timestampString = "498065927.368489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "validateUserGroup(success:failure:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498055449.578612"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "11"
+            endingLineNumber = "11"
+            landmarkName = "GroupMainViewController"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupMainViewController.__deallocating_deinit"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498055452.672468"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupMainViewController.init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; liqapp.GroupMainViewController"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498055452.674835"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "70">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupMainViewController.__allocating_init (nibName : Swift.Optional&lt;Swift.String&gt;, bundle : Swift.Optional&lt;__ObjC.Bundle&gt;) -&gt; liqapp.GroupMainViewController"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498055452.676882"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "23">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupMainViewController.__allocating_init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;liqapp.GroupMainViewController&gt;"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498055452.678846"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupMainViewController.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;liqapp.GroupMainViewController&gt;"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498055452.681015"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "12"
+                  endingLineNumber = "12"
+                  offsetFromSymbolStart = "31">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498579819.153146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498579819.153146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498579819.153146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498579819.153146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/GroupMainViewController.swift"
+            timestampString = "498579819.153146"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupCollectionViewController.viewDidLoad () -&gt; ()"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498372347.007579"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "184"
+                  endingLineNumber = "184"
+                  offsetFromSymbolStart = "2315">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "liqapp.GroupCollectionViewController.(viewDidLoad () -&gt; ()).(closure #1)"
+                  moduleName = "liqapp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/isa/code/Xcode/liqapp2/liqapp/liqapp/GroupMainViewController.swift"
+                  timestampString = "498372347.010486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "185"
+                  endingLineNumber = "185"
+                  offsetFromSymbolStart = "19">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "liqapp/ItemButton.swift"
+            timestampString = "498588005.172196"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "ItemButton"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

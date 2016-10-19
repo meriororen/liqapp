@@ -8,11 +8,20 @@
 
 import UIKit
 
-class JoinGroupViewController: UITableViewController, UISearchDisplayDelegate {
+class JoinGroupViewController: UIViewController, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    @IBOutlet weak var joinView: UIView!
+    @IBOutlet weak var tableView: UITableView!
     
     var allGroups = [Dictionary<String,AnyObject>]()
     var filteredGroups = [Dictionary<String,AnyObject>]()
     var searchController: UISearchController! = nil
+    
+
+    @IBAction override func unwind(for unwindSegue:UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
+        let mainGroupVC = (subsequentVC as! UINavigationController).viewControllers[1] as! GroupMainViewController
+        mainGroupVC.loadGroupInfo()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +45,7 @@ class JoinGroupViewController: UITableViewController, UISearchDisplayDelegate {
         }
     }
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView!.dequeueReusableCell(withIdentifier: "groupCell") as! JoinGroupTableViewCell
         
         var group = Dictionary<String,String>()
@@ -48,6 +57,13 @@ class JoinGroupViewController: UITableViewController, UISearchDisplayDelegate {
         }
         
         if group["name"] != nil && group["_id"] != nil {
+            let joinedGroups = APIClient.sharedClient.rootResource["groups"] as! [String]
+            for jg in joinedGroups {
+                if (jg == group["_id"]!) {
+                    cell.groupJoinRequest.isEnabled = false
+                    cell.groupJoinRequest.setTitle("Joined", for: UIControlState.disabled)
+                }
+            }
             cell.groupName.text = group["name"]
             cell.groupId = group["_id"]!
         }
@@ -55,11 +71,11 @@ class JoinGroupViewController: UITableViewController, UISearchDisplayDelegate {
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchController.isActive && searchController.searchBar.text != "" {
             return filteredGroups.count
         } else {

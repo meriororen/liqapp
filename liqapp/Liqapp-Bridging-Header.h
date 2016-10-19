@@ -16,5 +16,7 @@
 #import "Pods/THCalendarDatePicker/THDatePickerViewController.h"
 #import "Pods/THDateDay.h"
 #import "Pods/NSDate+Difference.h"
+#import "Pods/NSString+FontAwesome.h"
+#import "Pods/UIFont+FontAwesome.h"
 
 #endif /* Liqapp_Bridging_Header_h */
