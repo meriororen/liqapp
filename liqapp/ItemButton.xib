@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ItemButton" customModule="liqapp" customModuleProvider="target">
+            <connections>
+                <outlet property="FAIconLabel" destination="G0l-sj-2GW" id="ell-yt-9Bi"/>
+                <outlet property="ItemLabel" destination="hv8-PF-OhI" id="sbG-sA-zzJ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleAspectFit" id="2H9-5h-eY3">
+            <rect key="frame" x="0.0" y="0.0" width="144" height="101"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="F" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G0l-sj-2GW">
+                    <fontDescription key="fontDescription" name="Farah" family="Farah" pointSize="35"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hv8-PF-OhI">
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="G0l-sj-2GW" firstAttribute="centerX" secondItem="hv8-PF-OhI" secondAttribute="centerX" id="6as-7W-CEW"/>
+                <constraint firstItem="hv8-PF-OhI" firstAttribute="top" secondItem="G0l-sj-2GW" secondAttribute="bottom" constant="10" id="jVM-Cz-Awq"/>
+                <constraint firstItem="G0l-sj-2GW" firstAttribute="top" secondItem="2H9-5h-eY3" secondAttribute="centerY" multiplier="0.33" id="qlm-2B-Nci"/>
+                <constraint firstItem="G0l-sj-2GW" firstAttribute="centerX" secondItem="2H9-5h-eY3" secondAttribute="centerX" id="sm1-KG-m9o"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-57" y="-289.5"/>
+        </view>
+    </objects>
+</document>

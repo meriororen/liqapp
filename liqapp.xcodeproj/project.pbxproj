@@ -7,15 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0832171DB7B8F50066FC4A /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */; };
+		4A0832191DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */; };
+		4A08321B1DBA44E30066FC4A /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */; };
+		4A08321D1DBB7E700066FC4A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08321C1DBB7E700066FC4A /* User.swift */; };
+		4A0C7C631DAA957B00B31EBC /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */; };
+		4A0C7C651DAA9FB700B31EBC /* JoinGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */; };
+		4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */; };
 		4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */; };
 		4A3C889F1D8FC6EF0095D4DE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */; };
 		4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */; };
 		4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */; };
 		4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */; };
-		4A3C88AF1D8FFFED0095D4DE /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */; };
 		4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */; };
 		4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */; };
 		4A4EBC711D96AF8C003C9A35 /* IbadahTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */; };
+		4A4F53031DA4FB8B008E4F3A /* UIButton+Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53021DA4FB8B008E4F3A /* UIButton+Text.swift */; };
+		4A4F53051DA4FC36008E4F3A /* UIAuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53041DA4FC36008E4F3A /* UIAuthTextField.swift */; };
+		4A4F53071DA53CAA008E4F3A /* GroupMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */; };
+		4A669DE71DA2698D00451A7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669DE61DA2698D00451A7F /* LoginViewController.swift */; };
+		4A669DE91DA27E4100451A7F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669DE81DA27E4100451A7F /* RegisterViewController.swift */; };
 		4A70D3971D9D2FDC00C9E07B /* DateFormatter+Defaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */; };
 		4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */; };
 		4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */; };
@@ -30,11 +41,24 @@
 		4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D141D92A67D002E3697 /* OAuthToken.swift */; };
 		4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7E9D181D938CB2002E3697 /* AuthManager.swift */; };
 		4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */; };
+		4A8898E51D9E33A8004631BB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 4A8898E41D9E33A8004631BB /* Podfile */; };
+		4ABE18CC1DB67074006B6D67 /* ItemButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ABE18CB1DB67074006B6D67 /* ItemButton.xib */; };
+		4ABE18CE1DB67937006B6D67 /* ItemButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABE18CD1DB67937006B6D67 /* ItemButton.swift */; };
+		4ADF99ED1DAFCE35008D1639 /* GroupCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ADF99EC1DAFCE35008D1639 /* GroupCollectionViewCell.xib */; };
+		4ADF99F41DB26925008D1639 /* Ibadah.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF99F31DB26925008D1639 /* Ibadah.swift */; };
+		4ADF99F61DB26A7E008D1639 /* Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADF99F51DB26A7E008D1639 /* Record.swift */; };
 		8FCA3B46AE82A8C22F045E16 /* Pods_liqapp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.debug.xcconfig"; sourceTree = "<group>"; };
+		4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
+		4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		4A08321C1DBB7E700066FC4A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
+		4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinGroupTableViewCell.xib; sourceTree = "<group>"; };
+		4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupTableViewCell.swift; sourceTree = "<group>"; };
 		4A3C88961D8FC6EF0095D4DE /* liqapp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = liqapp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A3C889E1D8FC6EF0095D4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,10 +66,14 @@
 		4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A3C88A61D8FC6EF0095D4DE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4A3C88A81D8FC6EF0095D4DE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MutabaahViewController.swift; sourceTree = "<group>"; };
 		4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IbadahTableViewCell.swift; sourceTree = "<group>"; };
 		4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = IbadahTableViewCell.xib; sourceTree = "<group>"; };
+		4A4F53021DA4FB8B008E4F3A /* UIButton+Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIButton+Text.swift"; sourceTree = "<group>"; };
+		4A4F53041DA4FC36008E4F3A /* UIAuthTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAuthTextField.swift; sourceTree = "<group>"; };
+		4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupMainViewController.swift; sourceTree = "<group>"; };
+		4A669DE61DA2698D00451A7F /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4A669DE81DA27E4100451A7F /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Defaults.swift"; sourceTree = "<group>"; };
 		4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = liqapp.entitlements; sourceTree = "<group>"; };
 		4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Capitalize.swift"; sourceTree = "<group>"; };
@@ -62,6 +90,13 @@
 		4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Liqapp-Bridging-Header.h"; sourceTree = "<group>"; };
 		4A7E9D181D938CB2002E3697 /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LoginViewController.storyboard; sourceTree = "<group>"; };
+		4A8898E41D9E33A8004631BB /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; };
+		4A8898E61D9E86F6004631BB /* prototyping.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = prototyping.playground; sourceTree = "<group>"; };
+		4ABE18CB1DB67074006B6D67 /* ItemButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemButton.xib; sourceTree = "<group>"; };
+		4ABE18CD1DB67937006B6D67 /* ItemButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemButton.swift; sourceTree = "<group>"; };
+		4ADF99EC1DAFCE35008D1639 /* GroupCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GroupCollectionViewCell.xib; sourceTree = "<group>"; };
+		4ADF99F31DB26925008D1639 /* Ibadah.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ibadah.swift; sourceTree = "<group>"; };
+		4ADF99F51DB26A7E008D1639 /* Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Record.swift; sourceTree = "<group>"; };
 		6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.release.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.release.xcconfig"; sourceTree = "<group>"; };
 		F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_liqapp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -99,34 +134,107 @@
 		4A3C88981D8FC6EF0095D4DE /* liqapp */ = {
 			isa = PBXGroup;
 			children = (
-				4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */,
-				4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */,
 				4A3C88991D8FC6EF0095D4DE /* AppDelegate.swift */,
-				4A7E9D0F1D929A74002E3697 /* Constants.swift */,
-				4A7E9D081D9241B4002E3697 /* APIClient.swift */,
-				4A7AE1B51D9B822000F466F8 /* Mutabaah.swift */,
-				4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */,
-				4A7E9D0E1D929A74002E3697 /* APIError.swift */,
-				4A7E9D181D938CB2002E3697 /* AuthManager.swift */,
-				4A7E9D141D92A67D002E3697 /* OAuthToken.swift */,
-				4A3C88AE1D8FFFED0095D4DE /* LoginViewController.swift */,
-				4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */,
-				4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */,
-				4A7AE1B31D97F46E00F466F8 /* IbadahDetailViewController.swift */,
-				4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */,
-				4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */,
+				4ADF99EE1DB2658A008D1639 /* Group */,
+				4ADF99F11DB26664008D1639 /* Mutabaah */,
+				4ADF99F01DB26651008D1639 /* Ibadah */,
+				4ADF99EF1DB265A7008D1639 /* API */,
 				4A3C889D1D8FC6EF0095D4DE /* Main.storyboard */,
 				4A7AE1AF1D97E0C800F466F8 /* MainViewController.swift */,
+				4ADF99F21DB26706008D1639 /* Helper */,
+				4ADF99FA1DB4EE1E008D1639 /* Support Files */,
+			);
+			path = liqapp;
+			sourceTree = "<group>";
+		};
+		4ADF99EE1DB2658A008D1639 /* Group */ = {
+			isa = PBXGroup;
+			children = (
+				4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */,
+				4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */,
+				4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */,
+				4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */,
+				4ADF99EC1DAFCE35008D1639 /* GroupCollectionViewCell.xib */,
+				4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */,
+				4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */,
+				4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */,
+				4A08321C1DBB7E700066FC4A /* User.swift */,
+			);
+			name = Group;
+			sourceTree = "<group>";
+		};
+		4ADF99EF1DB265A7008D1639 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				4ADF99F71DB26B10008D1639 /* Login */,
+				4A7E9D181D938CB2002E3697 /* AuthManager.swift */,
+				4A7E9D141D92A67D002E3697 /* OAuthToken.swift */,
+				4A7E9D081D9241B4002E3697 /* APIClient.swift */,
+				4A7E9D0C1D928EBE002E3697 /* APIClient+URLSessionTask.swift */,
+				4A7E9D0E1D929A74002E3697 /* APIError.swift */,
+			);
+			name = API;
+			sourceTree = "<group>";
+		};
+		4ADF99F01DB26651008D1639 /* Ibadah */ = {
+			isa = PBXGroup;
+			children = (
+				4ADF99F31DB26925008D1639 /* Ibadah.swift */,
 				4A4EBC6E1D96AF8C003C9A35 /* IbadahTableViewCell.swift */,
+				4A7AE1B31D97F46E00F466F8 /* IbadahDetailViewController.swift */,
 				4A4EBC6F1D96AF8C003C9A35 /* IbadahTableViewCell.xib */,
+			);
+			name = Ibadah;
+			sourceTree = "<group>";
+		};
+		4ADF99F11DB26664008D1639 /* Mutabaah */ = {
+			isa = PBXGroup;
+			children = (
+				4A7AE1B51D9B822000F466F8 /* Mutabaah.swift */,
+				4ADF99F51DB26A7E008D1639 /* Record.swift */,
+				4A4EBC6A1D9417B3003C9A35 /* MutabaahViewController.swift */,
+			);
+			name = Mutabaah;
+			sourceTree = "<group>";
+		};
+		4ADF99F21DB26706008D1639 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4A7E9D0F1D929A74002E3697 /* Constants.swift */,
+				4A70D3961D9D2FDC00C9E07B /* DateFormatter+Defaults.swift */,
+				4A4F53021DA4FB8B008E4F3A /* UIButton+Text.swift */,
+				4A4F53041DA4FC36008E4F3A /* UIAuthTextField.swift */,
+				4A7AE1B11D97F42A00F466F8 /* UIView+SlideInFromBottom.swift */,
+				4A7AE1AD1D97D53D00F466F8 /* String+Capitalize.swift */,
+				4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */,
+				4ABE18CB1DB67074006B6D67 /* ItemButton.xib */,
+				4ABE18CD1DB67937006B6D67 /* ItemButton.swift */,
+			);
+			name = Helper;
+			sourceTree = "<group>";
+		};
+		4ADF99F71DB26B10008D1639 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4A669DE81DA27E4100451A7F /* RegisterViewController.swift */,
+				4A806B7D1D90221B00E34DE0 /* LoginViewController.storyboard */,
+				4A669DE61DA2698D00451A7F /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		4ADF99FA1DB4EE1E008D1639 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A70D3981D9D3EE400C9E07B /* liqapp.entitlements */,
 				4A3C88A31D8FC6EF0095D4DE /* Assets.xcassets */,
 				4A3C88A51D8FC6EF0095D4DE /* LaunchScreen.storyboard */,
 				4A3C88A81D8FC6EF0095D4DE /* Info.plist */,
 				4A3C88A01D8FC6EF0095D4DE /* liqapp.xcdatamodeld */,
-				4A7E9D121D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift */,
 				4A7E9D171D92AA07002E3697 /* Liqapp-Bridging-Header.h */,
+				4A8898E61D9E86F6004631BB /* prototyping.playground */,
 			);
-			path = liqapp;
+			name = "Support Files";
 			sourceTree = "<group>";
 		};
 		820966E6AD254266BDE82395 /* Pods */ = {
@@ -141,6 +249,7 @@
 		8E3670500809ABA5D5143096 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4A8898E41D9E33A8004631BB /* Podfile */,
 				F2DD4B58D1DC57F093F13B53 /* Pods_liqapp.framework */,
 			);
 			name = Frameworks;
@@ -181,7 +290,7 @@
 				TargetAttributes = {
 					4A3C88951D8FC6EF0095D4DE = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = YPDXF2GCX2;
+						DevelopmentTeam = GJ2YY87752;
 						LastSwiftMigration = 0800;
 						SystemCapabilities = {
 							com.apple.Keychain = {
@@ -214,6 +323,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0832191DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib in Resources */,
+				4ADF99ED1DAFCE35008D1639 /* GroupCollectionViewCell.xib in Resources */,
+				4ABE18CC1DB67074006B6D67 /* ItemButton.xib in Resources */,
+				4A0C7C651DAA9FB700B31EBC /* JoinGroupTableViewCell.xib in Resources */,
+				4A8898E51D9E33A8004631BB /* Podfile in Resources */,
 				4A3C88A71D8FC6EF0095D4DE /* LaunchScreen.storyboard in Resources */,
 				4A806B7E1D90221B00E34DE0 /* LoginViewController.storyboard in Resources */,
 				4A3C88A41D8FC6EF0095D4DE /* Assets.xcassets in Resources */,
@@ -277,22 +391,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A3C88AF1D8FFFED0095D4DE /* LoginViewController.swift in Sources */,
+				4A0832171DB7B8F50066FC4A /* GridCollectionViewLayout.swift in Sources */,
+				4A4F53031DA4FB8B008E4F3A /* UIButton+Text.swift in Sources */,
+				4A669DE71DA2698D00451A7F /* LoginViewController.swift in Sources */,
+				4A0C7C631DAA957B00B31EBC /* JoinGroupViewController.swift in Sources */,
 				4A7AE1B61D9B822000F466F8 /* Mutabaah.swift in Sources */,
+				4A4F53051DA4FC36008E4F3A /* UIAuthTextField.swift in Sources */,
 				4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */,
+				4ADF99F41DB26925008D1639 /* Ibadah.swift in Sources */,
+				4A08321D1DBB7E700066FC4A /* User.swift in Sources */,
 				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
+				4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */,
+				4A669DE91DA27E4100451A7F /* RegisterViewController.swift in Sources */,
 				4A7E9D131D92A051002E3697 /* NSHTTPURLResponse+HTTP.swift in Sources */,
 				4A7AE1AE1D97D53D00F466F8 /* String+Capitalize.swift in Sources */,
 				4A3C88A21D8FC6EF0095D4DE /* liqapp.xcdatamodeld in Sources */,
 				4A4EBC701D96AF8C003C9A35 /* IbadahTableViewCell.swift in Sources */,
 				4A70D3971D9D2FDC00C9E07B /* DateFormatter+Defaults.swift in Sources */,
+				4ABE18CE1DB67937006B6D67 /* ItemButton.swift in Sources */,
 				4A7E9D091D9241B4002E3697 /* APIClient.swift in Sources */,
 				4A7AE1B01D97E0C800F466F8 /* MainViewController.swift in Sources */,
 				4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */,
 				4A7E9D101D929A74002E3697 /* APIError.swift in Sources */,
 				4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */,
+				4A08321B1DBA44E30066FC4A /* GroupDetailViewController.swift in Sources */,
+				4ADF99F61DB26A7E008D1639 /* Record.swift in Sources */,
 				4A7AE1B41D97F46E00F466F8 /* IbadahDetailViewController.swift in Sources */,
 				4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */,
+				4A4F53071DA53CAA008E4F3A /* GroupMainViewController.swift in Sources */,
 				4A3C889A1D8FC6EF0095D4DE /* AppDelegate.swift in Sources */,
 				4A7E9D111D929A74002E3697 /* Constants.swift in Sources */,
 			);
@@ -340,9 +466,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = QG2FZSM37L;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -387,9 +515,11 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = QG2FZSM37L;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -412,10 +542,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GJ2YY87752;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;
@@ -430,10 +562,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6121BDD1953F29562C5B820E /* Pods-liqapp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = liqapp/liqapp.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = GJ2YY87752;
 				INFOPLIST_FILE = liqapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.github.berkedel.liqoapp;

@@ -14,16 +14,64 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FontAwesome.swift (0.11.1)
+  - KNSemiModalViewController_hons82 (0.4.5)
   - LUKeychainAccess (1.2.5)
+  - Realm (2.0.1):
+    - Realm/Headers (= 2.0.1)
+  - Realm/Headers (2.0.1)
+  - RealmSwift (2.0.1):
+    - Realm (= 2.0.1)
+  - THCalendarDatePicker (1.2.8):
+    - KNSemiModalViewController_hons82 (~> 0.4.5)
+  - UIKitResources (7.0):
+    - UIKitResources/All (= 7.0)
+  - UIKitResources/All (7.0)
 
 DEPENDENCIES:
   - AFNetworking
+  - FontAwesome.swift (from `https://github.com/thii/FontAwesome.swift.git`)
   - LUKeychainAccess
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - THCalendarDatePicker (~> 1.2.6)
+  - UIKitResources
+
+EXTERNAL SOURCES:
+  FontAwesome.swift:
+    :git: https://github.com/thii/FontAwesome.swift.git
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  FontAwesome.swift:
+    :commit: b03d71746f277690d1ff7df0c539641c4ba57d4d
+    :git: https://github.com/thii/FontAwesome.swift.git
+  Realm:
+    :commit: b7f61f81684b57abb634b202f4e08d6fd447365f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: b7f61f81684b57abb634b202f4e08d6fd447365f
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FontAwesome.swift: 9879cd6a1462bf160662d519f7b7474d73bdd1c3
+  KNSemiModalViewController_hons82: 0ef0ef5ed7c3814ddd0fa9c884ab74d5495de16b
   LUKeychainAccess: d22fc00b33ad92c7532962b86daa94c14b85ecbe
+  Realm: 0557ee0e4ab4f0936c90e370056d1ed6265f93d6
+  RealmSwift: 64e00af79bdcd7d2a7a23fdc1cb3faf22b80ae4c
+  THCalendarDatePicker: fd1a1103ae0d1d1f2d0f9a1463a3f628a23a25a5
+  UIKitResources: 6fa40f2f68088c491ad5f8e695da76a1215a6343
 
-PODFILE CHECKSUM: 792c0497831f13a828ba66049eeef122b8cec3d8
+PODFILE CHECKSUM: 1e036f84f3aaba3943eec30b0aa7eb96c6e94306
 
 COCOAPODS: 1.0.1

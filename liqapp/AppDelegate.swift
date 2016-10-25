@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreData
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,23 +18,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func startApplicationFromAuth() {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         
+        let nextViewController: UIViewController?
+        
         if (APIClient.sharedClient.isSessionInvalid()) {
             let storyboard = UIStoryboard(name: "LoginViewController", bundle: nil)
             let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginVIdentifier")
-            self.window?.rootViewController = loginViewController
+            
+            nextViewController = loginViewController
         } else {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let mainViewController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier")
+            let mainViewController: UINavigationController = storyboard.instantiateViewController(withIdentifier: "mainVCIdentifier") as! UINavigationController
             
-            self.window?.rootViewController = mainViewController
+            nextViewController = mainViewController
         }
         
-        self.window?.makeKeyAndVisible()
+       // UIView.transition(with: self.window!, duration: 1.0, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+                self.window?.makeKeyAndVisible()
+                self.window?.rootViewController = nextViewController
+       //     }, completion: nil)
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        //print(Realm.Configuration.defaultConfiguration.fileURL!)
         
+        // realm migration
+        let config = Realm.Configuration(schemaVersion: 1, migrationBlock: { (migration, oldVersion) in
+            if (oldVersion < 1) {
+            }
+        })
+        
+        Realm.Configuration.defaultConfiguration = config
+ 
         startApplicationFromAuth()
         
         return true

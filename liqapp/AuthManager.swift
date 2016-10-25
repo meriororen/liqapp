@@ -32,7 +32,6 @@ class AuthManager: NSObject {
     func authenticateWithCode(_ parameters: Dictionary<String, AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ()) {
         self.sessionManager.post((Constants.url.authURL?.absoluteString)!, parameters: parameters, progress: nil, success: { (task, response) in
                 if let actualHeader = (task.response as! HTTPURLResponse!).allHeaderFields as? Dictionary<String, AnyObject> {
-                    //print(actualHeader)
                     let oAuthToken = OAuthToken(attributes: actualHeader)
                     if (oAuthToken != nil) {
                         success()
@@ -41,7 +40,13 @@ class AuthManager: NSObject {
                     }
                 }
             }, failure: { (task, error) in
-                failure(APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
+                if let response = task?.response as? HTTPURLResponse {
+                    if response.didFail() {
+                        failure(APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unauthorizedError.rawValue, userInfo: nil))
+                    }
+                } else {
+                    failure(APIError(domain: Constants.Error.authManagerErrorDomain, code: Constants.Error.Code.unknownError.rawValue, userInfo: nil))
+                }
         })
     }
     

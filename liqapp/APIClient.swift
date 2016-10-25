@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class APIClient: NSObject, URLSessionDelegate {
     
@@ -31,6 +32,10 @@ class APIClient: NSObject, URLSessionDelegate {
     var lastPerformedTask: URLSessionTask? = nil
     var listOfIbadahs: NSMutableArray = NSMutableArray()
     var rootResource = Dictionary<String, AnyObject>()
+    var realm: Realm!
+    var realmConfig: Realm.Configuration!
+    var defaultGroupId = ""
+    var currentUser: User!
     
     override init() {
         super.init()
@@ -41,55 +46,159 @@ class APIClient: NSObject, URLSessionDelegate {
         sessionConfiguration.requestCachePolicy = NSURLRequest.CachePolicy.returnCacheDataElseLoad
         
         let theSession = URLSession(configuration: sessionConfiguration, delegate: self, delegateQueue: nil)
+        
         self.session = theSession
     }
     
     func updateAuthorizationHeader(_ token: OAuthToken?) {
         if let actualToken = token as OAuthToken! {
             self.additionalHeaders["Authorization"] = actualToken.accessToken
-        } else {
-            // wat?
         }
     }
     
-    func updateUserBasicInfo(then: @escaping () -> Void) {
+    func updateRealmDB() {
+        /* realm config */
+        var config = Realm.Configuration(schemaVersion: 3, migrationBlock: { (migration, oldVersion) in
+            if (oldVersion < 2) {
+            }
+        })
+        
+        let userid = APIClient.sharedClient.rootResource["_id"] as! String
+        config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("\(userid).realm")
+                
+        self.realmConfig = config
+        self.realm = try! Realm(configuration: self.realmConfig)
+    }
+    
+    func setDefaultGroup(id: String!) {
+        if self.rootResource["groups"] != nil {
+            if let groups = self.rootResource["groups"] as? [String] {
+                if groups.contains(id) { self.defaultGroupId = id }
+            }
+        }
+    }
+    
+    private func insertUserInfoToRealmDB(userInfo: Dictionary<String,AnyObject>) -> User {
+        let id = userInfo["_id"]! as! String
+        let name = userInfo["username"]! as! String
+        var user = self.realm.object(ofType: User.self, forPrimaryKey: id)
+        if user != nil {
+            try! self.realm.write {
+                user!.name = name
+            }
+        } else {
+            user = User()
+            user!._id = id
+            try! self.realm.write {
+                self.realm.add(user!)
+            }
+        }
+        return user!
+    }
+    
+    func getUserInformation(for userId: String!, success: @escaping (Dictionary<String,AnyObject>) -> Void, failure: @escaping (APIError) -> Void) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/users/\(userId!)", success: { (jsonData) in
+                    _ = self.insertUserInfoToRealmDB(userInfo: jsonData)
+                    success(jsonData)
+                }, failure: { (error) in
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    func updateUserBasicInfo(success: @escaping () -> Void, failure: @escaping (APIError) -> Void) {
         self.validateFullScope {
             /* fetch basic info */
-            self.urlSessionJSONTask(url: "api/user", success: { (jsonData) in
+            self.urlSessionJSONTaskSerialized(url: "api/user", success: { (jsonData) in
+                /* ephemeral user info data */
                 for (key, value) in jsonData {
-                    if (key == "id" || key == "name" || key == "groups") {
+                    if (key == "_id" || key == "username" || key == "groups") {
                         self.rootResource.updateValue(value, forKey: key)
                     }
                 }
-                then()
+                
+                /* first time opening realm is after we get the user id*/
+                self.updateRealmDB()
+                
+                /* put user info in realm db */
+                self.validateUserGroup(success: {
+                        self.currentUser = self.insertUserInfoToRealmDB(userInfo: jsonData)
+                        self.defaultGroupId = (jsonData["groups"] as! [String]).first!
+                        try! self.realm.write { self.currentUser.defaultGroup = self.defaultGroupId }
+                        success()
+                    }, failure: { (error) in
+                        failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userGroupNotExistError.rawValue, userInfo: nil))
+                })
                 }, failure: { (error) in
                     print(error) /* TODO: error handling! */
             }).resume()
         }
     }
     
-    func getUserMutabaahForDate(_ date: String, success: () -> Void, failure: (_ error: APIError) -> ()) {
-        // not yet available
+    func registerUser(_ userInfo: Dictionary<String,AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ())
+    {
+        self.urlSessionPostJSONTaskWithNoAuthorizationHeader(APIClient.httpMethod.post, url: "api/users", parameters: userInfo, success: {
+                //print("success registering user")
+                success()
+            }, failure: { (error:APIError) in
+                failure(error)
+        }).resume()
+    }
+    
+    func getGroupForId(_ groupId: String, success: @escaping (Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error: APIError) -> ()) {
+        self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupId)", success: { (jsonData) in
+                success(jsonData)
+            }, failure: { (error:APIError) in
+                failure(error)
+        }).resume()
     }
     
     func getUserMutabaahs(then: @escaping () -> Void) {
         self.validateFullScope {
             /* fetch mutabaahs */
-            self.urlSessionJSONTask(url: "api/user/mutabaahs", success: { (jsonData) in
-                    if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
-                        var mutabaah = Dictionary<String, AnyObject>()
+            self.urlSessionJSONTaskSerialized(url: "api/user/mutabaahs", success: { (jsonData) in
+                if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
+                        /* manage as realm objects */
                         for data in anArray {
-                            /*
-                            let records = data["records"] as! Dictionary<String, String>
-                            let m = Mutabaah(id: data["_id"]! as! String,
-                                date: data["date"]! as! String,
-                                user_id: data["user_id"]! as! String,
-                                group_id: data["group_id"]! as! String,
-                                records: records)
-                            */
-                            mutabaah.updateValue(data as AnyObject, forKey: data["date"] as! String)
+                            let mutabaah = self.realm.object(ofType: Mutabaah.self, forPrimaryKey: data["date"])
+                            /* only update when no such mutabaah, or its id is empty */
+                            //print(data["date"] as! String)
+                            if ( mutabaah == nil ) {
+                                do {
+                                    try self.realm.write {
+                                        let m = self.realm.create(Mutabaah.self, value: data, update: true)
+                                        for r in m.records {
+                                            r.mutabaah = m._id!
+                                        }
+                                    }
+                                } catch {
+                                    // TODO: error handling
+                                    print("realm error!")
+                                }
+                            } else if (mutabaah?._id == nil) {
+                                let newrecords = data["records"] as! [[String:AnyObject]]
+                                do {
+                                    try self.realm.write {
+                                        mutabaah?._id = data["_id"] as? String
+                                        for r in (mutabaah?.records)! {
+                                            r.mutabaah = data["_id"] as? String
+                                            r.value = { () -> Int in
+                                                for n in newrecords {
+                                                    if n["ibadah_id"] as! String == r.ibadah_id {
+                                                        return n["value"] as! Int
+                                                    }
+                                                }
+                                                return 0
+                                            }()
+                                        }
+                                    }
+                                } catch {
+                                    // TODO: error handling
+                                    print("realm error!")
+                                }
+                            }
                         }
-                        self.rootResource.updateValue(mutabaah as AnyObject, forKey: "mutabaah")
                         then()
                     }
                 }, failure: { (error) in
@@ -98,16 +207,43 @@ class APIClient: NSObject, URLSessionDelegate {
         }
     }
     
-    func fetchListOfIbadahs(then: @escaping () -> Void) {
+    func postMutabaah(mutabaah: Mutabaah, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> Void) {
+        self.validateFullScope {
+            if mutabaah._id == nil || mutabaah._id == "" {
+                self.urlSessionPostJSONTask(httpMethod.post, url: "api/mutabaahs", parameters: mutabaah.toDictionary(), success: {
+                        success()
+                    }, failure: { (error) in
+                        failure(error)
+                }).resume()
+            } else {
+                self.urlSessionPostJSONTask(httpMethod.put, url: "api/mutabaahs/\(mutabaah._id!)", parameters: mutabaah.toDictionary(), success: success, failure: { (error) in
+                        print("cannot update mutabaah!")
+                        failure(error)
+                }).resume()
+            }
+        }
+    }
+    
+    func getListOfIbadahs(then: @escaping () -> Void) {
         self.validateFullScope {
             if (self.listOfIbadahs.count > 0) { then() }
-            /* fetch list of ibadahs */
-            self.urlSessionJSONTask(url: "api/ibadahs", success: { (jsonData) in
-                    /* clear all first */
-                    self.listOfIbadahs.removeAllObjects()
+            /* fetch list of ibadahs of default group */
+            self.urlSessionJSONTaskSerialized(url: "api/groups/\(self.defaultGroupId)/ibadahs", success: { (jsonData) in
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
-                            self.listOfIbadahs.add(data)
+                            let id = data["_id"] as! String
+                            let existing = self.realm.object(ofType: Ibadah.self, forPrimaryKey: id)
+                            print(existing?._id)
+                            if existing == nil || existing?._id == "" {
+                                do {
+                                    try self.realm.write {
+                                        self.realm.create(Ibadah.self, value: data, update: true)
+                                    }
+                                } catch {
+                                    // TODO : error handling!
+                                    print("cannot create realm ibadah")
+                                }
+                            }
                         }
                         then()
                     }
@@ -115,6 +251,81 @@ class APIClient: NSObject, URLSessionDelegate {
                     print(error) /* TODO: error handling! */
                 }
             ).resume()
+        }
+    }
+    
+    func getAllGroups(_ success: @escaping (_ arrayData:[Dictionary<String,AnyObject>]) -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/groups", success: { (jsonData) in
+                    if let arrayData = jsonData["response"] as? [Dictionary<String,AnyObject>] {
+                        success(arrayData)
+                    }
+                }, failure: { (error) in
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    func getGroupMembers(for groupId: String!, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error:APIError) -> Void) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupId!)/members", success: { (jsonData) in
+                    success(jsonData)
+                }, failure: { (error) in
+                    // TODO: error handling!
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    func getGroupInformation(_ success: @escaping (_ groupInfo:Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            self.validateUserGroup(success: { 
+                    let groupid = (self.rootResource["groups"] as! [String])[0]
+                    self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupid)", success: { (jsonData) in
+                        success(jsonData)
+                    }, failure: { (error) in
+                        // reauth?
+                        // TODO: what should we do when failed fetching groups?
+                    }).resume()
+                }, failure: { (error) in
+                    failure(error)
+                    print("error validating user/group info")
+            })
+        }
+    }
+    
+    func requestJoinGroup(_ groupid: String!, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) {
+        self.validateFullScope {
+            let memberParam = ["user_id" : self.rootResource["_id"]! as AnyObject,
+                               "group_id" : groupid as AnyObject]
+            
+            //print(memberParam)
+            
+            self.urlSessionPostJSONTask(.post, url: "api/members", parameters: memberParam, success: {
+                    success()
+                }, failure: { (error:APIError) in
+                    print("cannot join group!")
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    // MARK - Detail
+
+    func validateUserGroup(success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> Void) {
+        if ((self.rootResource["_id"] as? String) != nil) {
+            if let groups = self.rootResource["groups"] as? [String] {
+                if groups.count > 0 {
+                    success()
+                } else {
+                    // no group yet
+                    failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userGroupNotExistError.rawValue, userInfo: nil))
+                }
+            }
+        } else {
+            // no user info yet
+            print("no user info yet")
+            failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userInfoError.rawValue, userInfo: nil))
         }
     }
     
@@ -126,12 +337,17 @@ class APIClient: NSObject, URLSessionDelegate {
             }, failure: { (error: NSError) -> Void in
                 // TODO: error handling!
                 print("cannot validate")
+                self.logoutThenDeleteAllStoredData()
         })
     }
     
     func validate(oAuthToken: OAuthToken?, validationSuccess: (_ chosenToken: OAuthToken) -> Void, failure: ((_ error: NSError) -> Void)?) {
         if oAuthToken != nil {
             if oAuthToken!.hasExpired() == false {
+                /* validate info and group */
+                //if let groups = self.rootResource["groups"] as? [String] {
+                //}
+                
                 validationSuccess(oAuthToken!)
             } else {
                 oAuthToken!.removeFromKeychainIfNotValid()
@@ -161,16 +377,15 @@ class APIClient: NSObject, URLSessionDelegate {
     }
     
     fileprivate func logout(success: @escaping () -> Void, failure: (_ error: APIError) -> ()) {
-        if rootResource.count == 0 && listOfIbadahs.count == 0 {
-            success()
-            return
-        }
-        
-        validateFullScope {
-            self.rootResource.removeAll()
-            self.listOfIbadahs.removeAllObjects()
-            
-            OAuthToken.removeAllTokens()
+        if OAuthToken.oAuthTokens().count > 0{
+            validateFullScope {
+                self.rootResource.removeAll()
+                self.listOfIbadahs.removeAllObjects()
+                
+                OAuthToken.removeAllTokens()
+                success()
+            }
+        } else {
             success()
         }
     }
@@ -197,7 +412,6 @@ class APIClient: NSObject, URLSessionDelegate {
         self.cancelAllRunningTasks {
             self.logout(success: { 
                     DispatchQueue.main.async(execute: {
-                        print("show login")
                         let appdelegate = UIApplication.shared.delegate as! AppDelegate
                         appdelegate.startApplicationFromAuth()
                     })
