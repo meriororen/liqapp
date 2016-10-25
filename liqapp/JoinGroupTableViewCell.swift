@@ -22,13 +22,15 @@ class JoinGroupTableViewCell: UITableViewCell {
         spinner.startAnimating()
         
         APIClient.sharedClient.requestJoinGroup(groupId, success: {
-            APIClient.sharedClient.updateUserBasicInfo {
+            APIClient.sharedClient.updateUserBasicInfo(success: {
                 self.spinner.stopAnimating()
                 self.spinner.isHidden = true
                 self.groupJoinRequest.isEnabled = false
                 self.groupJoinRequest.setTitle("Joined", for: .disabled)
                 self.groupJoinRequest.isHidden = false
-            }
+            }, failure: { (error) in
+                
+            })
         }, failure: { (error) in
             print("NO!")
         })

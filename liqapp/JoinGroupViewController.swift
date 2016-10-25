@@ -8,20 +8,20 @@
 
 import UIKit
 
+protocol JoinGroupViewControllerDelegate {
+    func preparePopView()
+}
+
 class JoinGroupViewController: UIViewController, UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var joinView: UIView!
     @IBOutlet weak var tableView: UITableView!
     
+    var delegate: JoinGroupViewControllerDelegate!
+    
     var allGroups = [Dictionary<String,AnyObject>]()
     var filteredGroups = [Dictionary<String,AnyObject>]()
     var searchController: UISearchController! = nil
-    
-
-    @IBAction override func unwind(for unwindSegue:UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
-        let mainGroupVC = (subsequentVC as! UINavigationController).viewControllers[1] as! GroupMainViewController
-        mainGroupVC.loadGroupInfo()
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,6 +90,11 @@ class JoinGroupViewController: UIViewController, UISearchDisplayDelegate, UITabl
         })
         
         tableView.reloadData()
+    }
+    
+    func goBack() {
+        if self.delegate != nil { self.delegate.preparePopView() }
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }
 

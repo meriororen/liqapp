@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		4A0832171DB7B8F50066FC4A /* GridCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */; };
 		4A0832191DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */; };
+		4A08321B1DBA44E30066FC4A /* GroupDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */; };
+		4A08321D1DBB7E700066FC4A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A08321C1DBB7E700066FC4A /* User.swift */; };
 		4A0C7C631DAA957B00B31EBC /* JoinGroupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */; };
 		4A0C7C651DAA9FB700B31EBC /* JoinGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */; };
 		4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */; };
@@ -52,6 +54,8 @@
 		20A0D1EF9E73F1458DA08AC1 /* Pods-liqapp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-liqapp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-liqapp/Pods-liqapp.debug.xcconfig"; sourceTree = "<group>"; };
 		4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridCollectionViewLayout.swift; sourceTree = "<group>"; };
 		4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenuCollectionViewCell.xib; sourceTree = "<group>"; };
+		4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupDetailViewController.swift; sourceTree = "<group>"; };
+		4A08321C1DBB7E700066FC4A /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupViewController.swift; sourceTree = "<group>"; };
 		4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = JoinGroupTableViewCell.xib; sourceTree = "<group>"; };
 		4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinGroupTableViewCell.swift; sourceTree = "<group>"; };
@@ -147,12 +151,14 @@
 			isa = PBXGroup;
 			children = (
 				4A4F53061DA53CAA008E4F3A /* GroupMainViewController.swift */,
+				4A08321A1DBA44E30066FC4A /* GroupDetailViewController.swift */,
+				4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */,
 				4A0832161DB7B8F50066FC4A /* GridCollectionViewLayout.swift */,
 				4ADF99EC1DAFCE35008D1639 /* GroupCollectionViewCell.xib */,
 				4A0832181DB7C9BD0066FC4A /* MainMenuCollectionViewCell.xib */,
 				4A0C7C641DAA9FB700B31EBC /* JoinGroupTableViewCell.xib */,
 				4A0C7C661DAA9FE900B31EBC /* JoinGroupTableViewCell.swift */,
-				4A0C7C621DAA957B00B31EBC /* JoinGroupViewController.swift */,
+				4A08321C1DBB7E700066FC4A /* User.swift */,
 			);
 			name = Group;
 			sourceTree = "<group>";
@@ -393,6 +399,7 @@
 				4A4F53051DA4FC36008E4F3A /* UIAuthTextField.swift in Sources */,
 				4A7AE1B21D97F42A00F466F8 /* UIView+SlideInFromBottom.swift in Sources */,
 				4ADF99F41DB26925008D1639 /* Ibadah.swift in Sources */,
+				4A08321D1DBB7E700066FC4A /* User.swift in Sources */,
 				4A7E9D191D938CB2002E3697 /* AuthManager.swift in Sources */,
 				4A0C7C671DAA9FE900B31EBC /* JoinGroupTableViewCell.swift in Sources */,
 				4A669DE91DA27E4100451A7F /* RegisterViewController.swift in Sources */,
@@ -407,6 +414,7 @@
 				4A4EBC6B1D9417B3003C9A35 /* MutabaahViewController.swift in Sources */,
 				4A7E9D101D929A74002E3697 /* APIError.swift in Sources */,
 				4A7E9D151D92A67D002E3697 /* OAuthToken.swift in Sources */,
+				4A08321B1DBA44E30066FC4A /* GroupDetailViewController.swift in Sources */,
 				4ADF99F61DB26A7E008D1639 /* Record.swift in Sources */,
 				4A7AE1B41D97F46E00F466F8 /* IbadahDetailViewController.swift in Sources */,
 				4A7E9D0D1D928EBE002E3697 /* APIClient+URLSessionTask.swift in Sources */,

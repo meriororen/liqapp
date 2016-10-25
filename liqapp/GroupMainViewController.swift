@@ -8,28 +8,19 @@
 
 import UIKit
 
-class GroupMainViewController: UIViewController {
-    @IBOutlet weak var groupLabel: UILabel!
-    @IBOutlet weak var backButton: UIButton!
-    @IBOutlet weak var spinner: UIActivityIndicatorView!
+class GroupMainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, GridCollectionLayoutDelegate {
+    @IBOutlet weak var collectionView: UICollectionView!
     
     @IBAction override func unwind(for unwindSegue: UIStoryboardSegue, towardsViewController subsequentVC: UIViewController) {
     }
 
-    @IBAction func backToMain() {
-        self.performSegue(withIdentifier: "backToMain", sender: self)
-    }
+    var selectedGroupId  = ""
+    private var joinedGroupInfo: [Dictionary<String,AnyObject>] = []
+    private var joinedGroups: [String] = []
     
     func loadGroupInfo() {
-        //groupLabel.isHidden = true
-        
-        //spinner.frame = CGRect(x: self.view.center.x, y: self.view.center.y, width: 10.0, height: 10.0)
-        //spinner.startAnimating()
-        
         APIClient.sharedClient.getGroupInformation({ (group) in
-            //self.groupLabel.text = (group["name"] as! String)
-            //self.groupLabel.isHidden = false
-            //self.spinner.stopAnimating()
+            self.collectionView.isUserInteractionEnabled = true
         }) { (error) in
             if (error.code == Constants.Error.Code.userGroupNotExistError.rawValue) {
                 //self.groupLabel.text = "You do not belong to any group."
@@ -45,23 +36,13 @@ class GroupMainViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        loadGroupInfo()
-    }
-}
-
-class GroupCollectionViewCell: UICollectionViewCell {
-    @IBOutlet weak var groupLabel: UILabel!
-}
-
-class GroupCollectionViewController: UICollectionViewController, GridCollectionLayoutDelegate {
-
-    var joinedGroupInfo: [Dictionary<String,AnyObject>] = []
-    var joinedGroups: [String] = []
-    
-    override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let layout = collectionView?.collectionViewLayout as? GridCollectionViewLayout {
+        loadGroupInfo()
+        
+        collectionView.register(UINib(nibName: "GroupCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "groupColCell")
+        
+        if let layout = collectionView.collectionViewLayout as? GridCollectionViewLayout {
             layout.delegate = self
         }
         
@@ -72,7 +53,7 @@ class GroupCollectionViewController: UICollectionViewController, GridCollectionL
         } else {
             collectionView?.register(UINib(nibName: "GroupCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "groupColCell")
             collectionView?.delegate = self
-                    
+            
             for jg in joinedGroups {
                 APIClient.sharedClient.getGroupForId(jg, success: { (groupInfo) in
                     self.joinedGroupInfo.append(groupInfo)
@@ -80,14 +61,14 @@ class GroupCollectionViewController: UICollectionViewController, GridCollectionL
                         //self.collectionView?.reloadItems(at: [IndexPath(item: i, section: 0)])
                         self.collectionView?.reloadData()
                     }
-                }, failure: { (error) in
+                    }, failure: { (error) in
                         // do nothing
                 })
             }
         }
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "groupColCell", for: indexPath) as! GroupCollectionViewCell
         
         if joinedGroupInfo.count > 0 {
@@ -103,12 +84,20 @@ class GroupCollectionViewController: UICollectionViewController, GridCollectionL
         return cell
     }
     
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.joinedGroups.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        self.selectedGroupId = joinedGroups[indexPath.row]
+        let vc = self.storyboard?.instantiateViewController(withIdentifier: "groupDetailVC") as! GroupDetailViewController
+        vc.groupId = joinedGroups[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+        //performSegue(withIdentifier: "groupDetailSegue", sender: self)
     }
     
     // MARK:- GroupCollectionLayoutDelegate
@@ -116,7 +105,14 @@ class GroupCollectionViewController: UICollectionViewController, GridCollectionL
     func collectionView(_ collectionView: UICollectionView, heightForBoxAtIndexPath indexPath: IndexPath, withWidth: CGFloat) -> CGFloat {
         //let layout = self.collectionView?.collectionViewLayout as! GroupCollectionViewLayout
         return 135.0
-       // return ((self.view.frame.size.height - (layout.cellPadding * 2))/CGFloat((joinedGroups.count/layout.numberOfColumns)+1))
+        // return ((self.view.frame.size.height - (layout.cellPadding * 2))/CGFloat((joinedGroups.count/layout.numberOfColumns)+1))
+    }
+    
+    func goBack() {
+        _ = self.navigationController?.popViewController(animated: true)
     }
 }
 
+class GroupCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var groupLabel: UILabel!
+}

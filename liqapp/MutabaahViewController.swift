@@ -210,7 +210,6 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         let queryfilter = NSPredicate(format: "date = %@", ds)
         let mutabaah = Array(realm.objects(Mutabaah.self).filter(queryfilter)) as [Mutabaah]
         
-        
         if mutabaah.count == 0 {
             // create a new mutabaah record
             currentMutabaah = Mutabaah(date: ds)
@@ -245,8 +244,12 @@ class MutabaahViewController: UIViewController, UITableViewDataSource, UITableVi
         dateButton.isHidden = false
         ibadahLabel.isHidden = false
         
-        //controlView.slideInFromBottom(0.5)
         controlView.isHidden = false
+        
+        selectedRecord = nil
+        selectedIbadah = nil
+        selectedIndexPath = IndexPath()
+        selectedIndex = -1000
         
         tableView.isUserInteractionEnabled = true
         

@@ -25,7 +25,7 @@ class Mutabaah: Object {
         self.init()
         self.date = date
         self.user_id = {
-            if let user_id = APIClient.sharedClient.rootResource["id"] as? String {
+            if let user_id = APIClient.sharedClient.rootResource["_id"] as? String {
                 return user_id
             } else {
                 return ""

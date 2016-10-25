@@ -10,18 +10,22 @@ import UIKit
 import RealmSwift
 import FontAwesome_swift
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, GridCollectionLayoutDelegate {
-    
+class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, GridCollectionLayoutDelegate, JoinGroupViewControllerDelegate {
+
     @IBOutlet weak var mutabaahButton: ItemButton!
     @IBOutlet weak var groupButton: ItemButton!
     @IBOutlet weak var welcomeLabel: UILabel!
     @IBOutlet weak var contactImage: UIImageView!
     @IBOutlet weak var logoutButton: UIButton!
     
+    @IBOutlet weak var headerView: UIView!
+    
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var spinnerLabel: UILabel!
     
     @IBOutlet weak var collectionView: UICollectionView!
+    
+    private var realm = APIClient.sharedClient.realm
     
     var mainMenu = [
         ["name": "Mutabaah", "icon" : FontAwesome.CalendarCheckO,
@@ -30,7 +34,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
          "enabled": "yes", "segue": "groupMainSegueId"],
         ["name": "Calendar", "icon" : FontAwesome.Calendar, "enabled": "no"],
         ["name": "Messages", "icon": FontAwesome.Envelope, "enabled": "no"],
-        ["name": "Search", "icon" : FontAwesome.Search, "enabled": "no"],
+        ["name": "Search", "icon" : FontAwesome.Search, "enabled": "yes", "segue": "toSearchGroupFromMain"],
         ["name": "News", "icon": FontAwesome.NewspaperO, "enabled": "no"],
             ["name": "Ask Help", "icon" : FontAwesome.Question, "enabled" : "no"],
         ["name": "Chat", "icon": FontAwesome.Commenting, "enabled": "no"],
@@ -40,27 +44,19 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //mutabaahButton.FAIconLabel.text = String.fontAwesomeIconWithName(.CalendarCheckO)
-        //mutabaahButton.ItemLabel.text = "Mutabaah"
-        //groupButton.FAIconLabel.text = String.fontAwesomeIconWithName(.Group)
-        //groupButton.ItemLabel.text = "Group"
-        
-       // logoutButton.titleLabel?.font = UIFont.fontAwesomeOfSize(20.0)
-       // logoutButton.text = String.fontAwesomeIconWithName(.SignOut)
-        
         collectionView.register(UINib(nibName: "MainMenuCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "mainMenuCell")
         
         if let layout = collectionView?.collectionViewLayout as? GridCollectionViewLayout {
             layout.delegate = self
         }
         
+        collectionView.isUserInteractionEnabled = false
+        
         contactImage.image?.withRenderingMode(.alwaysTemplate)
         contactImage.tintColor = UIColor.white
         
         welcomeLabel.isHidden = true
         contactImage.isHidden = true
-        //mutabaahButton.isEnabled = false
-        //groupButton.isEnabled = false
         
         spinner.startAnimating()
         spinnerLabel.text = "Loading..."
@@ -68,20 +64,34 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
         if APIClient.sharedClient.rootResource.count > 0 {
             userReady()
         } else {
-            APIClient.sharedClient.updateUserBasicInfo {
+            APIClient.sharedClient.updateUserBasicInfo(success: {
                 self.userReady()
-            }
+            }, failure: { (error) in
+                if (error.code == Constants.Error.Code.userGroupNotExistError.rawValue) {
+                    let vc = self.storyboard?.instantiateViewController(withIdentifier: "joinGroupViewId") as! JoinGroupViewController
+                    vc.delegate = self
+                    self.navigationController?.pushViewController(vc, animated: true)
+                }
+            })
         }
     }
-            
+    
+    internal func preparePopView() {
+        APIClient.sharedClient.updateUserBasicInfo(success: {
+            self.userReady()
+            }, failure: { (error) in
+            // TODO: error handling!
+                print("failed!")
+        })
+    }
+    
     func userReady() {
-        self.welcomeLabel.text = (APIClient.sharedClient.rootResource["name"] as! String)
+        self.welcomeLabel.text = (APIClient.sharedClient.rootResource["username"] as! String)
         self.welcomeLabel.isHidden = false
         self.contactImage.isHidden = false
         self.spinnerLabel.isHidden = true
         
-        //self.mutabaahButton.isEnabled = true
-        //self.groupButton.isEnabled = true
+        collectionView.isUserInteractionEnabled = true
         
         self.spinner.stopAnimating()
     }

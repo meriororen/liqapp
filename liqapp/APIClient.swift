@@ -34,6 +34,8 @@ class APIClient: NSObject, URLSessionDelegate {
     var rootResource = Dictionary<String, AnyObject>()
     var realm: Realm!
     var realmConfig: Realm.Configuration!
+    var defaultGroupId = ""
+    var currentUser: User!
     
     override init() {
         super.init()
@@ -56,23 +58,62 @@ class APIClient: NSObject, URLSessionDelegate {
     
     func updateRealmDB() {
         /* realm config */
-        var config = Realm.Configuration()
+        var config = Realm.Configuration(schemaVersion: 3, migrationBlock: { (migration, oldVersion) in
+            if (oldVersion < 2) {
+            }
+        })
         
-        let userid = APIClient.sharedClient.rootResource["id"] as! String
+        let userid = APIClient.sharedClient.rootResource["_id"] as! String
         config.fileURL = config.fileURL!.deletingLastPathComponent().appendingPathComponent("\(userid).realm")
-        
-        //print(config.fileURL)
-        
+                
         self.realmConfig = config
         self.realm = try! Realm(configuration: self.realmConfig)
     }
     
-    func updateUserBasicInfo(then: @escaping () -> Void) {
+    func setDefaultGroup(id: String!) {
+        if self.rootResource["groups"] != nil {
+            if let groups = self.rootResource["groups"] as? [String] {
+                if groups.contains(id) { self.defaultGroupId = id }
+            }
+        }
+    }
+    
+    private func insertUserInfoToRealmDB(userInfo: Dictionary<String,AnyObject>) -> User {
+        let id = userInfo["_id"]! as! String
+        let name = userInfo["username"]! as! String
+        var user = self.realm.object(ofType: User.self, forPrimaryKey: id)
+        if user != nil {
+            try! self.realm.write {
+                user!.name = name
+            }
+        } else {
+            user = User()
+            user!._id = id
+            try! self.realm.write {
+                self.realm.add(user!)
+            }
+        }
+        return user!
+    }
+    
+    func getUserInformation(for userId: String!, success: @escaping (Dictionary<String,AnyObject>) -> Void, failure: @escaping (APIError) -> Void) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/users/\(userId!)", success: { (jsonData) in
+                    _ = self.insertUserInfoToRealmDB(userInfo: jsonData)
+                    success(jsonData)
+                }, failure: { (error) in
+                    failure(error)
+            }).resume()
+        }
+    }
+    
+    func updateUserBasicInfo(success: @escaping () -> Void, failure: @escaping (APIError) -> Void) {
         self.validateFullScope {
             /* fetch basic info */
             self.urlSessionJSONTaskSerialized(url: "api/user", success: { (jsonData) in
+                /* ephemeral user info data */
                 for (key, value) in jsonData {
-                    if (key == "id" || key == "name" || key == "groups") {
+                    if (key == "_id" || key == "username" || key == "groups") {
                         self.rootResource.updateValue(value, forKey: key)
                     }
                 }
@@ -80,7 +121,15 @@ class APIClient: NSObject, URLSessionDelegate {
                 /* first time opening realm is after we get the user id*/
                 self.updateRealmDB()
                 
-                then()
+                /* put user info in realm db */
+                self.validateUserGroup(success: {
+                        self.currentUser = self.insertUserInfoToRealmDB(userInfo: jsonData)
+                        self.defaultGroupId = (jsonData["groups"] as! [String]).first!
+                        try! self.realm.write { self.currentUser.defaultGroup = self.defaultGroupId }
+                        success()
+                    }, failure: { (error) in
+                        failure(APIError(domain: Constants.Error.apiClientErrorDomain, code: Constants.Error.Code.userGroupNotExistError.rawValue, userInfo: nil))
+                })
                 }, failure: { (error) in
                     print(error) /* TODO: error handling! */
             }).resume()
@@ -90,7 +139,7 @@ class APIClient: NSObject, URLSessionDelegate {
     func registerUser(_ userInfo: Dictionary<String,AnyObject>, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> ())
     {
         self.urlSessionPostJSONTaskWithNoAuthorizationHeader(APIClient.httpMethod.post, url: "api/users", parameters: userInfo, success: {
-                print("success registering user")
+                //print("success registering user")
                 success()
             }, failure: { (error:APIError) in
                 failure(error)
@@ -103,10 +152,6 @@ class APIClient: NSObject, URLSessionDelegate {
             }, failure: { (error:APIError) in
                 failure(error)
         }).resume()
-    }
-    
-    func getUserMutabaahForDate(_ date: String, success: () -> Void, failure: (_ error: APIError) -> ()) {
-        // not yet available
     }
     
     func getUserMutabaahs(then: @escaping () -> Void) {
@@ -163,13 +208,11 @@ class APIClient: NSObject, URLSessionDelegate {
     }
     
     func postMutabaah(mutabaah: Mutabaah, success: @escaping () -> Void, failure: @escaping (_ error: APIError) -> Void) {
-        //print(mutabaah.toDictionary())
         self.validateFullScope {
             if mutabaah._id == nil || mutabaah._id == "" {
                 self.urlSessionPostJSONTask(httpMethod.post, url: "api/mutabaahs", parameters: mutabaah.toDictionary(), success: {
                         success()
                     }, failure: { (error) in
-                        //print("cannot post mutabaah!")
                         failure(error)
                 }).resume()
             } else {
@@ -184,8 +227,8 @@ class APIClient: NSObject, URLSessionDelegate {
     func getListOfIbadahs(then: @escaping () -> Void) {
         self.validateFullScope {
             if (self.listOfIbadahs.count > 0) { then() }
-            /* fetch list of ibadahs */
-            self.urlSessionJSONTaskSerialized(url: "api/ibadahs", success: { (jsonData) in
+            /* fetch list of ibadahs of default group */
+            self.urlSessionJSONTaskSerialized(url: "api/groups/\(self.defaultGroupId)/ibadahs", success: { (jsonData) in
                     if let anArray = jsonData["response"] as? [Dictionary<String, AnyObject>] {
                         for data in anArray {
                             let id = data["_id"] as! String
@@ -220,7 +263,18 @@ class APIClient: NSObject, URLSessionDelegate {
                 }, failure: { (error) in
                     failure(error)
             }).resume()
-            }
+        }
+    }
+    
+    func getGroupMembers(for groupId: String!, success: @escaping (Dictionary<String, AnyObject>) -> Void, failure: @escaping (_ error:APIError) -> Void) {
+        self.validateFullScope {
+            self.urlSessionJSONTaskSerialized(url: "api/groups/\(groupId!)/members", success: { (jsonData) in
+                    success(jsonData)
+                }, failure: { (error) in
+                    // TODO: error handling!
+                    failure(error)
+            }).resume()
+        }
     }
     
     func getGroupInformation(_ success: @escaping (_ groupInfo:Dictionary<String,AnyObject>) -> Void, failure: @escaping (_ error:APIError) -> ()) {
@@ -242,7 +296,7 @@ class APIClient: NSObject, URLSessionDelegate {
     
     func requestJoinGroup(_ groupid: String!, success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> ()) {
         self.validateFullScope {
-            let memberParam = ["user_id" : self.rootResource["id"]! as AnyObject,
+            let memberParam = ["user_id" : self.rootResource["_id"]! as AnyObject,
                                "group_id" : groupid as AnyObject]
             
             //print(memberParam)
@@ -259,7 +313,7 @@ class APIClient: NSObject, URLSessionDelegate {
     // MARK - Detail
 
     func validateUserGroup(success: @escaping () -> Void, failure: @escaping (_ error:APIError) -> Void) {
-        if ((self.rootResource["id"] as? String) != nil) {
+        if ((self.rootResource["_id"] as? String) != nil) {
             if let groups = self.rootResource["groups"] as? [String] {
                 if groups.count > 0 {
                     success()

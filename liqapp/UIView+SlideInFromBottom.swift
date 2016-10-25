@@ -39,6 +39,5 @@ extension UIView {
     }
     
     func expand(_ duration: TimeInterval = 1.0, completionDelegate: AnyObject? = nil) {
-        
     }
 }
